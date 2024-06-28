@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./";
+
+service AuthService {
+    rpc UserAuthRequired (UserAuthRequest) returns (UserAuthResponse);
+    rpc AdminAuthRequired (AdminAuthRequest) returns (AdminAuthResponse);
+}
+
+message UserAuthRequest {
+    string token = 1;
+}
+
+message UserAuthResponse {
+    string status = 1;
+    int32 status_code = 2;
+}
+
+message AdminAuthRequest {
+    string token = 1;
+}
+
+message AdminAuthResponse {
+    string status = 1;
+    int32 status_code = 2;
+}
