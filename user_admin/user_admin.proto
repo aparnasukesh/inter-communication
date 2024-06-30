@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user_admin";
+
+service UserService {
+    rpc CreateUser (UserRequest) returns (UserResponse);
+    rpc GetUser (UserRequest) returns (UserResponse);
+}
+message UserRequest {
+    string username = 2;
+    string password = 3;
+    string phone = 4;
+    string email = 5;
+    string firstname = 6;
+    string lastname = 7;
+    string gender = 9;
+}
+
+message UserResponse {
+    string status = 1;
+    int32 statusCode = 2;
+}
