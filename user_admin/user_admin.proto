@@ -1,14 +1,23 @@
 syntax = "proto3";
 
-package user;
+package user_admin;
 
 option go_package = "./user_admin";
 
+// User Service definition
 service UserService {
     rpc CreateUser (UserRequest) returns (UserResponse);
-    rpc RegisterValidate(ValidateRequest)returns (ValidateResponse);
+    rpc RegisterValidate (ValidateRequest) returns (ValidateResponse);
     rpc GetUser (UserRequest) returns (UserResponse);
 }
+
+// Admin Service definition
+service AdminService {
+    // Define admin-specific RPCs here
+    rpc CreateAdmin(AdminRequest)returns (AdminResponse);
+    rpc AdminAction (AdminRequest) returns (AdminResponse);
+}
+
 message UserRequest {
     string username = 2;
     string password = 3;
@@ -24,12 +33,27 @@ message UserResponse {
     int32 statusCode = 2;
 }
 
-message ValidateRequest{
+message ValidateRequest {
     string email = 1;
-    string otp =2;
+    string otp = 2;
 }
 
-message ValidateResponse{
-    string status =1;
-    int32 statusCode =2;
+message ValidateResponse {
+    string status = 1;
+    int32 statusCode = 2;
+}
+
+message AdminRequest {
+    string username = 2;
+    string password = 3;
+    string phone = 4;
+    string email = 5;
+    string firstname = 6;
+    string lastname = 7;
+    string gender = 9;
+}
+
+message AdminResponse {
+    string status = 1;
+    int32 statusCode = 2;
 }
