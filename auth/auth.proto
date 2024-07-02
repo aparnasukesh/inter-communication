@@ -5,7 +5,7 @@ package auth;
 option go_package = "./auth";
 
 service AuthService {
-  //  rpc CreateJWTToken(UserRequest)returns (UserResponse);
+  rpc CreateJWTToken(UserRequest)returns (UserResponse);
     rpc UserAuthRequired (UserAuthRequest) returns (UserAuthResponse);
     rpc AdminAuthRequired (AdminAuthRequest) returns (AdminAuthResponse);
 }
@@ -28,9 +28,10 @@ message AdminAuthResponse {
     int32 status_code = 2;
 }
 
-// message UserRequest{
-//     string
-// }
-// message UserResponse{
-
-// }
+message UserRequest{
+    string email = 1;
+    uint32 userID = 2;
+}
+message UserResponse{
+    string token = 1;
+}
