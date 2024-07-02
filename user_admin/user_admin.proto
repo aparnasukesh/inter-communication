@@ -6,6 +6,7 @@ option go_package = "./user_admin";
 
 service UserService {
     rpc CreateUser (UserRequest) returns (UserResponse);
+    rpc RegisterValidate(ValidateRequest)returns (ValidateResponse);
     rpc GetUser (UserRequest) returns (UserResponse);
 }
 message UserRequest {
@@ -21,4 +22,14 @@ message UserRequest {
 message UserResponse {
     string status = 1;
     int32 statusCode = 2;
+}
+
+message ValidateRequest{
+    string email = 1;
+    string otp =2;
+}
+
+message ValidateResponse{
+    string status =1;
+    int32 statusCode =2;
 }
