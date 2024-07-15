@@ -1,69 +1,112 @@
 syntax = "proto3";
 
-package user_admin;
+package useradmin;
 
 option go_package = "./user_admin";
 
 // User Service definition
 service UserService {
-    rpc CreateUser (UserRequest) returns (UserResponse);
-    rpc RegisterValidate (ValidateRequest) returns (ValidateResponse);
-    rpc LoginUser(LoginRequest)returns (LoginResponse);
-    rpc GetUser (UserRequest) returns (UserResponse);
+    rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
+    rpc ValidateUser (ValidateUserRequest) returns (ValidateUserResponse);
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+    rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
 }
 
 // Admin Service definition
 service AdminService {
-    // Define admin-specific RPCs here
-    rpc CreateAdmin(AdminRequest)returns (AdminResponse);
-    rpc AdminAction (AdminRequest) returns (AdminResponse);
+    rpc RegisterAdmin (RegisterAdminRequest) returns (RegisterAdminResponse);
+    rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
+    rpc UpdateAdminProfile (UpdateAdminProfileRequest) returns (UpdateAdminProfileResponse);
 }
 
-message UserRequest {
-    string username = 2;
-    string password = 3;
-    string phone = 4;
-    string email = 5;
-    string firstname = 6;
-    string lastname = 7;
-    string gender = 9;
+// User related messages
+message RegisterUserRequest {
+    string username = 1;
+    string password = 2;
+    string phone = 3;
+    string email = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string gender = 7;
 }
 
-message UserResponse {
+message RegisterUserResponse {
     string status = 1;
-    int32 statusCode = 2;
+    int32 status_code = 2;
 }
 
-message ValidateRequest {
+message ValidateUserRequest {
     string email = 1;
     string otp = 2;
 }
 
-message ValidateResponse {
+message ValidateUserResponse {
     string status = 1;
-    int32 statusCode = 2;
+    int32 status_code = 2;
 }
-message LoginRequest{
+
+message LoginUserRequest {
     string email = 1;
     string password = 2;
 }
-message LoginResponse{
+
+message LoginUserResponse {
     string status = 1;
-    string statusCode = 2;
+    int32 status_code = 2;
     string token = 3;
 }
-message AdminRequest {
-    string username = 2;
-    string password = 3;
-    string phone = 4;
-    string email = 5;
-    string firstname = 6;
-    string lastname = 7;
-    string gender = 9;
+
+message UpdateUserProfileRequest {
+    string username = 1;
+    string phone = 2;
+    string email = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string gender = 6;
+    string date_of_birth = 7;
 }
 
-message AdminResponse {
+message UpdateUserProfileResponse {
     string status = 1;
-    int32 statusCode = 2;
+    int32 status_code = 2;
 }
 
+// Admin related messages
+message RegisterAdminRequest {
+    string username = 1;
+    string password = 2;
+    string phone = 3;
+    string email = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string gender = 7;
+}
+
+message RegisterAdminResponse {
+    string status = 1;
+    int32 status_code = 2;
+}
+
+message LoginAdminRequest{
+    string email = 1;
+    string password = 2;
+}
+
+message LoginAdminResponse{
+    string status = 1;
+    int32 status_code = 2;
+}
+message UpdateAdminProfileRequest {
+    string username = 1;
+    string phone = 2;
+    string email = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string gender = 6;
+    string date_of_birth = 7;
+}
+
+message UpdateAdminProfileResponse {
+    string status = 1;
+    int32 status_code = 2;
+}
