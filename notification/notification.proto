@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package notification;
+
+option go_package = "./notification";
+
+service EmailService{
+    rpc SendEmail(EmailRequest) returns (EmailResponse);
+}
+
+message EmailRequest{
+    string email = 1;
+    string otp = 2;
+    string body_message = 3;
+}
+
+message EmailResponse {
+    string status = 1;     
+    string message = 2;     
+}
