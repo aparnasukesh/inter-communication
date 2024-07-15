@@ -96,6 +96,7 @@ message LoginAdminResponse{
     string status = 1;
     int32 status_code = 2;
 }
+
 message UpdateAdminProfileRequest {
     string username = 1;
     string phone = 2;
