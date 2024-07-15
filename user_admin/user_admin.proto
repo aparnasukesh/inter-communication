@@ -95,6 +95,7 @@ message LoginAdminRequest{
 message LoginAdminResponse{
     string status = 1;
     int32 status_code = 2;
+    string token = 3;
 }
 
 message UpdateAdminProfileRequest {
