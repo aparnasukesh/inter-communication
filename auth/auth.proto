@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./auth";
+
+service JWT_TokenService{
+    rpc GenerateJWt(GenerateRequest) returns (GenerateResponse);
+}
+
+message GenerateRequest{
+    int32 role_id = 1 ;
+    string email = 2 ;
+    int32 user_id = 3 ;
+}
+
+message GenerateResponse{
+    string token = 1;
+}
