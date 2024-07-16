@@ -397,3 +397,136 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "user_admin/user_admin.proto",
 }
+
+const (
+	SuperAdminService_LoginSuperAdmin_FullMethodName = "/useradmin.SuperAdminService/LoginSuperAdmin"
+	SuperAdminService_AdminApproval_FullMethodName   = "/useradmin.SuperAdminService/AdminApproval"
+)
+
+// SuperAdminServiceClient is the client API for SuperAdminService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Super - Admin service definition
+type SuperAdminServiceClient interface {
+	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
+	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
+}
+
+type superAdminServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSuperAdminServiceClient(cc grpc.ClientConnInterface) SuperAdminServiceClient {
+	return &superAdminServiceClient{cc}
+}
+
+func (c *superAdminServiceClient) LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginSuperAdminResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_LoginSuperAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminApprovalResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_AdminApproval_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SuperAdminServiceServer is the server API for SuperAdminService service.
+// All implementations must embed UnimplementedSuperAdminServiceServer
+// for forward compatibility
+//
+// Super - Admin service definition
+type SuperAdminServiceServer interface {
+	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
+	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
+	mustEmbedUnimplementedSuperAdminServiceServer()
+}
+
+// UnimplementedSuperAdminServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSuperAdminServiceServer struct {
+}
+
+func (UnimplementedSuperAdminServiceServer) LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginSuperAdmin not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminApproval not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
+
+// UnsafeSuperAdminServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SuperAdminServiceServer will
+// result in compilation errors.
+type UnsafeSuperAdminServiceServer interface {
+	mustEmbedUnimplementedSuperAdminServiceServer()
+}
+
+func RegisterSuperAdminServiceServer(s grpc.ServiceRegistrar, srv SuperAdminServiceServer) {
+	s.RegisterService(&SuperAdminService_ServiceDesc, srv)
+}
+
+func _SuperAdminService_LoginSuperAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginSuperAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).LoginSuperAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_LoginSuperAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).LoginSuperAdmin(ctx, req.(*LoginSuperAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_AdminApproval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminApprovalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).AdminApproval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_AdminApproval_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).AdminApproval(ctx, req.(*AdminApprovalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "useradmin.SuperAdminService",
+	HandlerType: (*SuperAdminServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "LoginSuperAdmin",
+			Handler:    _SuperAdminService_LoginSuperAdmin_Handler,
+		},
+		{
+			MethodName: "AdminApproval",
+			Handler:    _SuperAdminService_AdminApproval_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "user_admin/user_admin.proto",
+}

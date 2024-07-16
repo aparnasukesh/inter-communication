@@ -19,6 +19,11 @@ service AdminService {
     rpc UpdateAdminProfile (UpdateAdminProfileRequest) returns (UpdateAdminProfileResponse);
 }
 
+// Super - Admin service definition
+service SuperAdminService{
+    rpc LoginSuperAdmin(LoginSuperAdminRequest) returns( LoginSuperAdminResponse);
+    rpc AdminApproval(AdminApprovalRequest) returns (AdminApprovalResponse);
+}
 // User related messages
 message RegisterUserRequest {
     string username = 1;
@@ -111,4 +116,24 @@ message UpdateAdminProfileRequest {
 message UpdateAdminProfileResponse {
     string status = 1;
     int32 status_code = 2;
+}
+
+message LoginSuperAdminRequest{
+    string email = 1;
+    string password = 2 ;
+}
+
+message LoginSuperAdminResponse{
+    string status = 1;
+    int32 status_code = 2;
+    string token = 3;
+}
+
+message AdminApprovalRequest{
+    string email = 1;
+    bool is_verified = 2;
+}
+
+message AdminApprovalResponse{
+    string status = 1;
 }
