@@ -7,7 +7,18 @@ option go_package = "./auth";
 service JWT_TokenService{
     rpc GenerateJWt(GenerateRequest) returns (GenerateResponse);
 }
+service UserAuthService{
 
+    rpc UserAuthRequired(AuthRequest) returns (AuthResponse);
+}
+service AdminAuthService{
+
+    rpc AdminAuthRequired(AuthRequest)returns (AuthResponse);
+}
+service SuperAdminService{
+
+    rpc SuperAdminAuthRequired(AuthRequest)returns (AuthResponse);
+}
 message GenerateRequest{
     int32 role_id = 1 ;
     string email = 2 ;
@@ -16,4 +27,13 @@ message GenerateRequest{
 
 message GenerateResponse{
     string token = 1;
+}
+
+message AuthRequest{
+    string token = 1;
+}
+
+message AuthResponse{
+    string status = 1;
+    int32 status_code = 2;
 }

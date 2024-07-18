@@ -108,3 +108,276 @@ var JWT_TokenService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "auth/auth.proto",
 }
+
+const (
+	UserAuthService_UserAuthRequired_FullMethodName = "/auth.UserAuthService/UserAuthRequired"
+)
+
+// UserAuthServiceClient is the client API for UserAuthService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UserAuthServiceClient interface {
+	UserAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
+}
+
+type userAuthServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUserAuthServiceClient(cc grpc.ClientConnInterface) UserAuthServiceClient {
+	return &userAuthServiceClient{cc}
+}
+
+func (c *userAuthServiceClient) UserAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthResponse)
+	err := c.cc.Invoke(ctx, UserAuthService_UserAuthRequired_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserAuthServiceServer is the server API for UserAuthService service.
+// All implementations must embed UnimplementedUserAuthServiceServer
+// for forward compatibility
+type UserAuthServiceServer interface {
+	UserAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error)
+	mustEmbedUnimplementedUserAuthServiceServer()
+}
+
+// UnimplementedUserAuthServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedUserAuthServiceServer struct {
+}
+
+func (UnimplementedUserAuthServiceServer) UserAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserAuthRequired not implemented")
+}
+func (UnimplementedUserAuthServiceServer) mustEmbedUnimplementedUserAuthServiceServer() {}
+
+// UnsafeUserAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserAuthServiceServer will
+// result in compilation errors.
+type UnsafeUserAuthServiceServer interface {
+	mustEmbedUnimplementedUserAuthServiceServer()
+}
+
+func RegisterUserAuthServiceServer(s grpc.ServiceRegistrar, srv UserAuthServiceServer) {
+	s.RegisterService(&UserAuthService_ServiceDesc, srv)
+}
+
+func _UserAuthService_UserAuthRequired_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAuthServiceServer).UserAuthRequired(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserAuthService_UserAuthRequired_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAuthServiceServer).UserAuthRequired(ctx, req.(*AuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// UserAuthService_ServiceDesc is the grpc.ServiceDesc for UserAuthService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var UserAuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.UserAuthService",
+	HandlerType: (*UserAuthServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UserAuthRequired",
+			Handler:    _UserAuthService_UserAuthRequired_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "auth/auth.proto",
+}
+
+const (
+	AdminAuthService_AdminAuthRequired_FullMethodName = "/auth.AdminAuthService/AdminAuthRequired"
+)
+
+// AdminAuthServiceClient is the client API for AdminAuthService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type AdminAuthServiceClient interface {
+	AdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
+}
+
+type adminAuthServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAdminAuthServiceClient(cc grpc.ClientConnInterface) AdminAuthServiceClient {
+	return &adminAuthServiceClient{cc}
+}
+
+func (c *adminAuthServiceClient) AdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthResponse)
+	err := c.cc.Invoke(ctx, AdminAuthService_AdminAuthRequired_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AdminAuthServiceServer is the server API for AdminAuthService service.
+// All implementations must embed UnimplementedAdminAuthServiceServer
+// for forward compatibility
+type AdminAuthServiceServer interface {
+	AdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error)
+	mustEmbedUnimplementedAdminAuthServiceServer()
+}
+
+// UnimplementedAdminAuthServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedAdminAuthServiceServer struct {
+}
+
+func (UnimplementedAdminAuthServiceServer) AdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminAuthRequired not implemented")
+}
+func (UnimplementedAdminAuthServiceServer) mustEmbedUnimplementedAdminAuthServiceServer() {}
+
+// UnsafeAdminAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AdminAuthServiceServer will
+// result in compilation errors.
+type UnsafeAdminAuthServiceServer interface {
+	mustEmbedUnimplementedAdminAuthServiceServer()
+}
+
+func RegisterAdminAuthServiceServer(s grpc.ServiceRegistrar, srv AdminAuthServiceServer) {
+	s.RegisterService(&AdminAuthService_ServiceDesc, srv)
+}
+
+func _AdminAuthService_AdminAuthRequired_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminAuthServiceServer).AdminAuthRequired(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminAuthService_AdminAuthRequired_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminAuthServiceServer).AdminAuthRequired(ctx, req.(*AuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// AdminAuthService_ServiceDesc is the grpc.ServiceDesc for AdminAuthService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var AdminAuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.AdminAuthService",
+	HandlerType: (*AdminAuthServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AdminAuthRequired",
+			Handler:    _AdminAuthService_AdminAuthRequired_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "auth/auth.proto",
+}
+
+const (
+	SuperAdminService_SuperAdminAuthRequired_FullMethodName = "/auth.SuperAdminService/SuperAdminAuthRequired"
+)
+
+// SuperAdminServiceClient is the client API for SuperAdminService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SuperAdminServiceClient interface {
+	SuperAdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
+}
+
+type superAdminServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSuperAdminServiceClient(cc grpc.ClientConnInterface) SuperAdminServiceClient {
+	return &superAdminServiceClient{cc}
+}
+
+func (c *superAdminServiceClient) SuperAdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_SuperAdminAuthRequired_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SuperAdminServiceServer is the server API for SuperAdminService service.
+// All implementations must embed UnimplementedSuperAdminServiceServer
+// for forward compatibility
+type SuperAdminServiceServer interface {
+	SuperAdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error)
+	mustEmbedUnimplementedSuperAdminServiceServer()
+}
+
+// UnimplementedSuperAdminServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSuperAdminServiceServer struct {
+}
+
+func (UnimplementedSuperAdminServiceServer) SuperAdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SuperAdminAuthRequired not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
+
+// UnsafeSuperAdminServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SuperAdminServiceServer will
+// result in compilation errors.
+type UnsafeSuperAdminServiceServer interface {
+	mustEmbedUnimplementedSuperAdminServiceServer()
+}
+
+func RegisterSuperAdminServiceServer(s grpc.ServiceRegistrar, srv SuperAdminServiceServer) {
+	s.RegisterService(&SuperAdminService_ServiceDesc, srv)
+}
+
+func _SuperAdminService_SuperAdminAuthRequired_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).SuperAdminAuthRequired(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_SuperAdminAuthRequired_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).SuperAdminAuthRequired(ctx, req.(*AuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.SuperAdminService",
+	HandlerType: (*SuperAdminServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SuperAdminAuthRequired",
+			Handler:    _SuperAdminService_SuperAdminAuthRequired_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "auth/auth.proto",
+}
