@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion8
 const (
 	JWT_TokenService_GenerateJWt_FullMethodName = "/auth.JWT_TokenService/GenerateJWt"
 	JWT_TokenService_VerifyJWT_FullMethodName   = "/auth.JWT_TokenService/VerifyJWT"
+	JWT_TokenService_GetUserID_FullMethodName   = "/auth.JWT_TokenService/GetUserID"
 )
 
 // JWT_TokenServiceClient is the client API for JWT_TokenService service.
@@ -29,6 +30,7 @@ const (
 type JWT_TokenServiceClient interface {
 	GenerateJWt(ctx context.Context, in *GenerateRequest, opts ...grpc.CallOption) (*GenerateResponse, error)
 	VerifyJWT(ctx context.Context, in *VerifyJWTRequest, opts ...grpc.CallOption) (*VerifyJWTResponse, error)
+	GetUserID(ctx context.Context, in *GetUserIDRequest, opts ...grpc.CallOption) (*GetUserIDResponse, error)
 }
 
 type jWT_TokenServiceClient struct {
@@ -59,12 +61,23 @@ func (c *jWT_TokenServiceClient) VerifyJWT(ctx context.Context, in *VerifyJWTReq
 	return out, nil
 }
 
+func (c *jWT_TokenServiceClient) GetUserID(ctx context.Context, in *GetUserIDRequest, opts ...grpc.CallOption) (*GetUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserIDResponse)
+	err := c.cc.Invoke(ctx, JWT_TokenService_GetUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // JWT_TokenServiceServer is the server API for JWT_TokenService service.
 // All implementations must embed UnimplementedJWT_TokenServiceServer
 // for forward compatibility
 type JWT_TokenServiceServer interface {
 	GenerateJWt(context.Context, *GenerateRequest) (*GenerateResponse, error)
 	VerifyJWT(context.Context, *VerifyJWTRequest) (*VerifyJWTResponse, error)
+	GetUserID(context.Context, *GetUserIDRequest) (*GetUserIDResponse, error)
 	mustEmbedUnimplementedJWT_TokenServiceServer()
 }
 
@@ -77,6 +90,9 @@ func (UnimplementedJWT_TokenServiceServer) GenerateJWt(context.Context, *Generat
 }
 func (UnimplementedJWT_TokenServiceServer) VerifyJWT(context.Context, *VerifyJWTRequest) (*VerifyJWTResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyJWT not implemented")
+}
+func (UnimplementedJWT_TokenServiceServer) GetUserID(context.Context, *GetUserIDRequest) (*GetUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserID not implemented")
 }
 func (UnimplementedJWT_TokenServiceServer) mustEmbedUnimplementedJWT_TokenServiceServer() {}
 
@@ -127,6 +143,24 @@ func _JWT_TokenService_VerifyJWT_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _JWT_TokenService_GetUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JWT_TokenServiceServer).GetUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JWT_TokenService_GetUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JWT_TokenServiceServer).GetUserID(ctx, req.(*GetUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // JWT_TokenService_ServiceDesc is the grpc.ServiceDesc for JWT_TokenService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -141,6 +175,10 @@ var JWT_TokenService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyJWT",
 			Handler:    _JWT_TokenService_VerifyJWT_Handler,
+		},
+		{
+			MethodName: "GetUserID",
+			Handler:    _JWT_TokenService_GetUserID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
