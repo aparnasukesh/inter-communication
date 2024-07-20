@@ -6,6 +6,7 @@ option go_package = "./auth";
 
 service JWT_TokenService{
     rpc GenerateJWt(GenerateRequest) returns (GenerateResponse);
+    rpc VerifyJWT(VerifyJWTRequest)returns (VerifyJWTResponse);
 }
 service UserAuthService{
 
@@ -26,6 +27,14 @@ message GenerateRequest{
 }
 
 message GenerateResponse{
+    string token = 1;
+}
+
+message VerifyJWTRequest{
+    string token = 1;
+}
+
+message VerifyJWTResponse{
     string token = 1;
 }
 
