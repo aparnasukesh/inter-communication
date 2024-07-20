@@ -9,6 +9,7 @@ service UserService {
     rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
     rpc ValidateUser (ValidateUserRequest) returns (ValidateUserResponse);
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+    rpc GetUserProfile(GetProfileRequest) returns (GetProfileResponse);
     rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
 }
 
@@ -74,6 +75,16 @@ message UpdateUserProfileRequest {
 message UpdateUserProfileResponse {
     string status = 1;
     int32 status_code = 2;
+}
+
+message GetProfileRequest{
+    int32 user_id = 1;
+}
+
+message GetProfileResponse{
+    string status = 1;
+    int32 status_code = 2;
+    UpdateUserProfileRequest profile_details = 3;
 }
 
 // Admin related messages
