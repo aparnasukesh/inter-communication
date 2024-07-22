@@ -368,90 +368,90 @@ var AdminAuthService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SuperAdminService_SuperAdminAuthRequired_FullMethodName = "/auth.SuperAdminService/SuperAdminAuthRequired"
+	SuperAdminAuthService_SuperAdminAuthRequired_FullMethodName = "/auth.SuperAdminAuthService/SuperAdminAuthRequired"
 )
 
-// SuperAdminServiceClient is the client API for SuperAdminService service.
+// SuperAdminAuthServiceClient is the client API for SuperAdminAuthService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SuperAdminServiceClient interface {
+type SuperAdminAuthServiceClient interface {
 	SuperAdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
 }
 
-type superAdminServiceClient struct {
+type superAdminAuthServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSuperAdminServiceClient(cc grpc.ClientConnInterface) SuperAdminServiceClient {
-	return &superAdminServiceClient{cc}
+func NewSuperAdminAuthServiceClient(cc grpc.ClientConnInterface) SuperAdminAuthServiceClient {
+	return &superAdminAuthServiceClient{cc}
 }
 
-func (c *superAdminServiceClient) SuperAdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
+func (c *superAdminAuthServiceClient) SuperAdminAuthRequired(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AuthResponse)
-	err := c.cc.Invoke(ctx, SuperAdminService_SuperAdminAuthRequired_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SuperAdminAuthService_SuperAdminAuthRequired_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SuperAdminServiceServer is the server API for SuperAdminService service.
-// All implementations must embed UnimplementedSuperAdminServiceServer
+// SuperAdminAuthServiceServer is the server API for SuperAdminAuthService service.
+// All implementations must embed UnimplementedSuperAdminAuthServiceServer
 // for forward compatibility
-type SuperAdminServiceServer interface {
+type SuperAdminAuthServiceServer interface {
 	SuperAdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error)
-	mustEmbedUnimplementedSuperAdminServiceServer()
+	mustEmbedUnimplementedSuperAdminAuthServiceServer()
 }
 
-// UnimplementedSuperAdminServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedSuperAdminServiceServer struct {
+// UnimplementedSuperAdminAuthServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSuperAdminAuthServiceServer struct {
 }
 
-func (UnimplementedSuperAdminServiceServer) SuperAdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error) {
+func (UnimplementedSuperAdminAuthServiceServer) SuperAdminAuthRequired(context.Context, *AuthRequest) (*AuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SuperAdminAuthRequired not implemented")
 }
-func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
+func (UnimplementedSuperAdminAuthServiceServer) mustEmbedUnimplementedSuperAdminAuthServiceServer() {}
 
-// UnsafeSuperAdminServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SuperAdminServiceServer will
+// UnsafeSuperAdminAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SuperAdminAuthServiceServer will
 // result in compilation errors.
-type UnsafeSuperAdminServiceServer interface {
-	mustEmbedUnimplementedSuperAdminServiceServer()
+type UnsafeSuperAdminAuthServiceServer interface {
+	mustEmbedUnimplementedSuperAdminAuthServiceServer()
 }
 
-func RegisterSuperAdminServiceServer(s grpc.ServiceRegistrar, srv SuperAdminServiceServer) {
-	s.RegisterService(&SuperAdminService_ServiceDesc, srv)
+func RegisterSuperAdminAuthServiceServer(s grpc.ServiceRegistrar, srv SuperAdminAuthServiceServer) {
+	s.RegisterService(&SuperAdminAuthService_ServiceDesc, srv)
 }
 
-func _SuperAdminService_SuperAdminAuthRequired_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SuperAdminAuthService_SuperAdminAuthRequired_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SuperAdminServiceServer).SuperAdminAuthRequired(ctx, in)
+		return srv.(SuperAdminAuthServiceServer).SuperAdminAuthRequired(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SuperAdminService_SuperAdminAuthRequired_FullMethodName,
+		FullMethod: SuperAdminAuthService_SuperAdminAuthRequired_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SuperAdminServiceServer).SuperAdminAuthRequired(ctx, req.(*AuthRequest))
+		return srv.(SuperAdminAuthServiceServer).SuperAdminAuthRequired(ctx, req.(*AuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
+// SuperAdminAuthService_ServiceDesc is the grpc.ServiceDesc for SuperAdminAuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.SuperAdminService",
-	HandlerType: (*SuperAdminServiceServer)(nil),
+var SuperAdminAuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.SuperAdminAuthService",
+	HandlerType: (*SuperAdminAuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SuperAdminAuthRequired",
-			Handler:    _SuperAdminService_SuperAdminAuthRequired_Handler,
+			Handler:    _SuperAdminAuthService_SuperAdminAuthRequired_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

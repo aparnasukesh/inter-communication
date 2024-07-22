@@ -17,7 +17,7 @@ service AdminAuthService{
 
     rpc AdminAuthRequired(AuthRequest)returns (AuthResponse);
 }
-service SuperAdminService{
+service SuperAdminAuthService{
 
     rpc SuperAdminAuthRequired(AuthRequest)returns (AuthResponse);
 }
