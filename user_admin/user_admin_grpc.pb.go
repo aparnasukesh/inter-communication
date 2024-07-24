@@ -449,7 +449,7 @@ const (
 // Super - Admin service definition
 type SuperAdminServiceClient interface {
 	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
-	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdiminRequestsResponse, error)
+	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdminRequestsResponse, error)
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
 }
 
@@ -471,9 +471,9 @@ func (c *superAdminServiceClient) LoginSuperAdmin(ctx context.Context, in *Login
 	return out, nil
 }
 
-func (c *superAdminServiceClient) ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdiminRequestsResponse, error) {
+func (c *superAdminServiceClient) ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdminRequestsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListAdiminRequestsResponse)
+	out := new(ListAdminRequestsResponse)
 	err := c.cc.Invoke(ctx, SuperAdminService_ListAdminRequests_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -498,7 +498,7 @@ func (c *superAdminServiceClient) AdminApproval(ctx context.Context, in *AdminAp
 // Super - Admin service definition
 type SuperAdminServiceServer interface {
 	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
-	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdiminRequestsResponse, error)
+	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdminRequestsResponse, error)
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
@@ -510,7 +510,7 @@ type UnimplementedSuperAdminServiceServer struct {
 func (UnimplementedSuperAdminServiceServer) LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginSuperAdmin not implemented")
 }
-func (UnimplementedSuperAdminServiceServer) ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdiminRequestsResponse, error) {
+func (UnimplementedSuperAdminServiceServer) ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdminRequestsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAdminRequests not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error) {
