@@ -437,8 +437,9 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SuperAdminService_LoginSuperAdmin_FullMethodName = "/useradmin.SuperAdminService/LoginSuperAdmin"
-	SuperAdminService_AdminApproval_FullMethodName   = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_LoginSuperAdmin_FullMethodName   = "/useradmin.SuperAdminService/LoginSuperAdmin"
+	SuperAdminService_ListAdminRequests_FullMethodName = "/useradmin.SuperAdminService/ListAdminRequests"
+	SuperAdminService_AdminApproval_FullMethodName     = "/useradmin.SuperAdminService/AdminApproval"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -448,6 +449,7 @@ const (
 // Super - Admin service definition
 type SuperAdminServiceClient interface {
 	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
+	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdiminRequestsResponse, error)
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
 }
 
@@ -463,6 +465,16 @@ func (c *superAdminServiceClient) LoginSuperAdmin(ctx context.Context, in *Login
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginSuperAdminResponse)
 	err := c.cc.Invoke(ctx, SuperAdminService_LoginSuperAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdiminRequestsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAdiminRequestsResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListAdminRequests_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -486,6 +498,7 @@ func (c *superAdminServiceClient) AdminApproval(ctx context.Context, in *AdminAp
 // Super - Admin service definition
 type SuperAdminServiceServer interface {
 	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
+	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdiminRequestsResponse, error)
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
@@ -496,6 +509,9 @@ type UnimplementedSuperAdminServiceServer struct {
 
 func (UnimplementedSuperAdminServiceServer) LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginSuperAdmin not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdiminRequestsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAdminRequests not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminApproval not implemented")
@@ -531,6 +547,24 @@ func _SuperAdminService_LoginSuperAdmin_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_ListAdminRequests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAdminRequestsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListAdminRequests(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListAdminRequests_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListAdminRequests(ctx, req.(*ListAdminRequestsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SuperAdminService_AdminApproval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AdminApprovalRequest)
 	if err := dec(in); err != nil {
@@ -559,6 +593,10 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginSuperAdmin",
 			Handler:    _SuperAdminService_LoginSuperAdmin_Handler,
+		},
+		{
+			MethodName: "ListAdminRequests",
+			Handler:    _SuperAdminService_ListAdminRequests_Handler,
 		},
 		{
 			MethodName: "AdminApproval",

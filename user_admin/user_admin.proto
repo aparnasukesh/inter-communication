@@ -23,6 +23,7 @@ service AdminService {
 // Super - Admin service definition
 service SuperAdminService{
     rpc LoginSuperAdmin(LoginSuperAdminRequest) returns( LoginSuperAdminResponse);
+    rpc ListAdminRequests(ListAdminRequestsRequest)returns(ListAdiminRequestsResponse);
     rpc AdminApproval(AdminApprovalRequest) returns (AdminApprovalResponse);
 }
 // User related messages
@@ -147,4 +148,18 @@ message AdminApprovalRequest{
 
 message AdminApprovalResponse{
     string status = 1;
+}
+
+// super-admin related messages
+
+message Email{
+    string email = 1;
+}
+
+message ListAdminRequestsRequest{
+
+}
+
+message ListAdiminRequestsResponse{
+    repeated Email email = 1;
 }
