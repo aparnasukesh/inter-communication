@@ -28,6 +28,7 @@ message RegisterMovieRequest {
     string genre = 4;
     string release_date = 5; 
     float rating = 6;
+    string Language = 7;
 }
 
 message RegisterMovieResponse {
