@@ -440,6 +440,11 @@ const (
 	SuperAdminService_LoginSuperAdmin_FullMethodName   = "/useradmin.SuperAdminService/LoginSuperAdmin"
 	SuperAdminService_ListAdminRequests_FullMethodName = "/useradmin.SuperAdminService/ListAdminRequests"
 	SuperAdminService_AdminApproval_FullMethodName     = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_RegisterMovie_FullMethodName     = "/useradmin.SuperAdminService/RegisterMovie"
+	SuperAdminService_UpdateMovie_FullMethodName       = "/useradmin.SuperAdminService/UpdateMovie"
+	SuperAdminService_ListMovies_FullMethodName        = "/useradmin.SuperAdminService/ListMovies"
+	SuperAdminService_GetMovieDetails_FullMethodName   = "/useradmin.SuperAdminService/GetMovieDetails"
+	SuperAdminService_DeleteMovie_FullMethodName       = "/useradmin.SuperAdminService/DeleteMovie"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -451,6 +456,11 @@ type SuperAdminServiceClient interface {
 	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdminRequestsResponse, error)
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
+	RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error)
+	UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error)
+	ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error)
+	GetMovieDetails(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error)
+	DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -491,6 +501,56 @@ func (c *superAdminServiceClient) AdminApproval(ctx context.Context, in *AdminAp
 	return out, nil
 }
 
+func (c *superAdminServiceClient) RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterMovieResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_RegisterMovie_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateMovieResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_UpdateMovie_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListMoviesResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListMovies_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetMovieDetails(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMovieDetailsResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetMovieDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteMovieResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteMovie_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -500,6 +560,11 @@ type SuperAdminServiceServer interface {
 	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdminRequestsResponse, error)
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
+	RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error)
+	UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error)
+	ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error)
+	GetMovieDetails(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error)
+	DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -515,6 +580,21 @@ func (UnimplementedSuperAdminServiceServer) ListAdminRequests(context.Context, *
 }
 func (UnimplementedSuperAdminServiceServer) AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminApproval not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterMovie not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMovie not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMovies not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetMovieDetails(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovieDetails not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMovie not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -583,6 +663,96 @@ func _SuperAdminService_AdminApproval_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_RegisterMovie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterMovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).RegisterMovie(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_RegisterMovie_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).RegisterMovie(ctx, req.(*RegisterMovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_UpdateMovie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).UpdateMovie(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_UpdateMovie_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).UpdateMovie(ctx, req.(*UpdateMovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListMovies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMoviesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListMovies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListMovies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListMovies(ctx, req.(*ListMoviesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetMovieDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMovieDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetMovieDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetMovieDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetMovieDetails(ctx, req.(*GetMovieDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteMovie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteMovie(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteMovie_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteMovie(ctx, req.(*DeleteMovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -601,6 +771,26 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AdminApproval",
 			Handler:    _SuperAdminService_AdminApproval_Handler,
+		},
+		{
+			MethodName: "RegisterMovie",
+			Handler:    _SuperAdminService_RegisterMovie_Handler,
+		},
+		{
+			MethodName: "UpdateMovie",
+			Handler:    _SuperAdminService_UpdateMovie_Handler,
+		},
+		{
+			MethodName: "ListMovies",
+			Handler:    _SuperAdminService_ListMovies_Handler,
+		},
+		{
+			MethodName: "GetMovieDetails",
+			Handler:    _SuperAdminService_GetMovieDetails_Handler,
+		},
+		{
+			MethodName: "DeleteMovie",
+			Handler:    _SuperAdminService_DeleteMovie_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

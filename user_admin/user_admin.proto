@@ -25,6 +25,12 @@ service SuperAdminService{
     rpc LoginSuperAdmin(LoginSuperAdminRequest) returns( LoginSuperAdminResponse);
     rpc ListAdminRequests(ListAdminRequestsRequest)returns(ListAdminRequestsResponse);
     rpc AdminApproval(AdminApprovalRequest) returns (AdminApprovalResponse);
+    rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
+    rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
+    rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
+    rpc GetMovieDetails(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
+    rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
+    
 }
 // User related messages
 message RegisterUserRequest {
@@ -162,4 +168,68 @@ message ListAdminRequestsRequest{
 
 message ListAdminRequestsResponse{
     repeated Email email = 1;
+}
+
+message RegisterMovieRequest {
+    string title = 1;
+    string description = 2;
+    int32 duration = 3; 
+    string genre = 4;
+    string release_date = 5; 
+    float rating = 6;
+    string Language = 7;
+}
+
+message RegisterMovieResponse {
+    uint32 movie_id = 1;
+    string message = 2;
+}
+
+message UpdateMovieRequest {
+    uint32 movie_id = 1;
+    string title = 2;
+    string description = 3;
+    int32 duration = 4;
+    string genre = 5;
+    string release_date = 6;
+    float rating = 7;
+}
+
+message UpdateMovieResponse {
+    string message = 1;
+}
+
+message ListMoviesRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+}
+
+message Movie {
+    uint32 movie_id = 1;
+    string title = 2;
+    string description = 3;
+    int32 duration = 4;
+    string genre = 5;
+    string release_date = 6;
+    float rating = 7;
+}
+
+message ListMoviesResponse {
+    repeated Movie movies = 1;
+}
+
+message GetMovieDetailsRequest {
+    uint32 movie_id = 1;
+}
+
+message GetMovieDetailsResponse {
+    Movie movie = 1;
+}
+
+message DeleteMovieRequest {
+    uint32 movie_id = 1;
+}
+
+message DeleteMovieResponse {
+    string message = 1;
 }
