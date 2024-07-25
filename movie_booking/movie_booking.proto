@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package moviebooking;
+
+option go_package = "./movie_booking";
+
+// Movie Service definition
+service MovieService {
+    rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
+    rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
+    rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
+    rpc GetMovieDetails(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
+    rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
+}
+
+// Theatre Service definition
+service TheatreService {
+    rpc RegisterTheatre (RegisterTheatreRequest) returns (RegisterTheatreResponse);
+    rpc UpdateTheatre(UpdateTheatreRequest) returns (UpdateTheatreResponse);
+    rpc DeleteTheatre(DeleteTheatreRequest) returns (DeleteTheatreResponse);
+}
+
+// Movie related messages
+message RegisterMovieRequest {
+    string title = 1;
+    string description = 2;
+    int32 duration = 3; 
+    string genre = 4;
+    string release_date = 5; 
+    float rating = 6;
+}
+
+message RegisterMovieResponse {
+    uint32 movie_id = 1;
+    string message = 2;
+}
+
+message UpdateMovieRequest {
+    uint32 movie_id = 1;
+    string title = 2;
+    string description = 3;
+    int32 duration = 4;
+    string genre = 5;
+    string release_date = 6;
+    float rating = 7;
+}
+
+message UpdateMovieResponse {
+    string message = 1;
+}
+
+message ListMoviesRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+}
+
+message Movie {
+    uint32 movie_id = 1;
+    string title = 2;
+    string description = 3;
+    int32 duration = 4;
+    string genre = 5;
+    string release_date = 6;
+    float rating = 7;
+}
+
+message ListMoviesResponse {
+    repeated Movie movies = 1;
+}
+
+message GetMovieDetailsRequest {
+    uint32 movie_id = 1;
+}
+
+message GetMovieDetailsResponse {
+    Movie movie = 1;
+}
+
+message DeleteMovieRequest {
+    uint32 movie_id = 1;
+}
+
+message DeleteMovieResponse {
+    string message = 1;
+}
+
+// Theatres related messages
+
+message RegisterTheatreRequest {
+    string name = 1;
+    string location = 2;
+    int32 number_of_screens = 3;
+    uint32 owner_id = 4;
+}
+
+message RegisterTheatreResponse {
+    uint32 theatre_id = 1;
+    string message = 2;
+}
+
+message UpdateTheatreRequest {
+    uint32 theatre_id = 1;
+    string name = 2;
+    string location = 3;
+    int32 number_of_screens = 4;
+    uint32 owner_id = 5;
+}
+
+message UpdateTheatreResponse {
+    string message = 1;
+}
+
+message DeleteTheatreRequest {
+    uint32 theatre_id = 1;
+}
+
+message DeleteTheatreResponse {
+    string message = 1;
+}
