@@ -22,14 +22,21 @@ service AdminService {
 
 // Super - Admin service definition
 service SuperAdminService{
+    // Admin
     rpc LoginSuperAdmin(LoginSuperAdminRequest) returns( LoginSuperAdminResponse);
     rpc ListAdminRequests(ListAdminRequestsRequest)returns(ListAdminRequestsResponse);
     rpc AdminApproval(AdminApprovalRequest) returns (AdminApprovalResponse);
+
+    // Movies
     rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
     rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
     rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
     rpc GetMovieDetails(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
     rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
+
+    // Theater type
+    rpc AddTheaterType(AddTheaterTypeRequest)returns (AddTheaterTypeResponse);
+    rpc DeleteTheaterType(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
     
 }
 // User related messages
@@ -170,6 +177,7 @@ message ListAdminRequestsResponse{
     repeated Email email = 1;
 }
 
+// super-admin, movies
 message RegisterMovieRequest {
     string title = 1;
     string description = 2;
@@ -233,4 +241,21 @@ message DeleteMovieRequest {
 
 message DeleteMovieResponse {
     string message = 1;
+}
+
+// super-admin theater type
+message AddTheaterTypeRequest{
+    string theater_type_name = 1;
+}
+
+message AddTheaterTypeResponse{
+    string message = 1;
+}
+
+message DeleteTheaterTypeRequest{
+    int32 theater_type_id = 1;
+}
+
+message DeleteTheaterTypeResponse{
+    string message = 1 ;
 }

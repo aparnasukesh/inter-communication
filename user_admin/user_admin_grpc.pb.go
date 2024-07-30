@@ -445,6 +445,8 @@ const (
 	SuperAdminService_ListMovies_FullMethodName        = "/useradmin.SuperAdminService/ListMovies"
 	SuperAdminService_GetMovieDetails_FullMethodName   = "/useradmin.SuperAdminService/GetMovieDetails"
 	SuperAdminService_DeleteMovie_FullMethodName       = "/useradmin.SuperAdminService/DeleteMovie"
+	SuperAdminService_AddTheaterType_FullMethodName    = "/useradmin.SuperAdminService/AddTheaterType"
+	SuperAdminService_DeleteTheaterType_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterType"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -453,14 +455,19 @@ const (
 //
 // Super - Admin service definition
 type SuperAdminServiceClient interface {
+	// Admin
 	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdminRequestsResponse, error)
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
+	// Movies
 	RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error)
 	UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error)
 	ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error)
 	GetMovieDetails(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error)
 	DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error)
+	// Theater type
+	AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error)
+	DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -551,20 +558,45 @@ func (c *superAdminServiceClient) DeleteMovie(ctx context.Context, in *DeleteMov
 	return out, nil
 }
 
+func (c *superAdminServiceClient) AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_AddTheaterType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteTheaterType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
 //
 // Super - Admin service definition
 type SuperAdminServiceServer interface {
+	// Admin
 	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdminRequestsResponse, error)
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
+	// Movies
 	RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error)
 	UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error)
 	ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error)
 	GetMovieDetails(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error)
 	DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error)
+	// Theater type
+	AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error)
+	DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -595,6 +627,12 @@ func (UnimplementedSuperAdminServiceServer) GetMovieDetails(context.Context, *Ge
 }
 func (UnimplementedSuperAdminServiceServer) DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMovie not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTheaterType not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterType not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -753,6 +791,42 @@ func _SuperAdminService_DeleteMovie_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_AddTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTheaterTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).AddTheaterType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_AddTheaterType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).AddTheaterType(ctx, req.(*AddTheaterTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteTheaterType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteTheaterType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteTheaterType(ctx, req.(*DeleteTheaterTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -791,6 +865,14 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMovie",
 			Handler:    _SuperAdminService_DeleteMovie_Handler,
+		},
+		{
+			MethodName: "AddTheaterType",
+			Handler:    _SuperAdminService_AddTheaterType_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterType",
+			Handler:    _SuperAdminService_DeleteTheaterType_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

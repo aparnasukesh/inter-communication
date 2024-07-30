@@ -266,9 +266,11 @@ var MovieService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	TheatreService_RegisterTheatre_FullMethodName = "/moviebooking.TheatreService/RegisterTheatre"
-	TheatreService_UpdateTheatre_FullMethodName   = "/moviebooking.TheatreService/UpdateTheatre"
-	TheatreService_DeleteTheatre_FullMethodName   = "/moviebooking.TheatreService/DeleteTheatre"
+	TheatreService_AddTheaterType_FullMethodName    = "/moviebooking.TheatreService/AddTheaterType"
+	TheatreService_DeleteTheaterType_FullMethodName = "/moviebooking.TheatreService/DeleteTheaterType"
+	TheatreService_RegisterTheatre_FullMethodName   = "/moviebooking.TheatreService/RegisterTheatre"
+	TheatreService_UpdateTheatre_FullMethodName     = "/moviebooking.TheatreService/UpdateTheatre"
+	TheatreService_DeleteTheatre_FullMethodName     = "/moviebooking.TheatreService/DeleteTheatre"
 )
 
 // TheatreServiceClient is the client API for TheatreService service.
@@ -277,6 +279,10 @@ const (
 //
 // Theatre Service definition
 type TheatreServiceClient interface {
+	// Theater type
+	AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error)
+	DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
+	// Theater
 	RegisterTheatre(ctx context.Context, in *RegisterTheatreRequest, opts ...grpc.CallOption) (*RegisterTheatreResponse, error)
 	UpdateTheatre(ctx context.Context, in *UpdateTheatreRequest, opts ...grpc.CallOption) (*UpdateTheatreResponse, error)
 	DeleteTheatre(ctx context.Context, in *DeleteTheatreRequest, opts ...grpc.CallOption) (*DeleteTheatreResponse, error)
@@ -288,6 +294,26 @@ type theatreServiceClient struct {
 
 func NewTheatreServiceClient(cc grpc.ClientConnInterface) TheatreServiceClient {
 	return &theatreServiceClient{cc}
+}
+
+func (c *theatreServiceClient) AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_AddTheaterType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteTheaterType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *theatreServiceClient) RegisterTheatre(ctx context.Context, in *RegisterTheatreRequest, opts ...grpc.CallOption) (*RegisterTheatreResponse, error) {
@@ -326,6 +352,10 @@ func (c *theatreServiceClient) DeleteTheatre(ctx context.Context, in *DeleteThea
 //
 // Theatre Service definition
 type TheatreServiceServer interface {
+	// Theater type
+	AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error)
+	DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
+	// Theater
 	RegisterTheatre(context.Context, *RegisterTheatreRequest) (*RegisterTheatreResponse, error)
 	UpdateTheatre(context.Context, *UpdateTheatreRequest) (*UpdateTheatreResponse, error)
 	DeleteTheatre(context.Context, *DeleteTheatreRequest) (*DeleteTheatreResponse, error)
@@ -336,6 +366,12 @@ type TheatreServiceServer interface {
 type UnimplementedTheatreServiceServer struct {
 }
 
+func (UnimplementedTheatreServiceServer) AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTheaterType not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterType not implemented")
+}
 func (UnimplementedTheatreServiceServer) RegisterTheatre(context.Context, *RegisterTheatreRequest) (*RegisterTheatreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTheatre not implemented")
 }
@@ -356,6 +392,42 @@ type UnsafeTheatreServiceServer interface {
 
 func RegisterTheatreServiceServer(s grpc.ServiceRegistrar, srv TheatreServiceServer) {
 	s.RegisterService(&TheatreService_ServiceDesc, srv)
+}
+
+func _TheatreService_AddTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTheaterTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).AddTheaterType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_AddTheaterType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).AddTheaterType(ctx, req.(*AddTheaterTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteTheaterType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteTheaterType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteTheaterType(ctx, req.(*DeleteTheaterTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TheatreService_RegisterTheatre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -419,6 +491,14 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "moviebooking.TheatreService",
 	HandlerType: (*TheatreServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AddTheaterType",
+			Handler:    _TheatreService_AddTheaterType_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterType",
+			Handler:    _TheatreService_DeleteTheaterType_Handler,
+		},
 		{
 			MethodName: "RegisterTheatre",
 			Handler:    _TheatreService_RegisterTheatre_Handler,
