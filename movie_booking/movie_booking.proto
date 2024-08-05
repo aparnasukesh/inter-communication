@@ -48,6 +48,7 @@ message UpdateMovieRequest {
     string genre = 5;
     string release_date = 6;
     float rating = 7;
+    string language = 8;
 }
 
 message UpdateMovieResponse {
