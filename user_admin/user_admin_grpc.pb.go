@@ -437,16 +437,16 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SuperAdminService_LoginSuperAdmin_FullMethodName   = "/useradmin.SuperAdminService/LoginSuperAdmin"
-	SuperAdminService_ListAdminRequests_FullMethodName = "/useradmin.SuperAdminService/ListAdminRequests"
-	SuperAdminService_AdminApproval_FullMethodName     = "/useradmin.SuperAdminService/AdminApproval"
-	SuperAdminService_RegisterMovie_FullMethodName     = "/useradmin.SuperAdminService/RegisterMovie"
-	SuperAdminService_UpdateMovie_FullMethodName       = "/useradmin.SuperAdminService/UpdateMovie"
-	SuperAdminService_ListMovies_FullMethodName        = "/useradmin.SuperAdminService/ListMovies"
-	SuperAdminService_GetMovieDetails_FullMethodName   = "/useradmin.SuperAdminService/GetMovieDetails"
-	SuperAdminService_DeleteMovie_FullMethodName       = "/useradmin.SuperAdminService/DeleteMovie"
-	SuperAdminService_AddTheaterType_FullMethodName    = "/useradmin.SuperAdminService/AddTheaterType"
-	SuperAdminService_DeleteTheaterType_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterType"
+	SuperAdminService_LoginSuperAdmin_FullMethodName       = "/useradmin.SuperAdminService/LoginSuperAdmin"
+	SuperAdminService_ListAdminRequests_FullMethodName     = "/useradmin.SuperAdminService/ListAdminRequests"
+	SuperAdminService_AdminApproval_FullMethodName         = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_RegisterMovie_FullMethodName         = "/useradmin.SuperAdminService/RegisterMovie"
+	SuperAdminService_UpdateMovie_FullMethodName           = "/useradmin.SuperAdminService/UpdateMovie"
+	SuperAdminService_ListMovies_FullMethodName            = "/useradmin.SuperAdminService/ListMovies"
+	SuperAdminService_GetMovieDetails_FullMethodName       = "/useradmin.SuperAdminService/GetMovieDetails"
+	SuperAdminService_DeleteMovie_FullMethodName           = "/useradmin.SuperAdminService/DeleteMovie"
+	SuperAdminService_AddTheaterType_FullMethodName        = "/useradmin.SuperAdminService/AddTheaterType"
+	SuperAdminService_DeleteTheaterTypeByID_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -467,7 +467,7 @@ type SuperAdminServiceClient interface {
 	DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error)
 	// Theater type
 	AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error)
-	DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
+	DeleteTheaterTypeByID(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -568,10 +568,10 @@ func (c *superAdminServiceClient) AddTheaterType(ctx context.Context, in *AddThe
 	return out, nil
 }
 
-func (c *superAdminServiceClient) DeleteTheaterType(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error) {
+func (c *superAdminServiceClient) DeleteTheaterTypeByID(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteTheaterTypeResponse)
-	err := c.cc.Invoke(ctx, SuperAdminService_DeleteTheaterType_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteTheaterTypeByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -596,7 +596,7 @@ type SuperAdminServiceServer interface {
 	DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error)
 	// Theater type
 	AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error)
-	DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
+	DeleteTheaterTypeByID(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -631,8 +631,8 @@ func (UnimplementedSuperAdminServiceServer) DeleteMovie(context.Context, *Delete
 func (UnimplementedSuperAdminServiceServer) AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTheaterType not implemented")
 }
-func (UnimplementedSuperAdminServiceServer) DeleteTheaterType(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterType not implemented")
+func (UnimplementedSuperAdminServiceServer) DeleteTheaterTypeByID(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterTypeByID not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -809,20 +809,20 @@ func _SuperAdminService_AddTheaterType_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SuperAdminService_DeleteTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SuperAdminService_DeleteTheaterTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteTheaterTypeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SuperAdminServiceServer).DeleteTheaterType(ctx, in)
+		return srv.(SuperAdminServiceServer).DeleteTheaterTypeByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SuperAdminService_DeleteTheaterType_FullMethodName,
+		FullMethod: SuperAdminService_DeleteTheaterTypeByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SuperAdminServiceServer).DeleteTheaterType(ctx, req.(*DeleteTheaterTypeRequest))
+		return srv.(SuperAdminServiceServer).DeleteTheaterTypeByID(ctx, req.(*DeleteTheaterTypeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -871,8 +871,8 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SuperAdminService_AddTheaterType_Handler,
 		},
 		{
-			MethodName: "DeleteTheaterType",
-			Handler:    _SuperAdminService_DeleteTheaterType_Handler,
+			MethodName: "DeleteTheaterTypeByID",
+			Handler:    _SuperAdminService_DeleteTheaterTypeByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -17,7 +17,7 @@ service MovieService {
 service TheatreService {
     // Theater type
     rpc AddTheaterType(AddTheaterTypeRequest)returns (AddTheaterTypeResponse);
-    rpc DeleteTheaterType(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
+    rpc DeleteTheaterTypeByID(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
     // Theater 
     rpc RegisterTheatre (RegisterTheatreRequest) returns (RegisterTheatreResponse);
     rpc UpdateTheatre(UpdateTheatreRequest) returns (UpdateTheatreResponse);
