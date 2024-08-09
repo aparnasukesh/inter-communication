@@ -437,16 +437,17 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SuperAdminService_LoginSuperAdmin_FullMethodName       = "/useradmin.SuperAdminService/LoginSuperAdmin"
-	SuperAdminService_ListAdminRequests_FullMethodName     = "/useradmin.SuperAdminService/ListAdminRequests"
-	SuperAdminService_AdminApproval_FullMethodName         = "/useradmin.SuperAdminService/AdminApproval"
-	SuperAdminService_RegisterMovie_FullMethodName         = "/useradmin.SuperAdminService/RegisterMovie"
-	SuperAdminService_UpdateMovie_FullMethodName           = "/useradmin.SuperAdminService/UpdateMovie"
-	SuperAdminService_ListMovies_FullMethodName            = "/useradmin.SuperAdminService/ListMovies"
-	SuperAdminService_GetMovieDetails_FullMethodName       = "/useradmin.SuperAdminService/GetMovieDetails"
-	SuperAdminService_DeleteMovie_FullMethodName           = "/useradmin.SuperAdminService/DeleteMovie"
-	SuperAdminService_AddTheaterType_FullMethodName        = "/useradmin.SuperAdminService/AddTheaterType"
-	SuperAdminService_DeleteTheaterTypeByID_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
+	SuperAdminService_LoginSuperAdmin_FullMethodName         = "/useradmin.SuperAdminService/LoginSuperAdmin"
+	SuperAdminService_ListAdminRequests_FullMethodName       = "/useradmin.SuperAdminService/ListAdminRequests"
+	SuperAdminService_AdminApproval_FullMethodName           = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_RegisterMovie_FullMethodName           = "/useradmin.SuperAdminService/RegisterMovie"
+	SuperAdminService_UpdateMovie_FullMethodName             = "/useradmin.SuperAdminService/UpdateMovie"
+	SuperAdminService_ListMovies_FullMethodName              = "/useradmin.SuperAdminService/ListMovies"
+	SuperAdminService_GetMovieDetails_FullMethodName         = "/useradmin.SuperAdminService/GetMovieDetails"
+	SuperAdminService_DeleteMovie_FullMethodName             = "/useradmin.SuperAdminService/DeleteMovie"
+	SuperAdminService_AddTheaterType_FullMethodName          = "/useradmin.SuperAdminService/AddTheaterType"
+	SuperAdminService_DeleteTheaterTypeByID_FullMethodName   = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
+	SuperAdminService_DeleteTheaterTypeByName_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterTypeByName"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -468,6 +469,7 @@ type SuperAdminServiceClient interface {
 	// Theater type
 	AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error)
 	DeleteTheaterTypeByID(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
+	DeleteTheaterTypeByName(ctx context.Context, in *DeleteTheaterTypeByNameRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeByNameResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -578,6 +580,16 @@ func (c *superAdminServiceClient) DeleteTheaterTypeByID(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *superAdminServiceClient) DeleteTheaterTypeByName(ctx context.Context, in *DeleteTheaterTypeByNameRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterTypeByNameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteTheaterTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -597,6 +609,7 @@ type SuperAdminServiceServer interface {
 	// Theater type
 	AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error)
 	DeleteTheaterTypeByID(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
+	DeleteTheaterTypeByName(context.Context, *DeleteTheaterTypeByNameRequest) (*DeleteTheaterTypeByNameResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -633,6 +646,9 @@ func (UnimplementedSuperAdminServiceServer) AddTheaterType(context.Context, *Add
 }
 func (UnimplementedSuperAdminServiceServer) DeleteTheaterTypeByID(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterTypeByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteTheaterTypeByName(context.Context, *DeleteTheaterTypeByNameRequest) (*DeleteTheaterTypeByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterTypeByName not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -827,6 +843,24 @@ func _SuperAdminService_DeleteTheaterTypeByID_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_DeleteTheaterTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteTheaterTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteTheaterTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteTheaterTypeByName(ctx, req.(*DeleteTheaterTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -873,6 +907,10 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTheaterTypeByID",
 			Handler:    _SuperAdminService_DeleteTheaterTypeByID_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterTypeByName",
+			Handler:    _SuperAdminService_DeleteTheaterTypeByName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

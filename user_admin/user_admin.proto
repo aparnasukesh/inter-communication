@@ -37,6 +37,8 @@ service SuperAdminService{
     // Theater type
     rpc AddTheaterType(AddTheaterTypeRequest)returns (AddTheaterTypeResponse);
     rpc DeleteTheaterTypeByID(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
+    rpc DeleteTheaterTypeByName(DeleteTheaterTypeByNameRequest)returns (DeleteTheaterTypeByNameResponse);
+
     
 }
 // User related messages
@@ -260,4 +262,11 @@ message DeleteTheaterTypeRequest{
 
 message DeleteTheaterTypeResponse{
     string message = 1 ;
+}
+message DeleteTheaterTypeByNameRequest{
+    string name = 1;
+}
+
+message DeleteTheaterTypeByNameResponse{
+    string message = 1;
 }

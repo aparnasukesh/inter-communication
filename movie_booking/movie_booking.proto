@@ -18,6 +18,7 @@ service TheatreService {
     // Theater type
     rpc AddTheaterType(AddTheaterTypeRequest)returns (AddTheaterTypeResponse);
     rpc DeleteTheaterTypeByID(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
+    rpc DeleteTheaterTypeByName(DeleteTheaterTypeByNameRequest)returns (DeleteTheaterTypeByNameResponse);
     // Theater 
     rpc RegisterTheatre (RegisterTheatreRequest) returns (RegisterTheatreResponse);
     rpc UpdateTheatre(UpdateTheatreRequest) returns (UpdateTheatreResponse);
@@ -139,4 +140,12 @@ message DeleteTheaterTypeRequest{
 
 message DeleteTheaterTypeResponse{
     string message = 1 ;
+}
+
+message DeleteTheaterTypeByNameRequest{
+    string name = 1;
+}
+
+message DeleteTheaterTypeByNameResponse{
+    string message = 1;
 }
