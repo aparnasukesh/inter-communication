@@ -448,6 +448,10 @@ const (
 	SuperAdminService_AddTheaterType_FullMethodName          = "/useradmin.SuperAdminService/AddTheaterType"
 	SuperAdminService_DeleteTheaterTypeByID_FullMethodName   = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
 	SuperAdminService_DeleteTheaterTypeByName_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterTypeByName"
+	SuperAdminService_GetTheaterTypeByID_FullMethodName      = "/useradmin.SuperAdminService/GetTheaterTypeByID"
+	SuperAdminService_GetTheaterTypeByName_FullMethodName    = "/useradmin.SuperAdminService/GetTheaterTypeByName"
+	SuperAdminService_UpdateTheaterType_FullMethodName       = "/useradmin.SuperAdminService/UpdateTheaterType"
+	SuperAdminService_ListTheaterTypes_FullMethodName        = "/useradmin.SuperAdminService/ListTheaterTypes"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -470,6 +474,10 @@ type SuperAdminServiceClient interface {
 	AddTheaterType(ctx context.Context, in *AddTheaterTypeRequest, opts ...grpc.CallOption) (*AddTheaterTypeResponse, error)
 	DeleteTheaterTypeByID(ctx context.Context, in *DeleteTheaterTypeRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeResponse, error)
 	DeleteTheaterTypeByName(ctx context.Context, in *DeleteTheaterTypeByNameRequest, opts ...grpc.CallOption) (*DeleteTheaterTypeByNameResponse, error)
+	GetTheaterTypeByID(ctx context.Context, in *GetTheaterTypeByIDRequest, opts ...grpc.CallOption) (*GetTheaterTypeByIDResponse, error)
+	GetTheaterTypeByName(ctx context.Context, in *GetTheaterTypeByNameRequest, opts ...grpc.CallOption) (*GetTheaterTypeBynameResponse, error)
+	UpdateTheaterType(ctx context.Context, in *UpdateTheaterTypeRequest, opts ...grpc.CallOption) (*UpdateTheaterTypeResponse, error)
+	ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -590,6 +598,46 @@ func (c *superAdminServiceClient) DeleteTheaterTypeByName(ctx context.Context, i
 	return out, nil
 }
 
+func (c *superAdminServiceClient) GetTheaterTypeByID(ctx context.Context, in *GetTheaterTypeByIDRequest, opts ...grpc.CallOption) (*GetTheaterTypeByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterTypeByIDResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetTheaterTypeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetTheaterTypeByName(ctx context.Context, in *GetTheaterTypeByNameRequest, opts ...grpc.CallOption) (*GetTheaterTypeBynameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterTypeBynameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetTheaterTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) UpdateTheaterType(ctx context.Context, in *UpdateTheaterTypeRequest, opts ...grpc.CallOption) (*UpdateTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_UpdateTheaterType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListTheaterTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -610,6 +658,10 @@ type SuperAdminServiceServer interface {
 	AddTheaterType(context.Context, *AddTheaterTypeRequest) (*AddTheaterTypeResponse, error)
 	DeleteTheaterTypeByID(context.Context, *DeleteTheaterTypeRequest) (*DeleteTheaterTypeResponse, error)
 	DeleteTheaterTypeByName(context.Context, *DeleteTheaterTypeByNameRequest) (*DeleteTheaterTypeByNameResponse, error)
+	GetTheaterTypeByID(context.Context, *GetTheaterTypeByIDRequest) (*GetTheaterTypeByIDResponse, error)
+	GetTheaterTypeByName(context.Context, *GetTheaterTypeByNameRequest) (*GetTheaterTypeBynameResponse, error)
+	UpdateTheaterType(context.Context, *UpdateTheaterTypeRequest) (*UpdateTheaterTypeResponse, error)
+	ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -649,6 +701,18 @@ func (UnimplementedSuperAdminServiceServer) DeleteTheaterTypeByID(context.Contex
 }
 func (UnimplementedSuperAdminServiceServer) DeleteTheaterTypeByName(context.Context, *DeleteTheaterTypeByNameRequest) (*DeleteTheaterTypeByNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterTypeByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetTheaterTypeByID(context.Context, *GetTheaterTypeByIDRequest) (*GetTheaterTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterTypeByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetTheaterTypeByName(context.Context, *GetTheaterTypeByNameRequest) (*GetTheaterTypeBynameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterTypeByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) UpdateTheaterType(context.Context, *UpdateTheaterTypeRequest) (*UpdateTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTheaterType not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterTypes not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -861,6 +925,78 @@ func _SuperAdminService_DeleteTheaterTypeByName_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_GetTheaterTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterTypeByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetTheaterTypeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetTheaterTypeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetTheaterTypeByID(ctx, req.(*GetTheaterTypeByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetTheaterTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetTheaterTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetTheaterTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetTheaterTypeByName(ctx, req.(*GetTheaterTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_UpdateTheaterType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTheaterTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).UpdateTheaterType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_UpdateTheaterType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).UpdateTheaterType(ctx, req.(*UpdateTheaterTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListTheaterTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTheaterTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListTheaterTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListTheaterTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListTheaterTypes(ctx, req.(*ListTheaterTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -911,6 +1047,22 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTheaterTypeByName",
 			Handler:    _SuperAdminService_DeleteTheaterTypeByName_Handler,
+		},
+		{
+			MethodName: "GetTheaterTypeByID",
+			Handler:    _SuperAdminService_GetTheaterTypeByID_Handler,
+		},
+		{
+			MethodName: "GetTheaterTypeByName",
+			Handler:    _SuperAdminService_GetTheaterTypeByName_Handler,
+		},
+		{
+			MethodName: "UpdateTheaterType",
+			Handler:    _SuperAdminService_UpdateTheaterType_Handler,
+		},
+		{
+			MethodName: "ListTheaterTypes",
+			Handler:    _SuperAdminService_ListTheaterTypes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

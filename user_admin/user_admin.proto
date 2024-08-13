@@ -38,6 +38,10 @@ service SuperAdminService{
     rpc AddTheaterType(AddTheaterTypeRequest)returns (AddTheaterTypeResponse);
     rpc DeleteTheaterTypeByID(DeleteTheaterTypeRequest)returns(DeleteTheaterTypeResponse);
     rpc DeleteTheaterTypeByName(DeleteTheaterTypeByNameRequest)returns (DeleteTheaterTypeByNameResponse);
+    rpc GetTheaterTypeByID(GetTheaterTypeByIDRequest)returns (GetTheaterTypeByIDResponse);
+    rpc GetTheaterTypeByName(GetTheaterTypeByNameRequest)returns(GetTheaterTypeBynameResponse);
+    rpc UpdateTheaterType(UpdateTheaterTypeRequest)returns(UpdateTheaterTypeResponse);
+    rpc ListTheaterTypes(ListTheaterTypesRequest)returns(ListTheaterTypeResponse);
 
     
 }
@@ -269,4 +273,42 @@ message DeleteTheaterTypeByNameRequest{
 
 message DeleteTheaterTypeByNameResponse{
     string message = 1;
+}
+
+
+message GetTheaterTypeByIDRequest{
+    int32 theater_type_id = 1;
+}
+
+message GetTheaterTypeByIDResponse{
+    TheaterType theater_type = 1;
+}
+
+message TheaterType{
+    int32 id = 1;
+    string theater_type_name = 2;
+}
+
+message GetTheaterTypeByNameRequest{
+    string name = 1;
+}
+
+message GetTheaterTypeBynameResponse{
+    TheaterType theater_type = 1;
+}
+
+message UpdateTheaterTypeRequest{
+    int32 id =1;
+    string theater_type_name = 2;
+}
+
+message UpdateTheaterTypeResponse{
+    string message = 1;
+}
+
+message ListTheaterTypesRequest{
+}
+
+message ListTheaterTypeResponse{
+    repeated TheaterType theater_types = 1;
 }
