@@ -452,6 +452,13 @@ const (
 	SuperAdminService_GetTheaterTypeByName_FullMethodName    = "/useradmin.SuperAdminService/GetTheaterTypeByName"
 	SuperAdminService_UpdateTheaterType_FullMethodName       = "/useradmin.SuperAdminService/UpdateTheaterType"
 	SuperAdminService_ListTheaterTypes_FullMethodName        = "/useradmin.SuperAdminService/ListTheaterTypes"
+	SuperAdminService_AddScreenType_FullMethodName           = "/useradmin.SuperAdminService/AddScreenType"
+	SuperAdminService_DeleteScreenTypeByID_FullMethodName    = "/useradmin.SuperAdminService/DeleteScreenTypeByID"
+	SuperAdminService_DeleteScreenTypeByName_FullMethodName  = "/useradmin.SuperAdminService/DeleteScreenTypeByName"
+	SuperAdminService_GetScreenTypeByID_FullMethodName       = "/useradmin.SuperAdminService/GetScreenTypeByID"
+	SuperAdminService_GetScreenTypeByName_FullMethodName     = "/useradmin.SuperAdminService/GetScreenTypeByName"
+	SuperAdminService_UpdateScreenType_FullMethodName        = "/useradmin.SuperAdminService/UpdateScreenType"
+	SuperAdminService_ListScreenTypes_FullMethodName         = "/useradmin.SuperAdminService/ListScreenTypes"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -478,6 +485,14 @@ type SuperAdminServiceClient interface {
 	GetTheaterTypeByName(ctx context.Context, in *GetTheaterTypeByNameRequest, opts ...grpc.CallOption) (*GetTheaterTypeBynameResponse, error)
 	UpdateTheaterType(ctx context.Context, in *UpdateTheaterTypeRequest, opts ...grpc.CallOption) (*UpdateTheaterTypeResponse, error)
 	ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error)
+	// Screen type
+	AddScreenType(ctx context.Context, in *AddScreenTypeRequest, opts ...grpc.CallOption) (*AddScreenTypeResponse, error)
+	DeleteScreenTypeByID(ctx context.Context, in *DeleteScreenTypeRequest, opts ...grpc.CallOption) (*DeleteScreenTypeResponse, error)
+	DeleteScreenTypeByName(ctx context.Context, in *DeleteScreenTypeByNameRequest, opts ...grpc.CallOption) (*DeleteScreenTypeByNameResponse, error)
+	GetScreenTypeByID(ctx context.Context, in *GetScreenTypeByIDRequest, opts ...grpc.CallOption) (*GetScreenTypeByIDResponse, error)
+	GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error)
+	UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error)
+	ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -638,6 +653,76 @@ func (c *superAdminServiceClient) ListTheaterTypes(ctx context.Context, in *List
 	return out, nil
 }
 
+func (c *superAdminServiceClient) AddScreenType(ctx context.Context, in *AddScreenTypeRequest, opts ...grpc.CallOption) (*AddScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddScreenTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_AddScreenType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteScreenTypeByID(ctx context.Context, in *DeleteScreenTypeRequest, opts ...grpc.CallOption) (*DeleteScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteScreenTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteScreenTypeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteScreenTypeByName(ctx context.Context, in *DeleteScreenTypeByNameRequest, opts ...grpc.CallOption) (*DeleteScreenTypeByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteScreenTypeByNameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteScreenTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetScreenTypeByID(ctx context.Context, in *GetScreenTypeByIDRequest, opts ...grpc.CallOption) (*GetScreenTypeByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetScreenTypeByIDResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetScreenTypeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetScreenTypeByNameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetScreenTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateScreenTypeResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_UpdateScreenType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListScreenTypesResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListScreenTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -662,6 +747,14 @@ type SuperAdminServiceServer interface {
 	GetTheaterTypeByName(context.Context, *GetTheaterTypeByNameRequest) (*GetTheaterTypeBynameResponse, error)
 	UpdateTheaterType(context.Context, *UpdateTheaterTypeRequest) (*UpdateTheaterTypeResponse, error)
 	ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error)
+	// Screen type
+	AddScreenType(context.Context, *AddScreenTypeRequest) (*AddScreenTypeResponse, error)
+	DeleteScreenTypeByID(context.Context, *DeleteScreenTypeRequest) (*DeleteScreenTypeResponse, error)
+	DeleteScreenTypeByName(context.Context, *DeleteScreenTypeByNameRequest) (*DeleteScreenTypeByNameResponse, error)
+	GetScreenTypeByID(context.Context, *GetScreenTypeByIDRequest) (*GetScreenTypeByIDResponse, error)
+	GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error)
+	UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error)
+	ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -713,6 +806,27 @@ func (UnimplementedSuperAdminServiceServer) UpdateTheaterType(context.Context, *
 }
 func (UnimplementedSuperAdminServiceServer) ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterTypes not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) AddScreenType(context.Context, *AddScreenTypeRequest) (*AddScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddScreenType not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteScreenTypeByID(context.Context, *DeleteScreenTypeRequest) (*DeleteScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenTypeByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteScreenTypeByName(context.Context, *DeleteScreenTypeByNameRequest) (*DeleteScreenTypeByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenTypeByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetScreenTypeByID(context.Context, *GetScreenTypeByIDRequest) (*GetScreenTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenTypeByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenTypeByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateScreenType not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListScreenTypes not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -997,6 +1111,132 @@ func _SuperAdminService_ListTheaterTypes_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_AddScreenType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).AddScreenType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_AddScreenType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).AddScreenType(ctx, req.(*AddScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteScreenTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteScreenTypeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteScreenTypeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteScreenTypeByID(ctx, req.(*DeleteScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteScreenTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteScreenTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteScreenTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteScreenTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteScreenTypeByName(ctx, req.(*DeleteScreenTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetScreenTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScreenTypeByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetScreenTypeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetScreenTypeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetScreenTypeByID(ctx, req.(*GetScreenTypeByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetScreenTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScreenTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetScreenTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetScreenTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetScreenTypeByName(ctx, req.(*GetScreenTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_UpdateScreenType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).UpdateScreenType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_UpdateScreenType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).UpdateScreenType(ctx, req.(*UpdateScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListScreenTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListScreenTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListScreenTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListScreenTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListScreenTypes(ctx, req.(*ListScreenTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1063,6 +1303,34 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaterTypes",
 			Handler:    _SuperAdminService_ListTheaterTypes_Handler,
+		},
+		{
+			MethodName: "AddScreenType",
+			Handler:    _SuperAdminService_AddScreenType_Handler,
+		},
+		{
+			MethodName: "DeleteScreenTypeByID",
+			Handler:    _SuperAdminService_DeleteScreenTypeByID_Handler,
+		},
+		{
+			MethodName: "DeleteScreenTypeByName",
+			Handler:    _SuperAdminService_DeleteScreenTypeByName_Handler,
+		},
+		{
+			MethodName: "GetScreenTypeByID",
+			Handler:    _SuperAdminService_GetScreenTypeByID_Handler,
+		},
+		{
+			MethodName: "GetScreenTypeByName",
+			Handler:    _SuperAdminService_GetScreenTypeByName_Handler,
+		},
+		{
+			MethodName: "UpdateScreenType",
+			Handler:    _SuperAdminService_UpdateScreenType_Handler,
+		},
+		{
+			MethodName: "ListScreenTypes",
+			Handler:    _SuperAdminService_ListScreenTypes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

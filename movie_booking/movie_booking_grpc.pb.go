@@ -273,6 +273,13 @@ const (
 	TheatreService_GetTheaterTypeByName_FullMethodName    = "/moviebooking.TheatreService/GetTheaterTypeByName"
 	TheatreService_UpdateTheaterType_FullMethodName       = "/moviebooking.TheatreService/UpdateTheaterType"
 	TheatreService_ListTheaterTypes_FullMethodName        = "/moviebooking.TheatreService/ListTheaterTypes"
+	TheatreService_AddScreenType_FullMethodName           = "/moviebooking.TheatreService/AddScreenType"
+	TheatreService_DeleteScreenTypeByID_FullMethodName    = "/moviebooking.TheatreService/DeleteScreenTypeByID"
+	TheatreService_DeleteScreenTypeByName_FullMethodName  = "/moviebooking.TheatreService/DeleteScreenTypeByName"
+	TheatreService_GetScreenTypeByID_FullMethodName       = "/moviebooking.TheatreService/GetScreenTypeByID"
+	TheatreService_GetScreenTypeByName_FullMethodName     = "/moviebooking.TheatreService/GetScreenTypeByName"
+	TheatreService_UpdateScreenType_FullMethodName        = "/moviebooking.TheatreService/UpdateScreenType"
+	TheatreService_ListScreenTypes_FullMethodName         = "/moviebooking.TheatreService/ListScreenTypes"
 	TheatreService_RegisterTheatre_FullMethodName         = "/moviebooking.TheatreService/RegisterTheatre"
 	TheatreService_UpdateTheatre_FullMethodName           = "/moviebooking.TheatreService/UpdateTheatre"
 	TheatreService_DeleteTheatre_FullMethodName           = "/moviebooking.TheatreService/DeleteTheatre"
@@ -292,6 +299,14 @@ type TheatreServiceClient interface {
 	GetTheaterTypeByName(ctx context.Context, in *GetTheaterTypeByNameRequest, opts ...grpc.CallOption) (*GetTheaterTypeBynameResponse, error)
 	UpdateTheaterType(ctx context.Context, in *UpdateTheaterTypeRequest, opts ...grpc.CallOption) (*UpdateTheaterTypeResponse, error)
 	ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error)
+	// Screen type
+	AddScreenType(ctx context.Context, in *AddScreenTypeRequest, opts ...grpc.CallOption) (*AddScreenTypeResponse, error)
+	DeleteScreenTypeByID(ctx context.Context, in *DeleteScreenTypeRequest, opts ...grpc.CallOption) (*DeleteScreenTypeResponse, error)
+	DeleteScreenTypeByName(ctx context.Context, in *DeleteScreenTypeByNameRequest, opts ...grpc.CallOption) (*DeleteScreenTypeByNameResponse, error)
+	GetScreenTypeByID(ctx context.Context, in *GetScreenTypeByIDRequest, opts ...grpc.CallOption) (*GetScreenTypeByIDResponse, error)
+	GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error)
+	UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error)
+	ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error)
 	// Theater
 	RegisterTheatre(ctx context.Context, in *RegisterTheatreRequest, opts ...grpc.CallOption) (*RegisterTheatreResponse, error)
 	UpdateTheatre(ctx context.Context, in *UpdateTheatreRequest, opts ...grpc.CallOption) (*UpdateTheatreResponse, error)
@@ -376,6 +391,76 @@ func (c *theatreServiceClient) ListTheaterTypes(ctx context.Context, in *ListThe
 	return out, nil
 }
 
+func (c *theatreServiceClient) AddScreenType(ctx context.Context, in *AddScreenTypeRequest, opts ...grpc.CallOption) (*AddScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddScreenTypeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_AddScreenType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteScreenTypeByID(ctx context.Context, in *DeleteScreenTypeRequest, opts ...grpc.CallOption) (*DeleteScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteScreenTypeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteScreenTypeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteScreenTypeByName(ctx context.Context, in *DeleteScreenTypeByNameRequest, opts ...grpc.CallOption) (*DeleteScreenTypeByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteScreenTypeByNameResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteScreenTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetScreenTypeByID(ctx context.Context, in *GetScreenTypeByIDRequest, opts ...grpc.CallOption) (*GetScreenTypeByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetScreenTypeByIDResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetScreenTypeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetScreenTypeByNameResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetScreenTypeByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateScreenTypeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_UpdateScreenType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListScreenTypesResponse)
+	err := c.cc.Invoke(ctx, TheatreService_ListScreenTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *theatreServiceClient) RegisterTheatre(ctx context.Context, in *RegisterTheatreRequest, opts ...grpc.CallOption) (*RegisterTheatreResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterTheatreResponse)
@@ -420,6 +505,14 @@ type TheatreServiceServer interface {
 	GetTheaterTypeByName(context.Context, *GetTheaterTypeByNameRequest) (*GetTheaterTypeBynameResponse, error)
 	UpdateTheaterType(context.Context, *UpdateTheaterTypeRequest) (*UpdateTheaterTypeResponse, error)
 	ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error)
+	// Screen type
+	AddScreenType(context.Context, *AddScreenTypeRequest) (*AddScreenTypeResponse, error)
+	DeleteScreenTypeByID(context.Context, *DeleteScreenTypeRequest) (*DeleteScreenTypeResponse, error)
+	DeleteScreenTypeByName(context.Context, *DeleteScreenTypeByNameRequest) (*DeleteScreenTypeByNameResponse, error)
+	GetScreenTypeByID(context.Context, *GetScreenTypeByIDRequest) (*GetScreenTypeByIDResponse, error)
+	GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error)
+	UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error)
+	ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error)
 	// Theater
 	RegisterTheatre(context.Context, *RegisterTheatreRequest) (*RegisterTheatreResponse, error)
 	UpdateTheatre(context.Context, *UpdateTheatreRequest) (*UpdateTheatreResponse, error)
@@ -451,6 +544,27 @@ func (UnimplementedTheatreServiceServer) UpdateTheaterType(context.Context, *Upd
 }
 func (UnimplementedTheatreServiceServer) ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterTypes not implemented")
+}
+func (UnimplementedTheatreServiceServer) AddScreenType(context.Context, *AddScreenTypeRequest) (*AddScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddScreenType not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteScreenTypeByID(context.Context, *DeleteScreenTypeRequest) (*DeleteScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenTypeByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteScreenTypeByName(context.Context, *DeleteScreenTypeByNameRequest) (*DeleteScreenTypeByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteScreenTypeByName not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetScreenTypeByID(context.Context, *GetScreenTypeByIDRequest) (*GetScreenTypeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenTypeByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetScreenTypeByName not implemented")
+}
+func (UnimplementedTheatreServiceServer) UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateScreenType not implemented")
+}
+func (UnimplementedTheatreServiceServer) ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListScreenTypes not implemented")
 }
 func (UnimplementedTheatreServiceServer) RegisterTheatre(context.Context, *RegisterTheatreRequest) (*RegisterTheatreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTheatre not implemented")
@@ -600,6 +714,132 @@ func _TheatreService_ListTheaterTypes_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_AddScreenType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).AddScreenType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_AddScreenType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).AddScreenType(ctx, req.(*AddScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteScreenTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteScreenTypeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteScreenTypeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteScreenTypeByID(ctx, req.(*DeleteScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteScreenTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteScreenTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteScreenTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteScreenTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteScreenTypeByName(ctx, req.(*DeleteScreenTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetScreenTypeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScreenTypeByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetScreenTypeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetScreenTypeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetScreenTypeByID(ctx, req.(*GetScreenTypeByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetScreenTypeByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetScreenTypeByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetScreenTypeByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetScreenTypeByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetScreenTypeByName(ctx, req.(*GetScreenTypeByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_UpdateScreenType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateScreenTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).UpdateScreenType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_UpdateScreenType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).UpdateScreenType(ctx, req.(*UpdateScreenTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_ListScreenTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListScreenTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).ListScreenTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_ListScreenTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).ListScreenTypes(ctx, req.(*ListScreenTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TheatreService_RegisterTheatre_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterTheatreRequest)
 	if err := dec(in); err != nil {
@@ -688,6 +928,34 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaterTypes",
 			Handler:    _TheatreService_ListTheaterTypes_Handler,
+		},
+		{
+			MethodName: "AddScreenType",
+			Handler:    _TheatreService_AddScreenType_Handler,
+		},
+		{
+			MethodName: "DeleteScreenTypeByID",
+			Handler:    _TheatreService_DeleteScreenTypeByID_Handler,
+		},
+		{
+			MethodName: "DeleteScreenTypeByName",
+			Handler:    _TheatreService_DeleteScreenTypeByName_Handler,
+		},
+		{
+			MethodName: "GetScreenTypeByID",
+			Handler:    _TheatreService_GetScreenTypeByID_Handler,
+		},
+		{
+			MethodName: "GetScreenTypeByName",
+			Handler:    _TheatreService_GetScreenTypeByName_Handler,
+		},
+		{
+			MethodName: "UpdateScreenType",
+			Handler:    _TheatreService_UpdateScreenType_Handler,
+		},
+		{
+			MethodName: "ListScreenTypes",
+			Handler:    _TheatreService_ListScreenTypes_Handler,
 		},
 		{
 			MethodName: "RegisterTheatre",
