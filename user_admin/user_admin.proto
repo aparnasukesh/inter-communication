@@ -52,6 +52,17 @@ service SuperAdminService{
      rpc UpdateScreenType(UpdateScreenTypeRequest) returns (UpdateScreenTypeResponse);
      rpc ListScreenTypes(ListScreenTypesRequest) returns (ListScreenTypesResponse);
 
+     // Seat category
+      // Seat category
+    rpc AddSeatCategory(AddSeatCategoryRequest) returns (AddSeatCategoryResponse);
+    rpc DeleteSeatCategoryByID(DeleteSeatCategoryRequest) returns (DeleteSeatCategoryResponse);
+    rpc DeleteSeatCategoryByName(DeleteSeatCategoryByNameRequest) returns (DeleteSeatCategoryByNameResponse);
+    rpc GetSeatCategoryByID(GetSeatCategoryByIDRequest) returns (GetSeatCategoryByIDResponse);
+    rpc GetSeatCategoryByName(GetSeatCategoryByNameRequest) returns (GetSeatCategoryByNameResponse);
+    rpc UpdateSeatCategory(UpdateSeatCategoryRequest) returns (UpdateSeatCategoryResponse);
+    rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
+
+
     
 }
 // User related messages
@@ -383,4 +394,67 @@ message ListScreenTypesRequest {
 
 message ListScreenTypesResponse {
     repeated ScreenType screen_types = 1;
+}
+
+
+// seat category related messages
+message SeatCategory {
+    int32 id = 1;
+    string seat_category_name = 2;
+    double seat_category_price = 3;
+}
+
+message AddSeatCategoryRequest {
+    SeatCategory seat_category = 1;
+}
+
+message AddSeatCategoryResponse {
+    string message = 1;
+}
+
+message DeleteSeatCategoryRequest {
+    int32 seat_category_id = 1;
+}
+
+message DeleteSeatCategoryResponse {
+    string message = 1;
+}
+
+message DeleteSeatCategoryByNameRequest {
+    string name = 1;
+}
+
+message DeleteSeatCategoryByNameResponse {
+    string message = 1;
+}
+
+message GetSeatCategoryByIDRequest {
+    int32 seat_category_id = 1;
+}
+
+message GetSeatCategoryByIDResponse {
+    SeatCategory seat_category = 1;
+}
+
+message GetSeatCategoryByNameRequest {
+    string name = 1;
+}
+
+message GetSeatCategoryByNameResponse {
+    SeatCategory seat_category = 1;
+}
+
+message UpdateSeatCategoryRequest {
+    int32 id = 1;
+    SeatCategory seat_category = 2;
+}
+
+message UpdateSeatCategoryResponse {
+    string message = 1;
+}
+
+message ListSeatCategoriesRequest {}
+
+message ListSeatCategoriesResponse {
+    repeated SeatCategory seat_categories = 1;
 }

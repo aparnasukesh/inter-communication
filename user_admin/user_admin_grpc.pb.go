@@ -437,28 +437,35 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	SuperAdminService_LoginSuperAdmin_FullMethodName         = "/useradmin.SuperAdminService/LoginSuperAdmin"
-	SuperAdminService_ListAdminRequests_FullMethodName       = "/useradmin.SuperAdminService/ListAdminRequests"
-	SuperAdminService_AdminApproval_FullMethodName           = "/useradmin.SuperAdminService/AdminApproval"
-	SuperAdminService_RegisterMovie_FullMethodName           = "/useradmin.SuperAdminService/RegisterMovie"
-	SuperAdminService_UpdateMovie_FullMethodName             = "/useradmin.SuperAdminService/UpdateMovie"
-	SuperAdminService_ListMovies_FullMethodName              = "/useradmin.SuperAdminService/ListMovies"
-	SuperAdminService_GetMovieDetails_FullMethodName         = "/useradmin.SuperAdminService/GetMovieDetails"
-	SuperAdminService_DeleteMovie_FullMethodName             = "/useradmin.SuperAdminService/DeleteMovie"
-	SuperAdminService_AddTheaterType_FullMethodName          = "/useradmin.SuperAdminService/AddTheaterType"
-	SuperAdminService_DeleteTheaterTypeByID_FullMethodName   = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
-	SuperAdminService_DeleteTheaterTypeByName_FullMethodName = "/useradmin.SuperAdminService/DeleteTheaterTypeByName"
-	SuperAdminService_GetTheaterTypeByID_FullMethodName      = "/useradmin.SuperAdminService/GetTheaterTypeByID"
-	SuperAdminService_GetTheaterTypeByName_FullMethodName    = "/useradmin.SuperAdminService/GetTheaterTypeByName"
-	SuperAdminService_UpdateTheaterType_FullMethodName       = "/useradmin.SuperAdminService/UpdateTheaterType"
-	SuperAdminService_ListTheaterTypes_FullMethodName        = "/useradmin.SuperAdminService/ListTheaterTypes"
-	SuperAdminService_AddScreenType_FullMethodName           = "/useradmin.SuperAdminService/AddScreenType"
-	SuperAdminService_DeleteScreenTypeByID_FullMethodName    = "/useradmin.SuperAdminService/DeleteScreenTypeByID"
-	SuperAdminService_DeleteScreenTypeByName_FullMethodName  = "/useradmin.SuperAdminService/DeleteScreenTypeByName"
-	SuperAdminService_GetScreenTypeByID_FullMethodName       = "/useradmin.SuperAdminService/GetScreenTypeByID"
-	SuperAdminService_GetScreenTypeByName_FullMethodName     = "/useradmin.SuperAdminService/GetScreenTypeByName"
-	SuperAdminService_UpdateScreenType_FullMethodName        = "/useradmin.SuperAdminService/UpdateScreenType"
-	SuperAdminService_ListScreenTypes_FullMethodName         = "/useradmin.SuperAdminService/ListScreenTypes"
+	SuperAdminService_LoginSuperAdmin_FullMethodName          = "/useradmin.SuperAdminService/LoginSuperAdmin"
+	SuperAdminService_ListAdminRequests_FullMethodName        = "/useradmin.SuperAdminService/ListAdminRequests"
+	SuperAdminService_AdminApproval_FullMethodName            = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_RegisterMovie_FullMethodName            = "/useradmin.SuperAdminService/RegisterMovie"
+	SuperAdminService_UpdateMovie_FullMethodName              = "/useradmin.SuperAdminService/UpdateMovie"
+	SuperAdminService_ListMovies_FullMethodName               = "/useradmin.SuperAdminService/ListMovies"
+	SuperAdminService_GetMovieDetails_FullMethodName          = "/useradmin.SuperAdminService/GetMovieDetails"
+	SuperAdminService_DeleteMovie_FullMethodName              = "/useradmin.SuperAdminService/DeleteMovie"
+	SuperAdminService_AddTheaterType_FullMethodName           = "/useradmin.SuperAdminService/AddTheaterType"
+	SuperAdminService_DeleteTheaterTypeByID_FullMethodName    = "/useradmin.SuperAdminService/DeleteTheaterTypeByID"
+	SuperAdminService_DeleteTheaterTypeByName_FullMethodName  = "/useradmin.SuperAdminService/DeleteTheaterTypeByName"
+	SuperAdminService_GetTheaterTypeByID_FullMethodName       = "/useradmin.SuperAdminService/GetTheaterTypeByID"
+	SuperAdminService_GetTheaterTypeByName_FullMethodName     = "/useradmin.SuperAdminService/GetTheaterTypeByName"
+	SuperAdminService_UpdateTheaterType_FullMethodName        = "/useradmin.SuperAdminService/UpdateTheaterType"
+	SuperAdminService_ListTheaterTypes_FullMethodName         = "/useradmin.SuperAdminService/ListTheaterTypes"
+	SuperAdminService_AddScreenType_FullMethodName            = "/useradmin.SuperAdminService/AddScreenType"
+	SuperAdminService_DeleteScreenTypeByID_FullMethodName     = "/useradmin.SuperAdminService/DeleteScreenTypeByID"
+	SuperAdminService_DeleteScreenTypeByName_FullMethodName   = "/useradmin.SuperAdminService/DeleteScreenTypeByName"
+	SuperAdminService_GetScreenTypeByID_FullMethodName        = "/useradmin.SuperAdminService/GetScreenTypeByID"
+	SuperAdminService_GetScreenTypeByName_FullMethodName      = "/useradmin.SuperAdminService/GetScreenTypeByName"
+	SuperAdminService_UpdateScreenType_FullMethodName         = "/useradmin.SuperAdminService/UpdateScreenType"
+	SuperAdminService_ListScreenTypes_FullMethodName          = "/useradmin.SuperAdminService/ListScreenTypes"
+	SuperAdminService_AddSeatCategory_FullMethodName          = "/useradmin.SuperAdminService/AddSeatCategory"
+	SuperAdminService_DeleteSeatCategoryByID_FullMethodName   = "/useradmin.SuperAdminService/DeleteSeatCategoryByID"
+	SuperAdminService_DeleteSeatCategoryByName_FullMethodName = "/useradmin.SuperAdminService/DeleteSeatCategoryByName"
+	SuperAdminService_GetSeatCategoryByID_FullMethodName      = "/useradmin.SuperAdminService/GetSeatCategoryByID"
+	SuperAdminService_GetSeatCategoryByName_FullMethodName    = "/useradmin.SuperAdminService/GetSeatCategoryByName"
+	SuperAdminService_UpdateSeatCategory_FullMethodName       = "/useradmin.SuperAdminService/UpdateSeatCategory"
+	SuperAdminService_ListSeatCategories_FullMethodName       = "/useradmin.SuperAdminService/ListSeatCategories"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -493,6 +500,15 @@ type SuperAdminServiceClient interface {
 	GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error)
 	UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error)
 	ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error)
+	// Seat category
+	// Seat category
+	AddSeatCategory(ctx context.Context, in *AddSeatCategoryRequest, opts ...grpc.CallOption) (*AddSeatCategoryResponse, error)
+	DeleteSeatCategoryByID(ctx context.Context, in *DeleteSeatCategoryRequest, opts ...grpc.CallOption) (*DeleteSeatCategoryResponse, error)
+	DeleteSeatCategoryByName(ctx context.Context, in *DeleteSeatCategoryByNameRequest, opts ...grpc.CallOption) (*DeleteSeatCategoryByNameResponse, error)
+	GetSeatCategoryByID(ctx context.Context, in *GetSeatCategoryByIDRequest, opts ...grpc.CallOption) (*GetSeatCategoryByIDResponse, error)
+	GetSeatCategoryByName(ctx context.Context, in *GetSeatCategoryByNameRequest, opts ...grpc.CallOption) (*GetSeatCategoryByNameResponse, error)
+	UpdateSeatCategory(ctx context.Context, in *UpdateSeatCategoryRequest, opts ...grpc.CallOption) (*UpdateSeatCategoryResponse, error)
+	ListSeatCategories(ctx context.Context, in *ListSeatCategoriesRequest, opts ...grpc.CallOption) (*ListSeatCategoriesResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -723,6 +739,76 @@ func (c *superAdminServiceClient) ListScreenTypes(ctx context.Context, in *ListS
 	return out, nil
 }
 
+func (c *superAdminServiceClient) AddSeatCategory(ctx context.Context, in *AddSeatCategoryRequest, opts ...grpc.CallOption) (*AddSeatCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddSeatCategoryResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_AddSeatCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteSeatCategoryByID(ctx context.Context, in *DeleteSeatCategoryRequest, opts ...grpc.CallOption) (*DeleteSeatCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSeatCategoryResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteSeatCategoryByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) DeleteSeatCategoryByName(ctx context.Context, in *DeleteSeatCategoryByNameRequest, opts ...grpc.CallOption) (*DeleteSeatCategoryByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSeatCategoryByNameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_DeleteSeatCategoryByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetSeatCategoryByID(ctx context.Context, in *GetSeatCategoryByIDRequest, opts ...grpc.CallOption) (*GetSeatCategoryByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSeatCategoryByIDResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetSeatCategoryByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetSeatCategoryByName(ctx context.Context, in *GetSeatCategoryByNameRequest, opts ...grpc.CallOption) (*GetSeatCategoryByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSeatCategoryByNameResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetSeatCategoryByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) UpdateSeatCategory(ctx context.Context, in *UpdateSeatCategoryRequest, opts ...grpc.CallOption) (*UpdateSeatCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateSeatCategoryResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_UpdateSeatCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListSeatCategories(ctx context.Context, in *ListSeatCategoriesRequest, opts ...grpc.CallOption) (*ListSeatCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSeatCategoriesResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListSeatCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -755,6 +841,15 @@ type SuperAdminServiceServer interface {
 	GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error)
 	UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error)
 	ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error)
+	// Seat category
+	// Seat category
+	AddSeatCategory(context.Context, *AddSeatCategoryRequest) (*AddSeatCategoryResponse, error)
+	DeleteSeatCategoryByID(context.Context, *DeleteSeatCategoryRequest) (*DeleteSeatCategoryResponse, error)
+	DeleteSeatCategoryByName(context.Context, *DeleteSeatCategoryByNameRequest) (*DeleteSeatCategoryByNameResponse, error)
+	GetSeatCategoryByID(context.Context, *GetSeatCategoryByIDRequest) (*GetSeatCategoryByIDResponse, error)
+	GetSeatCategoryByName(context.Context, *GetSeatCategoryByNameRequest) (*GetSeatCategoryByNameResponse, error)
+	UpdateSeatCategory(context.Context, *UpdateSeatCategoryRequest) (*UpdateSeatCategoryResponse, error)
+	ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -827,6 +922,27 @@ func (UnimplementedSuperAdminServiceServer) UpdateScreenType(context.Context, *U
 }
 func (UnimplementedSuperAdminServiceServer) ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListScreenTypes not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) AddSeatCategory(context.Context, *AddSeatCategoryRequest) (*AddSeatCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddSeatCategory not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteSeatCategoryByID(context.Context, *DeleteSeatCategoryRequest) (*DeleteSeatCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSeatCategoryByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) DeleteSeatCategoryByName(context.Context, *DeleteSeatCategoryByNameRequest) (*DeleteSeatCategoryByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSeatCategoryByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetSeatCategoryByID(context.Context, *GetSeatCategoryByIDRequest) (*GetSeatCategoryByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeatCategoryByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetSeatCategoryByName(context.Context, *GetSeatCategoryByNameRequest) (*GetSeatCategoryByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeatCategoryByName not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) UpdateSeatCategory(context.Context, *UpdateSeatCategoryRequest) (*UpdateSeatCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSeatCategory not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSeatCategories not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
@@ -1237,6 +1353,132 @@ func _SuperAdminService_ListScreenTypes_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_AddSeatCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddSeatCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).AddSeatCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_AddSeatCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).AddSeatCategory(ctx, req.(*AddSeatCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteSeatCategoryByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSeatCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteSeatCategoryByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteSeatCategoryByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteSeatCategoryByID(ctx, req.(*DeleteSeatCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_DeleteSeatCategoryByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSeatCategoryByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).DeleteSeatCategoryByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_DeleteSeatCategoryByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).DeleteSeatCategoryByName(ctx, req.(*DeleteSeatCategoryByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetSeatCategoryByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSeatCategoryByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetSeatCategoryByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetSeatCategoryByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetSeatCategoryByID(ctx, req.(*GetSeatCategoryByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetSeatCategoryByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSeatCategoryByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetSeatCategoryByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetSeatCategoryByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetSeatCategoryByName(ctx, req.(*GetSeatCategoryByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_UpdateSeatCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSeatCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).UpdateSeatCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_UpdateSeatCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).UpdateSeatCategory(ctx, req.(*UpdateSeatCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListSeatCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSeatCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListSeatCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListSeatCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListSeatCategories(ctx, req.(*ListSeatCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1331,6 +1573,34 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListScreenTypes",
 			Handler:    _SuperAdminService_ListScreenTypes_Handler,
+		},
+		{
+			MethodName: "AddSeatCategory",
+			Handler:    _SuperAdminService_AddSeatCategory_Handler,
+		},
+		{
+			MethodName: "DeleteSeatCategoryByID",
+			Handler:    _SuperAdminService_DeleteSeatCategoryByID_Handler,
+		},
+		{
+			MethodName: "DeleteSeatCategoryByName",
+			Handler:    _SuperAdminService_DeleteSeatCategoryByName_Handler,
+		},
+		{
+			MethodName: "GetSeatCategoryByID",
+			Handler:    _SuperAdminService_GetSeatCategoryByID_Handler,
+		},
+		{
+			MethodName: "GetSeatCategoryByName",
+			Handler:    _SuperAdminService_GetSeatCategoryByName_Handler,
+		},
+		{
+			MethodName: "UpdateSeatCategory",
+			Handler:    _SuperAdminService_UpdateSeatCategory_Handler,
+		},
+		{
+			MethodName: "ListSeatCategories",
+			Handler:    _SuperAdminService_ListSeatCategories_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
