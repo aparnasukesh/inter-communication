@@ -26,6 +26,17 @@ service AdminService {
     rpc GetTheaterByName(GetTheaterByNameRequest) returns (GetTheaterByNameResponse);
     rpc UpdateTheater(UpdateTheaterRequest) returns (UpdateTheaterResponse);
     rpc ListTheaters(ListTheatersRequest) returns (ListTheatersResponse);
+    //Theater- Types
+    rpc ListTheaterTypes(ListTheaterTypesRequest)returns(ListTheaterTypeResponse);
+    //Movies
+    rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
+    //Screen-types
+    rpc ListScreenTypes(ListScreenTypesRequest) returns (ListScreenTypesResponse);
+    //Seat Ctegories
+    rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
+
+
+
 }
 
 // Super - Admin service definition

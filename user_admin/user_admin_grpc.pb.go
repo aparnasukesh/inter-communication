@@ -276,6 +276,10 @@ const (
 	AdminService_GetTheaterByName_FullMethodName    = "/useradmin.AdminService/GetTheaterByName"
 	AdminService_UpdateTheater_FullMethodName       = "/useradmin.AdminService/UpdateTheater"
 	AdminService_ListTheaters_FullMethodName        = "/useradmin.AdminService/ListTheaters"
+	AdminService_ListTheaterTypes_FullMethodName    = "/useradmin.AdminService/ListTheaterTypes"
+	AdminService_ListMovies_FullMethodName          = "/useradmin.AdminService/ListMovies"
+	AdminService_ListScreenTypes_FullMethodName     = "/useradmin.AdminService/ListScreenTypes"
+	AdminService_ListSeatCategories_FullMethodName  = "/useradmin.AdminService/ListSeatCategories"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -295,6 +299,14 @@ type AdminServiceClient interface {
 	GetTheaterByName(ctx context.Context, in *GetTheaterByNameRequest, opts ...grpc.CallOption) (*GetTheaterByNameResponse, error)
 	UpdateTheater(ctx context.Context, in *UpdateTheaterRequest, opts ...grpc.CallOption) (*UpdateTheaterResponse, error)
 	ListTheaters(ctx context.Context, in *ListTheatersRequest, opts ...grpc.CallOption) (*ListTheatersResponse, error)
+	// Theater- Types
+	ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error)
+	// Movies
+	ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error)
+	// Screen-types
+	ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error)
+	// Seat Ctegories
+	ListSeatCategories(ctx context.Context, in *ListSeatCategoriesRequest, opts ...grpc.CallOption) (*ListSeatCategoriesResponse, error)
 }
 
 type adminServiceClient struct {
@@ -405,6 +417,46 @@ func (c *adminServiceClient) ListTheaters(ctx context.Context, in *ListTheatersR
 	return out, nil
 }
 
+func (c *adminServiceClient) ListTheaterTypes(ctx context.Context, in *ListTheaterTypesRequest, opts ...grpc.CallOption) (*ListTheaterTypeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTheaterTypeResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListTheaterTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListMoviesResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListMovies_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListScreenTypesResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListScreenTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListSeatCategories(ctx context.Context, in *ListSeatCategoriesRequest, opts ...grpc.CallOption) (*ListSeatCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSeatCategoriesResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListSeatCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations must embed UnimplementedAdminServiceServer
 // for forward compatibility
@@ -422,6 +474,14 @@ type AdminServiceServer interface {
 	GetTheaterByName(context.Context, *GetTheaterByNameRequest) (*GetTheaterByNameResponse, error)
 	UpdateTheater(context.Context, *UpdateTheaterRequest) (*UpdateTheaterResponse, error)
 	ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error)
+	// Theater- Types
+	ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error)
+	// Movies
+	ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error)
+	// Screen-types
+	ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error)
+	// Seat Ctegories
+	ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -458,6 +518,18 @@ func (UnimplementedAdminServiceServer) UpdateTheater(context.Context, *UpdateThe
 }
 func (UnimplementedAdminServiceServer) ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaters not implemented")
+}
+func (UnimplementedAdminServiceServer) ListTheaterTypes(context.Context, *ListTheaterTypesRequest) (*ListTheaterTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterTypes not implemented")
+}
+func (UnimplementedAdminServiceServer) ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMovies not implemented")
+}
+func (UnimplementedAdminServiceServer) ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListScreenTypes not implemented")
+}
+func (UnimplementedAdminServiceServer) ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSeatCategories not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
 
@@ -652,6 +724,78 @@ func _AdminService_ListTheaters_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_ListTheaterTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTheaterTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListTheaterTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListTheaterTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListTheaterTypes(ctx, req.(*ListTheaterTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListMovies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMoviesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListMovies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListMovies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListMovies(ctx, req.(*ListMoviesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListScreenTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListScreenTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListScreenTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListScreenTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListScreenTypes(ctx, req.(*ListScreenTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListSeatCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSeatCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListSeatCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListSeatCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListSeatCategories(ctx, req.(*ListSeatCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -698,6 +842,22 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaters",
 			Handler:    _AdminService_ListTheaters_Handler,
+		},
+		{
+			MethodName: "ListTheaterTypes",
+			Handler:    _AdminService_ListTheaterTypes_Handler,
+		},
+		{
+			MethodName: "ListMovies",
+			Handler:    _AdminService_ListMovies_Handler,
+		},
+		{
+			MethodName: "ListScreenTypes",
+			Handler:    _AdminService_ListScreenTypes_Handler,
+		},
+		{
+			MethodName: "ListSeatCategories",
+			Handler:    _AdminService_ListSeatCategories_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
