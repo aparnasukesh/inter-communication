@@ -301,6 +301,13 @@ const (
 	TheatreService_GetTheaterScreenByNumber_FullMethodName    = "/moviebooking.TheatreService/GetTheaterScreenByNumber"
 	TheatreService_UpdateTheaterScreen_FullMethodName         = "/moviebooking.TheatreService/UpdateTheaterScreen"
 	TheatreService_ListTheaterScreens_FullMethodName          = "/moviebooking.TheatreService/ListTheaterScreens"
+	TheatreService_AddShowtime_FullMethodName                 = "/moviebooking.TheatreService/AddShowtime"
+	TheatreService_DeleteShowtimeByID_FullMethodName          = "/moviebooking.TheatreService/DeleteShowtimeByID"
+	TheatreService_DeleteShowtimeByDetails_FullMethodName     = "/moviebooking.TheatreService/DeleteShowtimeByDetails"
+	TheatreService_GetShowtimeByID_FullMethodName             = "/moviebooking.TheatreService/GetShowtimeByID"
+	TheatreService_GetShowtimeByDetails_FullMethodName        = "/moviebooking.TheatreService/GetShowtimeByDetails"
+	TheatreService_UpdateShowtime_FullMethodName              = "/moviebooking.TheatreService/UpdateShowtime"
+	TheatreService_ListShowtimes_FullMethodName               = "/moviebooking.TheatreService/ListShowtimes"
 )
 
 // TheatreServiceClient is the client API for TheatreService service.
@@ -349,6 +356,14 @@ type TheatreServiceClient interface {
 	GetTheaterScreenByNumber(ctx context.Context, in *GetTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*GetTheaterScreenByNumberResponse, error)
 	UpdateTheaterScreen(ctx context.Context, in *UpdateTheaterScreenRequest, opts ...grpc.CallOption) (*UpdateTheaterScreenResponse, error)
 	ListTheaterScreens(ctx context.Context, in *ListTheaterScreensRequest, opts ...grpc.CallOption) (*ListTheaterScreensResponse, error)
+	// Show time
+	AddShowtime(ctx context.Context, in *AddShowtimeRequest, opts ...grpc.CallOption) (*AddShowtimeResponse, error)
+	DeleteShowtimeByID(ctx context.Context, in *DeleteShowtimeRequest, opts ...grpc.CallOption) (*DeleteShowtimeResponse, error)
+	DeleteShowtimeByDetails(ctx context.Context, in *DeleteShowtimeByDetailsRequest, opts ...grpc.CallOption) (*DeleteShowtimeByDetailsResponse, error)
+	GetShowtimeByID(ctx context.Context, in *GetShowtimeByIDRequest, opts ...grpc.CallOption) (*GetShowtimeByIDResponse, error)
+	GetShowtimeByDetails(ctx context.Context, in *GetShowtimeByDetailsRequest, opts ...grpc.CallOption) (*GetShowtimeByDetailsResponse, error)
+	UpdateShowtime(ctx context.Context, in *UpdateShowtimeRequest, opts ...grpc.CallOption) (*UpdateShowtimeResponse, error)
+	ListShowtimes(ctx context.Context, in *ListShowtimesRequest, opts ...grpc.CallOption) (*ListShowtimesResponse, error)
 }
 
 type theatreServiceClient struct {
@@ -709,6 +724,76 @@ func (c *theatreServiceClient) ListTheaterScreens(ctx context.Context, in *ListT
 	return out, nil
 }
 
+func (c *theatreServiceClient) AddShowtime(ctx context.Context, in *AddShowtimeRequest, opts ...grpc.CallOption) (*AddShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddShowtimeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_AddShowtime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteShowtimeByID(ctx context.Context, in *DeleteShowtimeRequest, opts ...grpc.CallOption) (*DeleteShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteShowtimeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteShowtimeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteShowtimeByDetails(ctx context.Context, in *DeleteShowtimeByDetailsRequest, opts ...grpc.CallOption) (*DeleteShowtimeByDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteShowtimeByDetailsResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteShowtimeByDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetShowtimeByID(ctx context.Context, in *GetShowtimeByIDRequest, opts ...grpc.CallOption) (*GetShowtimeByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShowtimeByIDResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetShowtimeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetShowtimeByDetails(ctx context.Context, in *GetShowtimeByDetailsRequest, opts ...grpc.CallOption) (*GetShowtimeByDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShowtimeByDetailsResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetShowtimeByDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) UpdateShowtime(ctx context.Context, in *UpdateShowtimeRequest, opts ...grpc.CallOption) (*UpdateShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateShowtimeResponse)
+	err := c.cc.Invoke(ctx, TheatreService_UpdateShowtime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) ListShowtimes(ctx context.Context, in *ListShowtimesRequest, opts ...grpc.CallOption) (*ListShowtimesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListShowtimesResponse)
+	err := c.cc.Invoke(ctx, TheatreService_ListShowtimes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TheatreServiceServer is the server API for TheatreService service.
 // All implementations must embed UnimplementedTheatreServiceServer
 // for forward compatibility
@@ -755,6 +840,14 @@ type TheatreServiceServer interface {
 	GetTheaterScreenByNumber(context.Context, *GetTheaterScreenByNumberRequest) (*GetTheaterScreenByNumberResponse, error)
 	UpdateTheaterScreen(context.Context, *UpdateTheaterScreenRequest) (*UpdateTheaterScreenResponse, error)
 	ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error)
+	// Show time
+	AddShowtime(context.Context, *AddShowtimeRequest) (*AddShowtimeResponse, error)
+	DeleteShowtimeByID(context.Context, *DeleteShowtimeRequest) (*DeleteShowtimeResponse, error)
+	DeleteShowtimeByDetails(context.Context, *DeleteShowtimeByDetailsRequest) (*DeleteShowtimeByDetailsResponse, error)
+	GetShowtimeByID(context.Context, *GetShowtimeByIDRequest) (*GetShowtimeByIDResponse, error)
+	GetShowtimeByDetails(context.Context, *GetShowtimeByDetailsRequest) (*GetShowtimeByDetailsResponse, error)
+	UpdateShowtime(context.Context, *UpdateShowtimeRequest) (*UpdateShowtimeResponse, error)
+	ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error)
 	mustEmbedUnimplementedTheatreServiceServer()
 }
 
@@ -866,6 +959,27 @@ func (UnimplementedTheatreServiceServer) UpdateTheaterScreen(context.Context, *U
 }
 func (UnimplementedTheatreServiceServer) ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterScreens not implemented")
+}
+func (UnimplementedTheatreServiceServer) AddShowtime(context.Context, *AddShowtimeRequest) (*AddShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddShowtime not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteShowtimeByID(context.Context, *DeleteShowtimeRequest) (*DeleteShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteShowtimeByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteShowtimeByDetails(context.Context, *DeleteShowtimeByDetailsRequest) (*DeleteShowtimeByDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteShowtimeByDetails not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetShowtimeByID(context.Context, *GetShowtimeByIDRequest) (*GetShowtimeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShowtimeByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetShowtimeByDetails(context.Context, *GetShowtimeByDetailsRequest) (*GetShowtimeByDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShowtimeByDetails not implemented")
+}
+func (UnimplementedTheatreServiceServer) UpdateShowtime(context.Context, *UpdateShowtimeRequest) (*UpdateShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShowtime not implemented")
+}
+func (UnimplementedTheatreServiceServer) ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShowtimes not implemented")
 }
 func (UnimplementedTheatreServiceServer) mustEmbedUnimplementedTheatreServiceServer() {}
 
@@ -1510,6 +1624,132 @@ func _TheatreService_ListTheaterScreens_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_AddShowtime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).AddShowtime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_AddShowtime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).AddShowtime(ctx, req.(*AddShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteShowtimeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteShowtimeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteShowtimeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteShowtimeByID(ctx, req.(*DeleteShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteShowtimeByDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteShowtimeByDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteShowtimeByDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteShowtimeByDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteShowtimeByDetails(ctx, req.(*DeleteShowtimeByDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetShowtimeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShowtimeByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetShowtimeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetShowtimeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetShowtimeByID(ctx, req.(*GetShowtimeByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetShowtimeByDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShowtimeByDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetShowtimeByDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetShowtimeByDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetShowtimeByDetails(ctx, req.(*GetShowtimeByDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_UpdateShowtime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).UpdateShowtime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_UpdateShowtime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).UpdateShowtime(ctx, req.(*UpdateShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_ListShowtimes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListShowtimesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).ListShowtimes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_ListShowtimes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).ListShowtimes(ctx, req.(*ListShowtimesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TheatreService_ServiceDesc is the grpc.ServiceDesc for TheatreService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1656,6 +1896,34 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaterScreens",
 			Handler:    _TheatreService_ListTheaterScreens_Handler,
+		},
+		{
+			MethodName: "AddShowtime",
+			Handler:    _TheatreService_AddShowtime_Handler,
+		},
+		{
+			MethodName: "DeleteShowtimeByID",
+			Handler:    _TheatreService_DeleteShowtimeByID_Handler,
+		},
+		{
+			MethodName: "DeleteShowtimeByDetails",
+			Handler:    _TheatreService_DeleteShowtimeByDetails_Handler,
+		},
+		{
+			MethodName: "GetShowtimeByID",
+			Handler:    _TheatreService_GetShowtimeByID_Handler,
+		},
+		{
+			MethodName: "GetShowtimeByDetails",
+			Handler:    _TheatreService_GetShowtimeByDetails_Handler,
+		},
+		{
+			MethodName: "UpdateShowtime",
+			Handler:    _TheatreService_UpdateShowtime_Handler,
+		},
+		{
+			MethodName: "ListShowtimes",
+			Handler:    _TheatreService_ListShowtimes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

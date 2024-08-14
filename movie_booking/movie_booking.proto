@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package moviebooking;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "./movie_booking";
 
 // Movie Service definition
@@ -59,6 +61,15 @@ service TheatreService {
     rpc GetTheaterScreenByNumber(GetTheaterScreenByNumberRequest) returns (GetTheaterScreenByNumberResponse);
     rpc UpdateTheaterScreen(UpdateTheaterScreenRequest) returns (UpdateTheaterScreenResponse);
     rpc ListTheaterScreens(ListTheaterScreensRequest) returns (ListTheaterScreensResponse);
+
+    // Show time
+    rpc AddShowtime(AddShowtimeRequest) returns (AddShowtimeResponse);
+    rpc DeleteShowtimeByID(DeleteShowtimeRequest) returns (DeleteShowtimeResponse);
+    rpc DeleteShowtimeByDetails(DeleteShowtimeByDetailsRequest) returns (DeleteShowtimeByDetailsResponse);
+    rpc GetShowtimeByID(GetShowtimeByIDRequest) returns (GetShowtimeByIDResponse);
+    rpc GetShowtimeByDetails(GetShowtimeByDetailsRequest) returns (GetShowtimeByDetailsResponse);
+    rpc UpdateShowtime(UpdateShowtimeRequest) returns (UpdateShowtimeResponse);
+    rpc ListShowtimes(ListShowtimesRequest) returns (ListShowtimesResponse);
 }
 
 // Movie related messages
@@ -436,4 +447,72 @@ message ListTheaterScreensRequest {
 
 message ListTheaterScreensResponse {
     repeated TheaterScreen TheaterScreens = 1;
+}
+
+//Show time related messages
+
+message Showtime {
+    uint32 id = 1;
+    int32 movie_id = 2;
+    int32 screen_id = 3;
+    google.protobuf.Timestamp show_date = 4;
+    google.protobuf.Timestamp show_time = 5;
+}
+
+message AddShowtimeRequest {
+    Showtime showtime = 1;
+}
+
+message AddShowtimeResponse {
+}
+
+message DeleteShowtimeRequest {
+    int32 showtime_id = 1;
+}
+
+message DeleteShowtimeResponse {
+}
+
+message DeleteShowtimeByDetailsRequest {
+    int32 movie_id = 1;
+    int32 screen_id = 2;
+    google.protobuf.Timestamp show_date = 3;
+    google.protobuf.Timestamp show_time = 4;
+}
+
+message DeleteShowtimeByDetailsResponse {
+}
+
+message GetShowtimeByIDRequest {
+    int32 showtime_id = 1;
+}
+
+message GetShowtimeByIDResponse {
+    Showtime showtime = 1;
+}
+
+message GetShowtimeByDetailsRequest {
+    int32 movie_id = 1;
+    int32 screen_id = 2;
+    google.protobuf.Timestamp show_date = 3;
+    google.protobuf.Timestamp show_time = 4;
+}
+
+message GetShowtimeByDetailsResponse {
+    Showtime showtime = 1;
+}
+
+message UpdateShowtimeRequest {
+    Showtime showtime = 1;
+}
+
+message UpdateShowtimeResponse {
+}
+
+message ListShowtimesRequest {
+    int32 movie_id = 1;
+}
+
+message ListShowtimesResponse {
+    repeated Showtime showtimes = 1;
 }

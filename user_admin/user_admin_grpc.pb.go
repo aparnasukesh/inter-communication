@@ -287,6 +287,13 @@ const (
 	AdminService_GetTheaterScreenByNumber_FullMethodName    = "/useradmin.AdminService/GetTheaterScreenByNumber"
 	AdminService_UpdateTheaterScreen_FullMethodName         = "/useradmin.AdminService/UpdateTheaterScreen"
 	AdminService_ListTheaterScreens_FullMethodName          = "/useradmin.AdminService/ListTheaterScreens"
+	AdminService_AddShowtime_FullMethodName                 = "/useradmin.AdminService/AddShowtime"
+	AdminService_DeleteShowtimeByID_FullMethodName          = "/useradmin.AdminService/DeleteShowtimeByID"
+	AdminService_DeleteShowtimeByDetails_FullMethodName     = "/useradmin.AdminService/DeleteShowtimeByDetails"
+	AdminService_GetShowtimeByID_FullMethodName             = "/useradmin.AdminService/GetShowtimeByID"
+	AdminService_GetShowtimeByDetails_FullMethodName        = "/useradmin.AdminService/GetShowtimeByDetails"
+	AdminService_UpdateShowtime_FullMethodName              = "/useradmin.AdminService/UpdateShowtime"
+	AdminService_ListShowtimes_FullMethodName               = "/useradmin.AdminService/ListShowtimes"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -322,6 +329,14 @@ type AdminServiceClient interface {
 	GetTheaterScreenByNumber(ctx context.Context, in *GetTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*GetTheaterScreenByNumberResponse, error)
 	UpdateTheaterScreen(ctx context.Context, in *UpdateTheaterScreenRequest, opts ...grpc.CallOption) (*UpdateTheaterScreenResponse, error)
 	ListTheaterScreens(ctx context.Context, in *ListTheaterScreensRequest, opts ...grpc.CallOption) (*ListTheaterScreensResponse, error)
+	// Show time
+	AddShowtime(ctx context.Context, in *AddShowtimeRequest, opts ...grpc.CallOption) (*AddShowtimeResponse, error)
+	DeleteShowtimeByID(ctx context.Context, in *DeleteShowtimeRequest, opts ...grpc.CallOption) (*DeleteShowtimeResponse, error)
+	DeleteShowtimeByDetails(ctx context.Context, in *DeleteShowtimeByDetailsRequest, opts ...grpc.CallOption) (*DeleteShowtimeByDetailsResponse, error)
+	GetShowtimeByID(ctx context.Context, in *GetShowtimeByIDRequest, opts ...grpc.CallOption) (*GetShowtimeByIDResponse, error)
+	GetShowtimeByDetails(ctx context.Context, in *GetShowtimeByDetailsRequest, opts ...grpc.CallOption) (*GetShowtimeByDetailsResponse, error)
+	UpdateShowtime(ctx context.Context, in *UpdateShowtimeRequest, opts ...grpc.CallOption) (*UpdateShowtimeResponse, error)
+	ListShowtimes(ctx context.Context, in *ListShowtimesRequest, opts ...grpc.CallOption) (*ListShowtimesResponse, error)
 }
 
 type adminServiceClient struct {
@@ -542,6 +557,76 @@ func (c *adminServiceClient) ListTheaterScreens(ctx context.Context, in *ListThe
 	return out, nil
 }
 
+func (c *adminServiceClient) AddShowtime(ctx context.Context, in *AddShowtimeRequest, opts ...grpc.CallOption) (*AddShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddShowtimeResponse)
+	err := c.cc.Invoke(ctx, AdminService_AddShowtime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteShowtimeByID(ctx context.Context, in *DeleteShowtimeRequest, opts ...grpc.CallOption) (*DeleteShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteShowtimeResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteShowtimeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteShowtimeByDetails(ctx context.Context, in *DeleteShowtimeByDetailsRequest, opts ...grpc.CallOption) (*DeleteShowtimeByDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteShowtimeByDetailsResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteShowtimeByDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetShowtimeByID(ctx context.Context, in *GetShowtimeByIDRequest, opts ...grpc.CallOption) (*GetShowtimeByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShowtimeByIDResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetShowtimeByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetShowtimeByDetails(ctx context.Context, in *GetShowtimeByDetailsRequest, opts ...grpc.CallOption) (*GetShowtimeByDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetShowtimeByDetailsResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetShowtimeByDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) UpdateShowtime(ctx context.Context, in *UpdateShowtimeRequest, opts ...grpc.CallOption) (*UpdateShowtimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateShowtimeResponse)
+	err := c.cc.Invoke(ctx, AdminService_UpdateShowtime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListShowtimes(ctx context.Context, in *ListShowtimesRequest, opts ...grpc.CallOption) (*ListShowtimesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListShowtimesResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListShowtimes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations must embed UnimplementedAdminServiceServer
 // for forward compatibility
@@ -575,6 +660,14 @@ type AdminServiceServer interface {
 	GetTheaterScreenByNumber(context.Context, *GetTheaterScreenByNumberRequest) (*GetTheaterScreenByNumberResponse, error)
 	UpdateTheaterScreen(context.Context, *UpdateTheaterScreenRequest) (*UpdateTheaterScreenResponse, error)
 	ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error)
+	// Show time
+	AddShowtime(context.Context, *AddShowtimeRequest) (*AddShowtimeResponse, error)
+	DeleteShowtimeByID(context.Context, *DeleteShowtimeRequest) (*DeleteShowtimeResponse, error)
+	DeleteShowtimeByDetails(context.Context, *DeleteShowtimeByDetailsRequest) (*DeleteShowtimeByDetailsResponse, error)
+	GetShowtimeByID(context.Context, *GetShowtimeByIDRequest) (*GetShowtimeByIDResponse, error)
+	GetShowtimeByDetails(context.Context, *GetShowtimeByDetailsRequest) (*GetShowtimeByDetailsResponse, error)
+	UpdateShowtime(context.Context, *UpdateShowtimeRequest) (*UpdateShowtimeResponse, error)
+	ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -644,6 +737,27 @@ func (UnimplementedAdminServiceServer) UpdateTheaterScreen(context.Context, *Upd
 }
 func (UnimplementedAdminServiceServer) ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterScreens not implemented")
+}
+func (UnimplementedAdminServiceServer) AddShowtime(context.Context, *AddShowtimeRequest) (*AddShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddShowtime not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteShowtimeByID(context.Context, *DeleteShowtimeRequest) (*DeleteShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteShowtimeByID not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteShowtimeByDetails(context.Context, *DeleteShowtimeByDetailsRequest) (*DeleteShowtimeByDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteShowtimeByDetails not implemented")
+}
+func (UnimplementedAdminServiceServer) GetShowtimeByID(context.Context, *GetShowtimeByIDRequest) (*GetShowtimeByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShowtimeByID not implemented")
+}
+func (UnimplementedAdminServiceServer) GetShowtimeByDetails(context.Context, *GetShowtimeByDetailsRequest) (*GetShowtimeByDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetShowtimeByDetails not implemented")
+}
+func (UnimplementedAdminServiceServer) UpdateShowtime(context.Context, *UpdateShowtimeRequest) (*UpdateShowtimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateShowtime not implemented")
+}
+func (UnimplementedAdminServiceServer) ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShowtimes not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
 
@@ -1036,6 +1150,132 @@ func _AdminService_ListTheaterScreens_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_AddShowtime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).AddShowtime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_AddShowtime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).AddShowtime(ctx, req.(*AddShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteShowtimeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteShowtimeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteShowtimeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteShowtimeByID(ctx, req.(*DeleteShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteShowtimeByDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteShowtimeByDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteShowtimeByDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteShowtimeByDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteShowtimeByDetails(ctx, req.(*DeleteShowtimeByDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetShowtimeByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShowtimeByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetShowtimeByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetShowtimeByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetShowtimeByID(ctx, req.(*GetShowtimeByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetShowtimeByDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetShowtimeByDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetShowtimeByDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetShowtimeByDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetShowtimeByDetails(ctx, req.(*GetShowtimeByDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_UpdateShowtime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateShowtimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UpdateShowtime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_UpdateShowtime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UpdateShowtime(ctx, req.(*UpdateShowtimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListShowtimes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListShowtimesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListShowtimes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListShowtimes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListShowtimes(ctx, req.(*ListShowtimesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1126,6 +1366,34 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaterScreens",
 			Handler:    _AdminService_ListTheaterScreens_Handler,
+		},
+		{
+			MethodName: "AddShowtime",
+			Handler:    _AdminService_AddShowtime_Handler,
+		},
+		{
+			MethodName: "DeleteShowtimeByID",
+			Handler:    _AdminService_DeleteShowtimeByID_Handler,
+		},
+		{
+			MethodName: "DeleteShowtimeByDetails",
+			Handler:    _AdminService_DeleteShowtimeByDetails_Handler,
+		},
+		{
+			MethodName: "GetShowtimeByID",
+			Handler:    _AdminService_GetShowtimeByID_Handler,
+		},
+		{
+			MethodName: "GetShowtimeByDetails",
+			Handler:    _AdminService_GetShowtimeByDetails_Handler,
+		},
+		{
+			MethodName: "UpdateShowtime",
+			Handler:    _AdminService_UpdateShowtime_Handler,
+		},
+		{
+			MethodName: "ListShowtimes",
+			Handler:    _AdminService_ListShowtimes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
