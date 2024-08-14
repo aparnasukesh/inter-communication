@@ -266,34 +266,41 @@ var MovieService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	TheatreService_AddTheaterType_FullMethodName           = "/moviebooking.TheatreService/AddTheaterType"
-	TheatreService_DeleteTheaterTypeByID_FullMethodName    = "/moviebooking.TheatreService/DeleteTheaterTypeByID"
-	TheatreService_DeleteTheaterTypeByName_FullMethodName  = "/moviebooking.TheatreService/DeleteTheaterTypeByName"
-	TheatreService_GetTheaterTypeByID_FullMethodName       = "/moviebooking.TheatreService/GetTheaterTypeByID"
-	TheatreService_GetTheaterTypeByName_FullMethodName     = "/moviebooking.TheatreService/GetTheaterTypeByName"
-	TheatreService_UpdateTheaterType_FullMethodName        = "/moviebooking.TheatreService/UpdateTheaterType"
-	TheatreService_ListTheaterTypes_FullMethodName         = "/moviebooking.TheatreService/ListTheaterTypes"
-	TheatreService_AddScreenType_FullMethodName            = "/moviebooking.TheatreService/AddScreenType"
-	TheatreService_DeleteScreenTypeByID_FullMethodName     = "/moviebooking.TheatreService/DeleteScreenTypeByID"
-	TheatreService_DeleteScreenTypeByName_FullMethodName   = "/moviebooking.TheatreService/DeleteScreenTypeByName"
-	TheatreService_GetScreenTypeByID_FullMethodName        = "/moviebooking.TheatreService/GetScreenTypeByID"
-	TheatreService_GetScreenTypeByName_FullMethodName      = "/moviebooking.TheatreService/GetScreenTypeByName"
-	TheatreService_UpdateScreenType_FullMethodName         = "/moviebooking.TheatreService/UpdateScreenType"
-	TheatreService_ListScreenTypes_FullMethodName          = "/moviebooking.TheatreService/ListScreenTypes"
-	TheatreService_AddSeatCategory_FullMethodName          = "/moviebooking.TheatreService/AddSeatCategory"
-	TheatreService_DeleteSeatCategoryByID_FullMethodName   = "/moviebooking.TheatreService/DeleteSeatCategoryByID"
-	TheatreService_DeleteSeatCategoryByName_FullMethodName = "/moviebooking.TheatreService/DeleteSeatCategoryByName"
-	TheatreService_GetSeatCategoryByID_FullMethodName      = "/moviebooking.TheatreService/GetSeatCategoryByID"
-	TheatreService_GetSeatCategoryByName_FullMethodName    = "/moviebooking.TheatreService/GetSeatCategoryByName"
-	TheatreService_UpdateSeatCategory_FullMethodName       = "/moviebooking.TheatreService/UpdateSeatCategory"
-	TheatreService_ListSeatCategories_FullMethodName       = "/moviebooking.TheatreService/ListSeatCategories"
-	TheatreService_AddTheater_FullMethodName               = "/moviebooking.TheatreService/AddTheater"
-	TheatreService_DeleteTheaterByID_FullMethodName        = "/moviebooking.TheatreService/DeleteTheaterByID"
-	TheatreService_DeleteTheaterByName_FullMethodName      = "/moviebooking.TheatreService/DeleteTheaterByName"
-	TheatreService_GetTheaterByID_FullMethodName           = "/moviebooking.TheatreService/GetTheaterByID"
-	TheatreService_GetTheaterByName_FullMethodName         = "/moviebooking.TheatreService/GetTheaterByName"
-	TheatreService_UpdateTheater_FullMethodName            = "/moviebooking.TheatreService/UpdateTheater"
-	TheatreService_ListTheaters_FullMethodName             = "/moviebooking.TheatreService/ListTheaters"
+	TheatreService_AddTheaterType_FullMethodName              = "/moviebooking.TheatreService/AddTheaterType"
+	TheatreService_DeleteTheaterTypeByID_FullMethodName       = "/moviebooking.TheatreService/DeleteTheaterTypeByID"
+	TheatreService_DeleteTheaterTypeByName_FullMethodName     = "/moviebooking.TheatreService/DeleteTheaterTypeByName"
+	TheatreService_GetTheaterTypeByID_FullMethodName          = "/moviebooking.TheatreService/GetTheaterTypeByID"
+	TheatreService_GetTheaterTypeByName_FullMethodName        = "/moviebooking.TheatreService/GetTheaterTypeByName"
+	TheatreService_UpdateTheaterType_FullMethodName           = "/moviebooking.TheatreService/UpdateTheaterType"
+	TheatreService_ListTheaterTypes_FullMethodName            = "/moviebooking.TheatreService/ListTheaterTypes"
+	TheatreService_AddScreenType_FullMethodName               = "/moviebooking.TheatreService/AddScreenType"
+	TheatreService_DeleteScreenTypeByID_FullMethodName        = "/moviebooking.TheatreService/DeleteScreenTypeByID"
+	TheatreService_DeleteScreenTypeByName_FullMethodName      = "/moviebooking.TheatreService/DeleteScreenTypeByName"
+	TheatreService_GetScreenTypeByID_FullMethodName           = "/moviebooking.TheatreService/GetScreenTypeByID"
+	TheatreService_GetScreenTypeByName_FullMethodName         = "/moviebooking.TheatreService/GetScreenTypeByName"
+	TheatreService_UpdateScreenType_FullMethodName            = "/moviebooking.TheatreService/UpdateScreenType"
+	TheatreService_ListScreenTypes_FullMethodName             = "/moviebooking.TheatreService/ListScreenTypes"
+	TheatreService_AddSeatCategory_FullMethodName             = "/moviebooking.TheatreService/AddSeatCategory"
+	TheatreService_DeleteSeatCategoryByID_FullMethodName      = "/moviebooking.TheatreService/DeleteSeatCategoryByID"
+	TheatreService_DeleteSeatCategoryByName_FullMethodName    = "/moviebooking.TheatreService/DeleteSeatCategoryByName"
+	TheatreService_GetSeatCategoryByID_FullMethodName         = "/moviebooking.TheatreService/GetSeatCategoryByID"
+	TheatreService_GetSeatCategoryByName_FullMethodName       = "/moviebooking.TheatreService/GetSeatCategoryByName"
+	TheatreService_UpdateSeatCategory_FullMethodName          = "/moviebooking.TheatreService/UpdateSeatCategory"
+	TheatreService_ListSeatCategories_FullMethodName          = "/moviebooking.TheatreService/ListSeatCategories"
+	TheatreService_AddTheater_FullMethodName                  = "/moviebooking.TheatreService/AddTheater"
+	TheatreService_DeleteTheaterByID_FullMethodName           = "/moviebooking.TheatreService/DeleteTheaterByID"
+	TheatreService_DeleteTheaterByName_FullMethodName         = "/moviebooking.TheatreService/DeleteTheaterByName"
+	TheatreService_GetTheaterByID_FullMethodName              = "/moviebooking.TheatreService/GetTheaterByID"
+	TheatreService_GetTheaterByName_FullMethodName            = "/moviebooking.TheatreService/GetTheaterByName"
+	TheatreService_UpdateTheater_FullMethodName               = "/moviebooking.TheatreService/UpdateTheater"
+	TheatreService_ListTheaters_FullMethodName                = "/moviebooking.TheatreService/ListTheaters"
+	TheatreService_AddTheaterScreen_FullMethodName            = "/moviebooking.TheatreService/AddTheaterScreen"
+	TheatreService_DeleteTheaterScreenByID_FullMethodName     = "/moviebooking.TheatreService/DeleteTheaterScreenByID"
+	TheatreService_DeleteTheaterScreenByNumber_FullMethodName = "/moviebooking.TheatreService/DeleteTheaterScreenByNumber"
+	TheatreService_GetTheaterScreenByID_FullMethodName        = "/moviebooking.TheatreService/GetTheaterScreenByID"
+	TheatreService_GetTheaterScreenByNumber_FullMethodName    = "/moviebooking.TheatreService/GetTheaterScreenByNumber"
+	TheatreService_UpdateTheaterScreen_FullMethodName         = "/moviebooking.TheatreService/UpdateTheaterScreen"
+	TheatreService_ListTheaterScreens_FullMethodName          = "/moviebooking.TheatreService/ListTheaterScreens"
 )
 
 // TheatreServiceClient is the client API for TheatreService service.
@@ -334,6 +341,14 @@ type TheatreServiceClient interface {
 	GetTheaterByName(ctx context.Context, in *GetTheaterByNameRequest, opts ...grpc.CallOption) (*GetTheaterByNameResponse, error)
 	UpdateTheater(ctx context.Context, in *UpdateTheaterRequest, opts ...grpc.CallOption) (*UpdateTheaterResponse, error)
 	ListTheaters(ctx context.Context, in *ListTheatersRequest, opts ...grpc.CallOption) (*ListTheatersResponse, error)
+	// Theater Screen
+	AddTheaterScreen(ctx context.Context, in *AddTheaterScreenRequest, opts ...grpc.CallOption) (*AddTheaterScreenResponse, error)
+	DeleteTheaterScreenByID(ctx context.Context, in *DeleteTheaterScreenRequest, opts ...grpc.CallOption) (*DeleteTheaterScreenResponse, error)
+	DeleteTheaterScreenByNumber(ctx context.Context, in *DeleteTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*DeleteTheaterScreenByNumberResponse, error)
+	GetTheaterScreenByID(ctx context.Context, in *GetTheaterScreenByIDRequest, opts ...grpc.CallOption) (*GetTheaterScreenByIDResponse, error)
+	GetTheaterScreenByNumber(ctx context.Context, in *GetTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*GetTheaterScreenByNumberResponse, error)
+	UpdateTheaterScreen(ctx context.Context, in *UpdateTheaterScreenRequest, opts ...grpc.CallOption) (*UpdateTheaterScreenResponse, error)
+	ListTheaterScreens(ctx context.Context, in *ListTheaterScreensRequest, opts ...grpc.CallOption) (*ListTheaterScreensResponse, error)
 }
 
 type theatreServiceClient struct {
@@ -624,6 +639,76 @@ func (c *theatreServiceClient) ListTheaters(ctx context.Context, in *ListTheater
 	return out, nil
 }
 
+func (c *theatreServiceClient) AddTheaterScreen(ctx context.Context, in *AddTheaterScreenRequest, opts ...grpc.CallOption) (*AddTheaterScreenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTheaterScreenResponse)
+	err := c.cc.Invoke(ctx, TheatreService_AddTheaterScreen_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteTheaterScreenByID(ctx context.Context, in *DeleteTheaterScreenRequest, opts ...grpc.CallOption) (*DeleteTheaterScreenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterScreenResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteTheaterScreenByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) DeleteTheaterScreenByNumber(ctx context.Context, in *DeleteTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*DeleteTheaterScreenByNumberResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterScreenByNumberResponse)
+	err := c.cc.Invoke(ctx, TheatreService_DeleteTheaterScreenByNumber_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetTheaterScreenByID(ctx context.Context, in *GetTheaterScreenByIDRequest, opts ...grpc.CallOption) (*GetTheaterScreenByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterScreenByIDResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetTheaterScreenByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) GetTheaterScreenByNumber(ctx context.Context, in *GetTheaterScreenByNumberRequest, opts ...grpc.CallOption) (*GetTheaterScreenByNumberResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterScreenByNumberResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetTheaterScreenByNumber_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) UpdateTheaterScreen(ctx context.Context, in *UpdateTheaterScreenRequest, opts ...grpc.CallOption) (*UpdateTheaterScreenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTheaterScreenResponse)
+	err := c.cc.Invoke(ctx, TheatreService_UpdateTheaterScreen_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *theatreServiceClient) ListTheaterScreens(ctx context.Context, in *ListTheaterScreensRequest, opts ...grpc.CallOption) (*ListTheaterScreensResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTheaterScreensResponse)
+	err := c.cc.Invoke(ctx, TheatreService_ListTheaterScreens_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TheatreServiceServer is the server API for TheatreService service.
 // All implementations must embed UnimplementedTheatreServiceServer
 // for forward compatibility
@@ -662,6 +747,14 @@ type TheatreServiceServer interface {
 	GetTheaterByName(context.Context, *GetTheaterByNameRequest) (*GetTheaterByNameResponse, error)
 	UpdateTheater(context.Context, *UpdateTheaterRequest) (*UpdateTheaterResponse, error)
 	ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error)
+	// Theater Screen
+	AddTheaterScreen(context.Context, *AddTheaterScreenRequest) (*AddTheaterScreenResponse, error)
+	DeleteTheaterScreenByID(context.Context, *DeleteTheaterScreenRequest) (*DeleteTheaterScreenResponse, error)
+	DeleteTheaterScreenByNumber(context.Context, *DeleteTheaterScreenByNumberRequest) (*DeleteTheaterScreenByNumberResponse, error)
+	GetTheaterScreenByID(context.Context, *GetTheaterScreenByIDRequest) (*GetTheaterScreenByIDResponse, error)
+	GetTheaterScreenByNumber(context.Context, *GetTheaterScreenByNumberRequest) (*GetTheaterScreenByNumberResponse, error)
+	UpdateTheaterScreen(context.Context, *UpdateTheaterScreenRequest) (*UpdateTheaterScreenResponse, error)
+	ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error)
 	mustEmbedUnimplementedTheatreServiceServer()
 }
 
@@ -752,6 +845,27 @@ func (UnimplementedTheatreServiceServer) UpdateTheater(context.Context, *UpdateT
 }
 func (UnimplementedTheatreServiceServer) ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaters not implemented")
+}
+func (UnimplementedTheatreServiceServer) AddTheaterScreen(context.Context, *AddTheaterScreenRequest) (*AddTheaterScreenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTheaterScreen not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteTheaterScreenByID(context.Context, *DeleteTheaterScreenRequest) (*DeleteTheaterScreenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterScreenByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) DeleteTheaterScreenByNumber(context.Context, *DeleteTheaterScreenByNumberRequest) (*DeleteTheaterScreenByNumberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterScreenByNumber not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetTheaterScreenByID(context.Context, *GetTheaterScreenByIDRequest) (*GetTheaterScreenByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterScreenByID not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetTheaterScreenByNumber(context.Context, *GetTheaterScreenByNumberRequest) (*GetTheaterScreenByNumberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterScreenByNumber not implemented")
+}
+func (UnimplementedTheatreServiceServer) UpdateTheaterScreen(context.Context, *UpdateTheaterScreenRequest) (*UpdateTheaterScreenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTheaterScreen not implemented")
+}
+func (UnimplementedTheatreServiceServer) ListTheaterScreens(context.Context, *ListTheaterScreensRequest) (*ListTheaterScreensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTheaterScreens not implemented")
 }
 func (UnimplementedTheatreServiceServer) mustEmbedUnimplementedTheatreServiceServer() {}
 
@@ -1270,6 +1384,132 @@ func _TheatreService_ListTheaters_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_AddTheaterScreen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTheaterScreenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).AddTheaterScreen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_AddTheaterScreen_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).AddTheaterScreen(ctx, req.(*AddTheaterScreenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteTheaterScreenByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterScreenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteTheaterScreenByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteTheaterScreenByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteTheaterScreenByID(ctx, req.(*DeleteTheaterScreenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_DeleteTheaterScreenByNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterScreenByNumberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).DeleteTheaterScreenByNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_DeleteTheaterScreenByNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).DeleteTheaterScreenByNumber(ctx, req.(*DeleteTheaterScreenByNumberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetTheaterScreenByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterScreenByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetTheaterScreenByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetTheaterScreenByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetTheaterScreenByID(ctx, req.(*GetTheaterScreenByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_GetTheaterScreenByNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterScreenByNumberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetTheaterScreenByNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetTheaterScreenByNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetTheaterScreenByNumber(ctx, req.(*GetTheaterScreenByNumberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_UpdateTheaterScreen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTheaterScreenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).UpdateTheaterScreen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_UpdateTheaterScreen_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).UpdateTheaterScreen(ctx, req.(*UpdateTheaterScreenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TheatreService_ListTheaterScreens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTheaterScreensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).ListTheaterScreens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_ListTheaterScreens_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).ListTheaterScreens(ctx, req.(*ListTheaterScreensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TheatreService_ServiceDesc is the grpc.ServiceDesc for TheatreService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1388,6 +1628,34 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaters",
 			Handler:    _TheatreService_ListTheaters_Handler,
+		},
+		{
+			MethodName: "AddTheaterScreen",
+			Handler:    _TheatreService_AddTheaterScreen_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterScreenByID",
+			Handler:    _TheatreService_DeleteTheaterScreenByID_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterScreenByNumber",
+			Handler:    _TheatreService_DeleteTheaterScreenByNumber_Handler,
+		},
+		{
+			MethodName: "GetTheaterScreenByID",
+			Handler:    _TheatreService_GetTheaterScreenByID_Handler,
+		},
+		{
+			MethodName: "GetTheaterScreenByNumber",
+			Handler:    _TheatreService_GetTheaterScreenByNumber_Handler,
+		},
+		{
+			MethodName: "UpdateTheaterScreen",
+			Handler:    _TheatreService_UpdateTheaterScreen_Handler,
+		},
+		{
+			MethodName: "ListTheaterScreens",
+			Handler:    _TheatreService_ListTheaterScreens_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

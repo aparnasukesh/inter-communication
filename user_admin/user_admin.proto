@@ -34,6 +34,14 @@ service AdminService {
     rpc ListScreenTypes(ListScreenTypesRequest) returns (ListScreenTypesResponse);
     //Seat Ctegories
     rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
+    // Theater Screen
+    rpc AddTheaterScreen(AddTheaterScreenRequest) returns (AddTheaterScreenResponse);
+    rpc DeleteTheaterScreenByID(DeleteTheaterScreenRequest) returns (DeleteTheaterScreenResponse);
+    rpc DeleteTheaterScreenByNumber(DeleteTheaterScreenByNumberRequest) returns (DeleteTheaterScreenByNumberResponse);
+    rpc GetTheaterScreenByID(GetTheaterScreenByIDRequest) returns (GetTheaterScreenByIDResponse);
+    rpc GetTheaterScreenByNumber(GetTheaterScreenByNumberRequest) returns (GetTheaterScreenByNumberResponse);
+    rpc UpdateTheaterScreen(UpdateTheaterScreenRequest) returns (UpdateTheaterScreenResponse);
+    rpc ListTheaterScreens(ListTheaterScreensRequest) returns (ListTheaterScreensResponse);
 
 
 
@@ -80,8 +88,6 @@ service SuperAdminService{
     rpc UpdateSeatCategory(UpdateSeatCategoryRequest) returns (UpdateSeatCategoryResponse);
     rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
 
-
-    
 }
 // User related messages
 message RegisterUserRequest {
@@ -540,4 +546,62 @@ message ListSeatCategoriesRequest {}
 
 message ListSeatCategoriesResponse {
     repeated SeatCategory seat_categories = 1;
+}
+
+// admin-Theater sreen
+message TheaterScreen {
+    uint32 ID = 1;
+    int32 TheaterID = 2;
+    int32 ScreenNumber = 3;
+    int32 SeatCapacity = 4;
+    int32 ScreenTypeID = 5;
+}
+message AddTheaterScreenRequest {
+    TheaterScreen TheaterScreen = 1;
+}
+
+message AddTheaterScreenResponse {
+}
+
+message DeleteTheaterScreenRequest {
+    int32 TheaterScreenId = 1;
+}
+
+message DeleteTheaterScreenResponse {
+}
+message DeleteTheaterScreenByNumberRequest {
+    int32 TheaterID = 1;
+    int32 ScreenNumber = 2;
+}
+
+message DeleteTheaterScreenByNumberResponse {
+}
+
+message GetTheaterScreenByIDRequest {
+    int32 TheaterScreenId = 1;
+}
+
+message GetTheaterScreenByIDResponse {
+    TheaterScreen TheaterScreen = 1;
+}
+message GetTheaterScreenByNumberRequest {
+    int32 TheaterID = 1;
+    int32 ScreenNumber = 2;
+}
+
+message GetTheaterScreenByNumberResponse {
+    TheaterScreen TheaterScreen = 1;
+}
+message UpdateTheaterScreenRequest {
+    TheaterScreen TheaterScreen = 1;
+}
+
+message UpdateTheaterScreenResponse {
+}
+message ListTheaterScreensRequest {
+    int32 TheaterID = 1;
+}
+
+message ListTheaterScreensResponse {
+    repeated TheaterScreen TheaterScreens = 1;
 }
