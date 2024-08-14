@@ -18,6 +18,14 @@ service AdminService {
     rpc RegisterAdmin (RegisterAdminRequest) returns (RegisterAdminResponse);
     rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
     rpc UpdateAdminProfile (UpdateAdminProfileRequest) returns (UpdateAdminProfileResponse);
+    //Theater
+    rpc AddTheater(AddTheaterRequest) returns (AddTheaterResponse);
+    rpc DeleteTheaterByID(DeleteTheaterRequest) returns (DeleteTheaterResponse);
+    rpc DeleteTheaterByName(DeleteTheaterByNameRequest) returns (DeleteTheaterByNameResponse);
+    rpc GetTheaterByID(GetTheaterByIDRequest) returns (GetTheaterByIDResponse);
+    rpc GetTheaterByName(GetTheaterByNameRequest) returns (GetTheaterByNameResponse);
+    rpc UpdateTheater(UpdateTheaterRequest) returns (UpdateTheaterResponse);
+    rpc ListTheaters(ListTheatersRequest) returns (ListTheatersResponse);
 }
 
 // Super - Admin service definition
@@ -43,17 +51,16 @@ service SuperAdminService{
     rpc UpdateTheaterType(UpdateTheaterTypeRequest)returns(UpdateTheaterTypeResponse);
     rpc ListTheaterTypes(ListTheaterTypesRequest)returns(ListTheaterTypeResponse);
 
-     // Screen type
-     rpc AddScreenType(AddScreenTypeRequest) returns (AddScreenTypeResponse);
-     rpc DeleteScreenTypeByID(DeleteScreenTypeRequest) returns (DeleteScreenTypeResponse);
-     rpc DeleteScreenTypeByName(DeleteScreenTypeByNameRequest) returns (DeleteScreenTypeByNameResponse);
-     rpc GetScreenTypeByID(GetScreenTypeByIDRequest) returns (GetScreenTypeByIDResponse);
-     rpc GetScreenTypeByName(GetScreenTypeByNameRequest) returns (GetScreenTypeByNameResponse);
-     rpc UpdateScreenType(UpdateScreenTypeRequest) returns (UpdateScreenTypeResponse);
-     rpc ListScreenTypes(ListScreenTypesRequest) returns (ListScreenTypesResponse);
+    // Screen type
+    rpc AddScreenType(AddScreenTypeRequest) returns (AddScreenTypeResponse);
+    rpc DeleteScreenTypeByID(DeleteScreenTypeRequest) returns (DeleteScreenTypeResponse);
+    rpc DeleteScreenTypeByName(DeleteScreenTypeByNameRequest) returns (DeleteScreenTypeByNameResponse);
+    rpc GetScreenTypeByID(GetScreenTypeByIDRequest) returns (GetScreenTypeByIDResponse);
+    rpc GetScreenTypeByName(GetScreenTypeByNameRequest) returns (GetScreenTypeByNameResponse);
+    rpc UpdateScreenType(UpdateScreenTypeRequest) returns (UpdateScreenTypeResponse);
+    rpc ListScreenTypes(ListScreenTypesRequest) returns (ListScreenTypesResponse);
 
-     // Seat category
-      // Seat category
+    // Seat category
     rpc AddSeatCategory(AddSeatCategoryRequest) returns (AddSeatCategoryResponse);
     rpc DeleteSeatCategoryByID(DeleteSeatCategoryRequest) returns (DeleteSeatCategoryResponse);
     rpc DeleteSeatCategoryByName(DeleteSeatCategoryByNameRequest) returns (DeleteSeatCategoryByNameResponse);
@@ -187,6 +194,73 @@ message AdminApprovalRequest{
 
 message AdminApprovalResponse{
     string status = 1;
+}
+// admin -theater related messages
+message Theater{
+    int32 theater_id = 1;
+    string name = 2;
+    string location = 3;
+    uint32 owner_id = 4;
+    int32 number_of_screens = 5;
+    int32 theater_type_id = 6;
+}
+message AddTheaterRequest {
+    string name = 1;
+    string location = 2;
+    uint32 owner_id = 3;
+    int32 number_of_screens = 4;
+    int32 theater_type_id = 5;
+}
+
+message AddTheaterResponse {
+    Theater theater = 1;
+}
+
+message DeleteTheaterRequest {
+    int32 theater_id = 1;
+}
+
+message DeleteTheaterResponse {}
+
+message DeleteTheaterByNameRequest {
+    string name = 1;
+}
+
+message DeleteTheaterByNameResponse {}
+
+message GetTheaterByIDRequest {
+    int32 theater_id = 1;
+}
+
+message GetTheaterByIDResponse {
+    Theater theater = 1;
+}
+
+message GetTheaterByNameRequest {
+    string name = 1;
+}
+
+message GetTheaterByNameResponse {
+    Theater theater = 1;
+}
+
+message UpdateTheaterRequest {
+    int32 theater_id = 1;
+    string name = 2;
+    string location = 3;
+    uint32 owner_id = 4;
+    int32 number_of_screens = 5;
+    int32 theater_type_id = 6;
+}
+
+message UpdateTheaterResponse {
+    Theater theater = 1;
+}
+
+message ListTheatersRequest {}
+
+message ListTheatersResponse {
+    repeated Theater theaters = 1;
 }
 
 // super-admin related messages

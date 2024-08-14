@@ -43,9 +43,13 @@ service TheatreService {
     rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
 
     // Theater 
-    rpc RegisterTheatre (RegisterTheatreRequest) returns (RegisterTheatreResponse);
-    rpc UpdateTheatre(UpdateTheatreRequest) returns (UpdateTheatreResponse);
-    rpc DeleteTheatre(DeleteTheatreRequest) returns (DeleteTheatreResponse);
+    rpc AddTheater(AddTheaterRequest) returns (AddTheaterResponse);
+    rpc DeleteTheaterByID(DeleteTheaterRequest) returns (DeleteTheaterResponse);
+    rpc DeleteTheaterByName(DeleteTheaterByNameRequest) returns (DeleteTheaterByNameResponse);
+    rpc GetTheaterByID(GetTheaterByIDRequest) returns (GetTheaterByIDResponse);
+    rpc GetTheaterByName(GetTheaterByNameRequest) returns (GetTheaterByNameResponse);
+    rpc UpdateTheater(UpdateTheaterRequest) returns (UpdateTheaterResponse);
+    rpc ListTheaters(ListTheatersRequest) returns (ListTheatersResponse);
 }
 
 // Movie related messages
@@ -116,37 +120,71 @@ message DeleteMovieResponse {
 }
 
 // Theatres related messages
-
-message RegisterTheatreRequest {
-    string name = 1;
-    string location = 2;
-    int32 number_of_screens = 3;
-    uint32 owner_id = 4;
-}
-
-message RegisterTheatreResponse {
-    uint32 theatre_id = 1;
-    string message = 2;
-}
-
-message UpdateTheatreRequest {
-    uint32 theatre_id = 1;
+message Theater{
+    int32 theater_id = 1;
     string name = 2;
     string location = 3;
+    uint32 owner_id = 4;
+    int32 number_of_screens = 5;
+    int32 theater_type_id = 6;
+}
+message AddTheaterRequest {
+    string name = 1;
+    string location = 2;
+    uint32 owner_id = 3;
     int32 number_of_screens = 4;
-    uint32 owner_id = 5;
+    int32 theater_type_id = 5;
 }
 
-message UpdateTheatreResponse {
-    string message = 1;
+message AddTheaterResponse {
+    Theater theater = 1;
 }
 
-message DeleteTheatreRequest {
-    uint32 theatre_id = 1;
+message DeleteTheaterRequest {
+    int32 theater_id = 1;
 }
 
-message DeleteTheatreResponse {
-    string message = 1;
+message DeleteTheaterResponse {}
+
+message DeleteTheaterByNameRequest {
+    string name = 1;
+}
+
+message DeleteTheaterByNameResponse {}
+
+message GetTheaterByIDRequest {
+    int32 theater_id = 1;
+}
+
+message GetTheaterByIDResponse {
+    Theater theater = 1;
+}
+
+message GetTheaterByNameRequest {
+    string name = 1;
+}
+
+message GetTheaterByNameResponse {
+    Theater theater = 1;
+}
+
+message UpdateTheaterRequest {
+    int32 theater_id = 1;
+    string name = 2;
+    string location = 3;
+    uint32 owner_id = 4;
+    int32 number_of_screens = 5;
+    int32 theater_type_id = 6;
+}
+
+message UpdateTheaterResponse {
+    Theater theater = 1;
+}
+
+message ListTheatersRequest {}
+
+message ListTheatersResponse {
+    repeated Theater theaters = 1;
 }
 
 // Theater types replated messages

@@ -266,9 +266,16 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	AdminService_RegisterAdmin_FullMethodName      = "/useradmin.AdminService/RegisterAdmin"
-	AdminService_LoginAdmin_FullMethodName         = "/useradmin.AdminService/LoginAdmin"
-	AdminService_UpdateAdminProfile_FullMethodName = "/useradmin.AdminService/UpdateAdminProfile"
+	AdminService_RegisterAdmin_FullMethodName       = "/useradmin.AdminService/RegisterAdmin"
+	AdminService_LoginAdmin_FullMethodName          = "/useradmin.AdminService/LoginAdmin"
+	AdminService_UpdateAdminProfile_FullMethodName  = "/useradmin.AdminService/UpdateAdminProfile"
+	AdminService_AddTheater_FullMethodName          = "/useradmin.AdminService/AddTheater"
+	AdminService_DeleteTheaterByID_FullMethodName   = "/useradmin.AdminService/DeleteTheaterByID"
+	AdminService_DeleteTheaterByName_FullMethodName = "/useradmin.AdminService/DeleteTheaterByName"
+	AdminService_GetTheaterByID_FullMethodName      = "/useradmin.AdminService/GetTheaterByID"
+	AdminService_GetTheaterByName_FullMethodName    = "/useradmin.AdminService/GetTheaterByName"
+	AdminService_UpdateTheater_FullMethodName       = "/useradmin.AdminService/UpdateTheater"
+	AdminService_ListTheaters_FullMethodName        = "/useradmin.AdminService/ListTheaters"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -280,6 +287,14 @@ type AdminServiceClient interface {
 	RegisterAdmin(ctx context.Context, in *RegisterAdminRequest, opts ...grpc.CallOption) (*RegisterAdminResponse, error)
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
 	UpdateAdminProfile(ctx context.Context, in *UpdateAdminProfileRequest, opts ...grpc.CallOption) (*UpdateAdminProfileResponse, error)
+	// Theater
+	AddTheater(ctx context.Context, in *AddTheaterRequest, opts ...grpc.CallOption) (*AddTheaterResponse, error)
+	DeleteTheaterByID(ctx context.Context, in *DeleteTheaterRequest, opts ...grpc.CallOption) (*DeleteTheaterResponse, error)
+	DeleteTheaterByName(ctx context.Context, in *DeleteTheaterByNameRequest, opts ...grpc.CallOption) (*DeleteTheaterByNameResponse, error)
+	GetTheaterByID(ctx context.Context, in *GetTheaterByIDRequest, opts ...grpc.CallOption) (*GetTheaterByIDResponse, error)
+	GetTheaterByName(ctx context.Context, in *GetTheaterByNameRequest, opts ...grpc.CallOption) (*GetTheaterByNameResponse, error)
+	UpdateTheater(ctx context.Context, in *UpdateTheaterRequest, opts ...grpc.CallOption) (*UpdateTheaterResponse, error)
+	ListTheaters(ctx context.Context, in *ListTheatersRequest, opts ...grpc.CallOption) (*ListTheatersResponse, error)
 }
 
 type adminServiceClient struct {
@@ -320,6 +335,76 @@ func (c *adminServiceClient) UpdateAdminProfile(ctx context.Context, in *UpdateA
 	return out, nil
 }
 
+func (c *adminServiceClient) AddTheater(ctx context.Context, in *AddTheaterRequest, opts ...grpc.CallOption) (*AddTheaterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddTheaterResponse)
+	err := c.cc.Invoke(ctx, AdminService_AddTheater_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteTheaterByID(ctx context.Context, in *DeleteTheaterRequest, opts ...grpc.CallOption) (*DeleteTheaterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteTheaterByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteTheaterByName(ctx context.Context, in *DeleteTheaterByNameRequest, opts ...grpc.CallOption) (*DeleteTheaterByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTheaterByNameResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteTheaterByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetTheaterByID(ctx context.Context, in *GetTheaterByIDRequest, opts ...grpc.CallOption) (*GetTheaterByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterByIDResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetTheaterByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetTheaterByName(ctx context.Context, in *GetTheaterByNameRequest, opts ...grpc.CallOption) (*GetTheaterByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheaterByNameResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetTheaterByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) UpdateTheater(ctx context.Context, in *UpdateTheaterRequest, opts ...grpc.CallOption) (*UpdateTheaterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTheaterResponse)
+	err := c.cc.Invoke(ctx, AdminService_UpdateTheater_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListTheaters(ctx context.Context, in *ListTheatersRequest, opts ...grpc.CallOption) (*ListTheatersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTheatersResponse)
+	err := c.cc.Invoke(ctx, AdminService_ListTheaters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations must embed UnimplementedAdminServiceServer
 // for forward compatibility
@@ -329,6 +414,14 @@ type AdminServiceServer interface {
 	RegisterAdmin(context.Context, *RegisterAdminRequest) (*RegisterAdminResponse, error)
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
 	UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error)
+	// Theater
+	AddTheater(context.Context, *AddTheaterRequest) (*AddTheaterResponse, error)
+	DeleteTheaterByID(context.Context, *DeleteTheaterRequest) (*DeleteTheaterResponse, error)
+	DeleteTheaterByName(context.Context, *DeleteTheaterByNameRequest) (*DeleteTheaterByNameResponse, error)
+	GetTheaterByID(context.Context, *GetTheaterByIDRequest) (*GetTheaterByIDResponse, error)
+	GetTheaterByName(context.Context, *GetTheaterByNameRequest) (*GetTheaterByNameResponse, error)
+	UpdateTheater(context.Context, *UpdateTheaterRequest) (*UpdateTheaterResponse, error)
+	ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -344,6 +437,27 @@ func (UnimplementedAdminServiceServer) LoginAdmin(context.Context, *LoginAdminRe
 }
 func (UnimplementedAdminServiceServer) UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminProfile not implemented")
+}
+func (UnimplementedAdminServiceServer) AddTheater(context.Context, *AddTheaterRequest) (*AddTheaterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTheater not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteTheaterByID(context.Context, *DeleteTheaterRequest) (*DeleteTheaterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterByID not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteTheaterByName(context.Context, *DeleteTheaterByNameRequest) (*DeleteTheaterByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTheaterByName not implemented")
+}
+func (UnimplementedAdminServiceServer) GetTheaterByID(context.Context, *GetTheaterByIDRequest) (*GetTheaterByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterByID not implemented")
+}
+func (UnimplementedAdminServiceServer) GetTheaterByName(context.Context, *GetTheaterByNameRequest) (*GetTheaterByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheaterByName not implemented")
+}
+func (UnimplementedAdminServiceServer) UpdateTheater(context.Context, *UpdateTheaterRequest) (*UpdateTheaterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTheater not implemented")
+}
+func (UnimplementedAdminServiceServer) ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTheaters not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
 
@@ -412,6 +526,132 @@ func _AdminService_UpdateAdminProfile_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_AddTheater_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTheaterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).AddTheater(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_AddTheater_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).AddTheater(ctx, req.(*AddTheaterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteTheaterByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteTheaterByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteTheaterByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteTheaterByID(ctx, req.(*DeleteTheaterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteTheaterByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTheaterByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteTheaterByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteTheaterByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteTheaterByName(ctx, req.(*DeleteTheaterByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetTheaterByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetTheaterByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetTheaterByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetTheaterByID(ctx, req.(*GetTheaterByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetTheaterByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheaterByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetTheaterByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetTheaterByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetTheaterByName(ctx, req.(*GetTheaterByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_UpdateTheater_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTheaterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UpdateTheater(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_UpdateTheater_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UpdateTheater(ctx, req.(*UpdateTheaterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListTheaters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTheatersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListTheaters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListTheaters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListTheaters(ctx, req.(*ListTheatersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -430,6 +670,34 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAdminProfile",
 			Handler:    _AdminService_UpdateAdminProfile_Handler,
+		},
+		{
+			MethodName: "AddTheater",
+			Handler:    _AdminService_AddTheater_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterByID",
+			Handler:    _AdminService_DeleteTheaterByID_Handler,
+		},
+		{
+			MethodName: "DeleteTheaterByName",
+			Handler:    _AdminService_DeleteTheaterByName_Handler,
+		},
+		{
+			MethodName: "GetTheaterByID",
+			Handler:    _AdminService_GetTheaterByID_Handler,
+		},
+		{
+			MethodName: "GetTheaterByName",
+			Handler:    _AdminService_GetTheaterByName_Handler,
+		},
+		{
+			MethodName: "UpdateTheater",
+			Handler:    _AdminService_UpdateTheater_Handler,
+		},
+		{
+			MethodName: "ListTheaters",
+			Handler:    _AdminService_ListTheaters_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -500,7 +768,6 @@ type SuperAdminServiceClient interface {
 	GetScreenTypeByName(ctx context.Context, in *GetScreenTypeByNameRequest, opts ...grpc.CallOption) (*GetScreenTypeByNameResponse, error)
 	UpdateScreenType(ctx context.Context, in *UpdateScreenTypeRequest, opts ...grpc.CallOption) (*UpdateScreenTypeResponse, error)
 	ListScreenTypes(ctx context.Context, in *ListScreenTypesRequest, opts ...grpc.CallOption) (*ListScreenTypesResponse, error)
-	// Seat category
 	// Seat category
 	AddSeatCategory(ctx context.Context, in *AddSeatCategoryRequest, opts ...grpc.CallOption) (*AddSeatCategoryResponse, error)
 	DeleteSeatCategoryByID(ctx context.Context, in *DeleteSeatCategoryRequest, opts ...grpc.CallOption) (*DeleteSeatCategoryResponse, error)
@@ -841,7 +1108,6 @@ type SuperAdminServiceServer interface {
 	GetScreenTypeByName(context.Context, *GetScreenTypeByNameRequest) (*GetScreenTypeByNameResponse, error)
 	UpdateScreenType(context.Context, *UpdateScreenTypeRequest) (*UpdateScreenTypeResponse, error)
 	ListScreenTypes(context.Context, *ListScreenTypesRequest) (*ListScreenTypesResponse, error)
-	// Seat category
 	// Seat category
 	AddSeatCategory(context.Context, *AddSeatCategoryRequest) (*AddSeatCategoryResponse, error)
 	DeleteSeatCategoryByID(context.Context, *DeleteSeatCategoryRequest) (*DeleteSeatCategoryResponse, error)
