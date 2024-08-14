@@ -213,7 +213,6 @@ message AddTheaterRequest {
 }
 
 message AddTheaterResponse {
-    Theater theater = 1;
 }
 
 message DeleteTheaterRequest {
@@ -254,7 +253,6 @@ message UpdateTheaterRequest {
 }
 
 message UpdateTheaterResponse {
-    Theater theater = 1;
 }
 
 message ListTheatersRequest {}
