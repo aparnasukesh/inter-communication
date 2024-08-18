@@ -268,6 +268,7 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 const (
 	AdminService_RegisterAdmin_FullMethodName               = "/useradmin.AdminService/RegisterAdmin"
 	AdminService_LoginAdmin_FullMethodName                  = "/useradmin.AdminService/LoginAdmin"
+	AdminService_GetAdminProfile_FullMethodName             = "/useradmin.AdminService/GetAdminProfile"
 	AdminService_UpdateAdminProfile_FullMethodName          = "/useradmin.AdminService/UpdateAdminProfile"
 	AdminService_AddTheater_FullMethodName                  = "/useradmin.AdminService/AddTheater"
 	AdminService_DeleteTheaterByID_FullMethodName           = "/useradmin.AdminService/DeleteTheaterByID"
@@ -304,6 +305,7 @@ const (
 type AdminServiceClient interface {
 	RegisterAdmin(ctx context.Context, in *RegisterAdminRequest, opts ...grpc.CallOption) (*RegisterAdminResponse, error)
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
+	GetAdminProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	UpdateAdminProfile(ctx context.Context, in *UpdateAdminProfileRequest, opts ...grpc.CallOption) (*UpdateAdminProfileResponse, error)
 	// Theater
 	AddTheater(ctx context.Context, in *AddTheaterRequest, opts ...grpc.CallOption) (*AddTheaterResponse, error)
@@ -361,6 +363,16 @@ func (c *adminServiceClient) LoginAdmin(ctx context.Context, in *LoginAdminReque
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginAdminResponse)
 	err := c.cc.Invoke(ctx, AdminService_LoginAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetAdminProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProfileResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetAdminProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -635,6 +647,7 @@ func (c *adminServiceClient) ListShowtimes(ctx context.Context, in *ListShowtime
 type AdminServiceServer interface {
 	RegisterAdmin(context.Context, *RegisterAdminRequest) (*RegisterAdminResponse, error)
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
+	GetAdminProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error)
 	// Theater
 	AddTheater(context.Context, *AddTheaterRequest) (*AddTheaterResponse, error)
@@ -680,6 +693,9 @@ func (UnimplementedAdminServiceServer) RegisterAdmin(context.Context, *RegisterA
 }
 func (UnimplementedAdminServiceServer) LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginAdmin not implemented")
+}
+func (UnimplementedAdminServiceServer) GetAdminProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAdminProfile not implemented")
 }
 func (UnimplementedAdminServiceServer) UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminProfile not implemented")
@@ -804,6 +820,24 @@ func _AdminService_LoginAdmin_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdminServiceServer).LoginAdmin(ctx, req.(*LoginAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetAdminProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetAdminProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetAdminProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetAdminProfile(ctx, req.(*GetProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1290,6 +1324,10 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginAdmin",
 			Handler:    _AdminService_LoginAdmin_Handler,
+		},
+		{
+			MethodName: "GetAdminProfile",
+			Handler:    _AdminService_GetAdminProfile_Handler,
 		},
 		{
 			MethodName: "UpdateAdminProfile",
