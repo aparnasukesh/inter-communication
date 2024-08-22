@@ -500,7 +500,6 @@ message ListScreenTypesResponse {
 message SeatCategory {
     int32 id = 1;
     string seat_category_name = 2;
-    double seat_category_price = 3;
 }
 
 message AddSeatCategoryRequest {
