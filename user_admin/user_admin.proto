@@ -223,20 +223,27 @@ message AdminApprovalResponse{
     string status = 1;
 }
 // admin -theater related messages
+// Theatres related messages
 message Theater{
     int32 theater_id = 1;
     string name = 2;
-    string location = 3;
-    uint32 owner_id = 4;
-    int32 number_of_screens = 5;
-    int32 theater_type_id = 6;
+    string place = 3;
+    string city = 4;
+    string district = 5;
+    string state = 6;
+    uint32 owner_id = 7;
+    int32 number_of_screens = 8;
+    int32 theater_type_id = 9;
 }
 message AddTheaterRequest {
     string name = 1;
-    string location = 2;
-    uint32 owner_id = 3;
-    int32 number_of_screens = 4;
-    int32 theater_type_id = 5;
+    string place = 2;
+    string city = 3;
+    string district = 4;
+    string state = 5;
+    uint32 owner_id = 6;
+    int32 number_of_screens = 7;
+    int32 theater_type_id = 8;
 }
 
 message AddTheaterResponse {
@@ -267,16 +274,18 @@ message GetTheaterByNameRequest {
 }
 
 message GetTheaterByNameResponse {
-    Theater theater = 1;
+   repeated Theater theater = 1;
 }
 
 message UpdateTheaterRequest {
-    int32 theater_id = 1;
-    string name = 2;
-    string location = 3;
-    uint32 owner_id = 4;
-    int32 number_of_screens = 5;
-    int32 theater_type_id = 6;
+    string name = 1;
+    string place = 2;
+    string city = 3;
+    string district = 4;
+    string state = 5;
+    uint32 owner_id = 6;
+    int32 number_of_screens = 7;
+    int32 theater_type_id = 8;
 }
 
 message UpdateTheaterResponse {
