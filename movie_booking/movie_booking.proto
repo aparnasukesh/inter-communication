@@ -194,14 +194,15 @@ message GetTheaterByNameResponse {
 }
 
 message UpdateTheaterRequest {
-    string name = 1;
-    string place = 2;
-    string city = 3;
-    string district = 4;
-    string state = 5;
-    uint32 owner_id = 6;
-    int32 number_of_screens = 7;
-    int32 theater_type_id = 8;
+    int32 theater_id = 1;
+    string name = 2;
+    string place = 3;
+    string city = 4;
+    string district = 5;
+    string state = 6;
+    uint32 owner_id = 7;
+    int32 number_of_screens = 8;
+    int32 theater_type_id = 9;
 }
 
 message UpdateTheaterResponse {
