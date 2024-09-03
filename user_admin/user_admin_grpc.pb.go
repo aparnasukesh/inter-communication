@@ -1442,6 +1442,8 @@ const (
 	SuperAdminService_LoginSuperAdmin_FullMethodName          = "/useradmin.SuperAdminService/LoginSuperAdmin"
 	SuperAdminService_ListAdminRequests_FullMethodName        = "/useradmin.SuperAdminService/ListAdminRequests"
 	SuperAdminService_AdminApproval_FullMethodName            = "/useradmin.SuperAdminService/AdminApproval"
+	SuperAdminService_ListAllAdmin_FullMethodName             = "/useradmin.SuperAdminService/ListAllAdmin"
+	SuperAdminService_GetAdminByID_FullMethodName             = "/useradmin.SuperAdminService/GetAdminByID"
 	SuperAdminService_RegisterMovie_FullMethodName            = "/useradmin.SuperAdminService/RegisterMovie"
 	SuperAdminService_UpdateMovie_FullMethodName              = "/useradmin.SuperAdminService/UpdateMovie"
 	SuperAdminService_ListMovies_FullMethodName               = "/useradmin.SuperAdminService/ListMovies"
@@ -1468,6 +1470,8 @@ const (
 	SuperAdminService_GetSeatCategoryByName_FullMethodName    = "/useradmin.SuperAdminService/GetSeatCategoryByName"
 	SuperAdminService_UpdateSeatCategory_FullMethodName       = "/useradmin.SuperAdminService/UpdateSeatCategory"
 	SuperAdminService_ListSeatCategories_FullMethodName       = "/useradmin.SuperAdminService/ListSeatCategories"
+	SuperAdminService_ListAllTheaters_FullMethodName          = "/useradmin.SuperAdminService/ListAllTheaters"
+	SuperAdminService_GetTheatersByAdminID_FullMethodName     = "/useradmin.SuperAdminService/GetTheatersByAdminID"
 )
 
 // SuperAdminServiceClient is the client API for SuperAdminService service.
@@ -1480,6 +1484,8 @@ type SuperAdminServiceClient interface {
 	LoginSuperAdmin(ctx context.Context, in *LoginSuperAdminRequest, opts ...grpc.CallOption) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(ctx context.Context, in *ListAdminRequestsRequest, opts ...grpc.CallOption) (*ListAdminRequestsResponse, error)
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
+	ListAllAdmin(ctx context.Context, in *ListAllAdminRequest, opts ...grpc.CallOption) (*ListAllAdminResponse, error)
+	GetAdminByID(ctx context.Context, in *GetAdminByIdRequest, opts ...grpc.CallOption) (*GetAdminByIdResponse, error)
 	// Movies
 	RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error)
 	UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error)
@@ -1510,6 +1516,9 @@ type SuperAdminServiceClient interface {
 	GetSeatCategoryByName(ctx context.Context, in *GetSeatCategoryByNameRequest, opts ...grpc.CallOption) (*GetSeatCategoryByNameResponse, error)
 	UpdateSeatCategory(ctx context.Context, in *UpdateSeatCategoryRequest, opts ...grpc.CallOption) (*UpdateSeatCategoryResponse, error)
 	ListSeatCategories(ctx context.Context, in *ListSeatCategoriesRequest, opts ...grpc.CallOption) (*ListSeatCategoriesResponse, error)
+	// Theater
+	ListAllTheaters(ctx context.Context, in *ListAllTheatersRequest, opts ...grpc.CallOption) (*ListAllTheatersResponse, error)
+	GetTheatersByAdminID(ctx context.Context, in *GetTheatersByAdminIdRequest, opts ...grpc.CallOption) (*GetTheatersByAdminIdResponse, error)
 }
 
 type superAdminServiceClient struct {
@@ -1544,6 +1553,26 @@ func (c *superAdminServiceClient) AdminApproval(ctx context.Context, in *AdminAp
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AdminApprovalResponse)
 	err := c.cc.Invoke(ctx, SuperAdminService_AdminApproval_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListAllAdmin(ctx context.Context, in *ListAllAdminRequest, opts ...grpc.CallOption) (*ListAllAdminResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAllAdminResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListAllAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetAdminByID(ctx context.Context, in *GetAdminByIdRequest, opts ...grpc.CallOption) (*GetAdminByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAdminByIdResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetAdminByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1810,6 +1839,26 @@ func (c *superAdminServiceClient) ListSeatCategories(ctx context.Context, in *Li
 	return out, nil
 }
 
+func (c *superAdminServiceClient) ListAllTheaters(ctx context.Context, in *ListAllTheatersRequest, opts ...grpc.CallOption) (*ListAllTheatersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAllTheatersResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListAllTheaters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetTheatersByAdminID(ctx context.Context, in *GetTheatersByAdminIdRequest, opts ...grpc.CallOption) (*GetTheatersByAdminIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheatersByAdminIdResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetTheatersByAdminID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SuperAdminServiceServer is the server API for SuperAdminService service.
 // All implementations must embed UnimplementedSuperAdminServiceServer
 // for forward compatibility
@@ -1820,6 +1869,8 @@ type SuperAdminServiceServer interface {
 	LoginSuperAdmin(context.Context, *LoginSuperAdminRequest) (*LoginSuperAdminResponse, error)
 	ListAdminRequests(context.Context, *ListAdminRequestsRequest) (*ListAdminRequestsResponse, error)
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
+	ListAllAdmin(context.Context, *ListAllAdminRequest) (*ListAllAdminResponse, error)
+	GetAdminByID(context.Context, *GetAdminByIdRequest) (*GetAdminByIdResponse, error)
 	// Movies
 	RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error)
 	UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error)
@@ -1850,6 +1901,9 @@ type SuperAdminServiceServer interface {
 	GetSeatCategoryByName(context.Context, *GetSeatCategoryByNameRequest) (*GetSeatCategoryByNameResponse, error)
 	UpdateSeatCategory(context.Context, *UpdateSeatCategoryRequest) (*UpdateSeatCategoryResponse, error)
 	ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error)
+	// Theater
+	ListAllTheaters(context.Context, *ListAllTheatersRequest) (*ListAllTheatersResponse, error)
+	GetTheatersByAdminID(context.Context, *GetTheatersByAdminIdRequest) (*GetTheatersByAdminIdResponse, error)
 	mustEmbedUnimplementedSuperAdminServiceServer()
 }
 
@@ -1865,6 +1919,12 @@ func (UnimplementedSuperAdminServiceServer) ListAdminRequests(context.Context, *
 }
 func (UnimplementedSuperAdminServiceServer) AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminApproval not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListAllAdmin(context.Context, *ListAllAdminRequest) (*ListAllAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllAdmin not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetAdminByID(context.Context, *GetAdminByIdRequest) (*GetAdminByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAdminByID not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterMovie not implemented")
@@ -1944,6 +2004,12 @@ func (UnimplementedSuperAdminServiceServer) UpdateSeatCategory(context.Context, 
 func (UnimplementedSuperAdminServiceServer) ListSeatCategories(context.Context, *ListSeatCategoriesRequest) (*ListSeatCategoriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSeatCategories not implemented")
 }
+func (UnimplementedSuperAdminServiceServer) ListAllTheaters(context.Context, *ListAllTheatersRequest) (*ListAllTheatersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllTheaters not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetTheatersByAdminID(context.Context, *GetTheatersByAdminIdRequest) (*GetTheatersByAdminIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheatersByAdminID not implemented")
+}
 func (UnimplementedSuperAdminServiceServer) mustEmbedUnimplementedSuperAdminServiceServer() {}
 
 // UnsafeSuperAdminServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2007,6 +2073,42 @@ func _SuperAdminService_AdminApproval_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SuperAdminServiceServer).AdminApproval(ctx, req.(*AdminApprovalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListAllAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAllAdminRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListAllAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListAllAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListAllAdmin(ctx, req.(*ListAllAdminRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetAdminByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAdminByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetAdminByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetAdminByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetAdminByID(ctx, req.(*GetAdminByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2479,6 +2581,42 @@ func _SuperAdminService_ListSeatCategories_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SuperAdminService_ListAllTheaters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAllTheatersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListAllTheaters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListAllTheaters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListAllTheaters(ctx, req.(*ListAllTheatersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetTheatersByAdminID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheatersByAdminIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetTheatersByAdminID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetTheatersByAdminID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetTheatersByAdminID(ctx, req.(*GetTheatersByAdminIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SuperAdminService_ServiceDesc is the grpc.ServiceDesc for SuperAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2497,6 +2635,14 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AdminApproval",
 			Handler:    _SuperAdminService_AdminApproval_Handler,
+		},
+		{
+			MethodName: "ListAllAdmin",
+			Handler:    _SuperAdminService_ListAllAdmin_Handler,
+		},
+		{
+			MethodName: "GetAdminByID",
+			Handler:    _SuperAdminService_GetAdminByID_Handler,
 		},
 		{
 			MethodName: "RegisterMovie",
@@ -2601,6 +2747,14 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSeatCategories",
 			Handler:    _SuperAdminService_ListSeatCategories_Handler,
+		},
+		{
+			MethodName: "ListAllTheaters",
+			Handler:    _SuperAdminService_ListAllTheaters_Handler,
+		},
+		{
+			MethodName: "GetTheatersByAdminID",
+			Handler:    _SuperAdminService_GetTheatersByAdminID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

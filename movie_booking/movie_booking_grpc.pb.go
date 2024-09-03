@@ -294,6 +294,7 @@ const (
 	TheatreService_GetTheaterByName_FullMethodName            = "/moviebooking.TheatreService/GetTheaterByName"
 	TheatreService_UpdateTheater_FullMethodName               = "/moviebooking.TheatreService/UpdateTheater"
 	TheatreService_ListTheaters_FullMethodName                = "/moviebooking.TheatreService/ListTheaters"
+	TheatreService_GetTheatersByAdminID_FullMethodName        = "/moviebooking.TheatreService/GetTheatersByAdminID"
 	TheatreService_AddTheaterScreen_FullMethodName            = "/moviebooking.TheatreService/AddTheaterScreen"
 	TheatreService_DeleteTheaterScreenByID_FullMethodName     = "/moviebooking.TheatreService/DeleteTheaterScreenByID"
 	TheatreService_DeleteTheaterScreenByNumber_FullMethodName = "/moviebooking.TheatreService/DeleteTheaterScreenByNumber"
@@ -348,6 +349,7 @@ type TheatreServiceClient interface {
 	GetTheaterByName(ctx context.Context, in *GetTheaterByNameRequest, opts ...grpc.CallOption) (*GetTheaterByNameResponse, error)
 	UpdateTheater(ctx context.Context, in *UpdateTheaterRequest, opts ...grpc.CallOption) (*UpdateTheaterResponse, error)
 	ListTheaters(ctx context.Context, in *ListTheatersRequest, opts ...grpc.CallOption) (*ListTheatersResponse, error)
+	GetTheatersByAdminID(ctx context.Context, in *GetTheatersByAdminIdRequest, opts ...grpc.CallOption) (*GetTheatersByAdminIdResponse, error)
 	// Theater Screen
 	AddTheaterScreen(ctx context.Context, in *AddTheaterScreenRequest, opts ...grpc.CallOption) (*AddTheaterScreenResponse, error)
 	DeleteTheaterScreenByID(ctx context.Context, in *DeleteTheaterScreenRequest, opts ...grpc.CallOption) (*DeleteTheaterScreenResponse, error)
@@ -654,6 +656,16 @@ func (c *theatreServiceClient) ListTheaters(ctx context.Context, in *ListTheater
 	return out, nil
 }
 
+func (c *theatreServiceClient) GetTheatersByAdminID(ctx context.Context, in *GetTheatersByAdminIdRequest, opts ...grpc.CallOption) (*GetTheatersByAdminIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTheatersByAdminIdResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetTheatersByAdminID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *theatreServiceClient) AddTheaterScreen(ctx context.Context, in *AddTheaterScreenRequest, opts ...grpc.CallOption) (*AddTheaterScreenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddTheaterScreenResponse)
@@ -832,6 +844,7 @@ type TheatreServiceServer interface {
 	GetTheaterByName(context.Context, *GetTheaterByNameRequest) (*GetTheaterByNameResponse, error)
 	UpdateTheater(context.Context, *UpdateTheaterRequest) (*UpdateTheaterResponse, error)
 	ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error)
+	GetTheatersByAdminID(context.Context, *GetTheatersByAdminIdRequest) (*GetTheatersByAdminIdResponse, error)
 	// Theater Screen
 	AddTheaterScreen(context.Context, *AddTheaterScreenRequest) (*AddTheaterScreenResponse, error)
 	DeleteTheaterScreenByID(context.Context, *DeleteTheaterScreenRequest) (*DeleteTheaterScreenResponse, error)
@@ -938,6 +951,9 @@ func (UnimplementedTheatreServiceServer) UpdateTheater(context.Context, *UpdateT
 }
 func (UnimplementedTheatreServiceServer) ListTheaters(context.Context, *ListTheatersRequest) (*ListTheatersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTheaters not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetTheatersByAdminID(context.Context, *GetTheatersByAdminIdRequest) (*GetTheatersByAdminIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheatersByAdminID not implemented")
 }
 func (UnimplementedTheatreServiceServer) AddTheaterScreen(context.Context, *AddTheaterScreenRequest) (*AddTheaterScreenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTheaterScreen not implemented")
@@ -1498,6 +1514,24 @@ func _TheatreService_ListTheaters_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_GetTheatersByAdminID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheatersByAdminIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetTheatersByAdminID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetTheatersByAdminID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetTheatersByAdminID(ctx, req.(*GetTheatersByAdminIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TheatreService_AddTheaterScreen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddTheaterScreenRequest)
 	if err := dec(in); err != nil {
@@ -1868,6 +1902,10 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTheaters",
 			Handler:    _TheatreService_ListTheaters_Handler,
+		},
+		{
+			MethodName: "GetTheatersByAdminID",
+			Handler:    _TheatreService_GetTheatersByAdminID_Handler,
 		},
 		{
 			MethodName: "AddTheaterScreen",

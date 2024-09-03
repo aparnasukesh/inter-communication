@@ -63,6 +63,8 @@ service SuperAdminService{
     rpc LoginSuperAdmin(LoginSuperAdminRequest) returns( LoginSuperAdminResponse);
     rpc ListAdminRequests(ListAdminRequestsRequest)returns(ListAdminRequestsResponse);
     rpc AdminApproval(AdminApprovalRequest) returns (AdminApprovalResponse);
+    rpc ListAllAdmin(ListAllAdminRequest)returns(ListAllAdminResponse);
+    rpc GetAdminByID(GetAdminByIdRequest)returns (GetAdminByIdResponse);
 
     // Movies
     rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
@@ -98,6 +100,9 @@ service SuperAdminService{
     rpc UpdateSeatCategory(UpdateSeatCategoryRequest) returns (UpdateSeatCategoryResponse);
     rpc ListSeatCategories(ListSeatCategoriesRequest) returns (ListSeatCategoriesResponse);
 
+    // Theater
+    rpc ListAllTheaters(ListAllTheatersRequest)returns(ListAllTheatersResponse);
+    rpc GetTheatersByAdminID(GetTheatersByAdminIdRequest) returns(GetTheatersByAdminIdResponse);
 }
 // User related messages
 message RegisterUserRequest {
@@ -162,6 +167,15 @@ message GetProfileResponse{
 }
 
 // Admin related messages
+message Admin{
+    int32 id = 1;
+    string username = 2;
+    string phone = 3;
+    string email = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string gender = 7;
+}
 message RegisterAdminRequest {
     string username = 1;
     string password = 2;
@@ -223,7 +237,6 @@ message AdminApprovalResponse{
     string status = 1;
 }
 // admin -theater related messages
-// Theatres related messages
 message Theater{
     int32 theater_id = 1;
     string name = 2;
@@ -692,4 +705,38 @@ message ListShowtimesRequest {
 
 message ListShowtimesResponse {
     repeated Showtime showtimes = 1;
+}
+
+// Super-Admin, Admin related messages
+message ListAllAdminRequest{
+}
+
+message ListAllAdminResponse{
+    repeated Admin admin =1 ;
+}
+
+
+message GetAdminByIdRequest{
+    int32 admin_id =1 ;
+}
+
+message GetAdminByIdResponse{
+    Admin admin = 1;
+}
+
+// Super-Admin,Theater related messages
+message ListAllTheatersRequest{
+
+}
+
+message ListAllTheatersResponse{
+    repeated Theater theater = 1;
+}
+
+message GetTheatersByAdminIdRequest{
+    int32 admin_id = 1;
+}
+
+message GetTheatersByAdminIdResponse{
+    repeated Theater theater = 1;
 }

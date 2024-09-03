@@ -52,6 +52,7 @@ service TheatreService {
     rpc GetTheaterByName(GetTheaterByNameRequest) returns (GetTheaterByNameResponse);
     rpc UpdateTheater(UpdateTheaterRequest) returns (UpdateTheaterResponse);
     rpc ListTheaters(ListTheatersRequest) returns (ListTheatersResponse);
+    rpc GetTheatersByAdminID(GetTheatersByAdminIdRequest) returns(GetTheatersByAdminIdResponse);
 
     // Theater Screen
     rpc AddTheaterScreen(AddTheaterScreenRequest) returns (AddTheaterScreenResponse);
@@ -214,6 +215,13 @@ message ListTheatersResponse {
     repeated Theater theaters = 1;
 }
 
+message GetTheatersByAdminIdRequest{
+    int32 admin_id = 1;
+}
+
+message GetTheatersByAdminIdResponse{
+    repeated Theater theaters = 1;
+}
 // Theater types replated messages
 message AddTheaterTypeRequest{
     string theater_type_name = 1;
