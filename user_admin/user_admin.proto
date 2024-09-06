@@ -167,6 +167,7 @@ message UpdateUserProfileRequest {
     string last_name = 5;
     string gender = 6;
     string date_of_birth = 7;
+    bool is_verified = 8;
 }
 
 message UpdateUserProfileResponse {
