@@ -182,7 +182,7 @@ message GetProfileRequest{
 message GetProfileResponse{
     string status = 1;
     int32 status_code = 2;
-    UpdateUserProfileRequest profile_details = 3;
+    Admin profile_details = 3;
 }
 
 // Admin related messages
@@ -194,6 +194,7 @@ message Admin{
     string first_name = 5;
     string last_name = 6;
     string gender = 7;
+    bool is_verified = 8;
 }
 message RegisterAdminRequest {
     string username = 1;
