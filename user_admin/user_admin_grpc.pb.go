@@ -1444,6 +1444,10 @@ const (
 	SuperAdminService_AdminApproval_FullMethodName            = "/useradmin.SuperAdminService/AdminApproval"
 	SuperAdminService_ListAllAdmin_FullMethodName             = "/useradmin.SuperAdminService/ListAllAdmin"
 	SuperAdminService_GetAdminByID_FullMethodName             = "/useradmin.SuperAdminService/GetAdminByID"
+	SuperAdminService_ListAllUser_FullMethodName              = "/useradmin.SuperAdminService/ListAllUser"
+	SuperAdminService_GetUserByID_FullMethodName              = "/useradmin.SuperAdminService/GetUserByID"
+	SuperAdminService_BlockUser_FullMethodName                = "/useradmin.SuperAdminService/BlockUser"
+	SuperAdminService_UnBlockUser_FullMethodName              = "/useradmin.SuperAdminService/UnBlockUser"
 	SuperAdminService_RegisterMovie_FullMethodName            = "/useradmin.SuperAdminService/RegisterMovie"
 	SuperAdminService_UpdateMovie_FullMethodName              = "/useradmin.SuperAdminService/UpdateMovie"
 	SuperAdminService_ListMovies_FullMethodName               = "/useradmin.SuperAdminService/ListMovies"
@@ -1486,6 +1490,11 @@ type SuperAdminServiceClient interface {
 	AdminApproval(ctx context.Context, in *AdminApprovalRequest, opts ...grpc.CallOption) (*AdminApprovalResponse, error)
 	ListAllAdmin(ctx context.Context, in *ListAllAdminRequest, opts ...grpc.CallOption) (*ListAllAdminResponse, error)
 	GetAdminByID(ctx context.Context, in *GetAdminByIdRequest, opts ...grpc.CallOption) (*GetAdminByIdResponse, error)
+	// Users
+	ListAllUser(ctx context.Context, in *ListAllUserRequest, opts ...grpc.CallOption) (*ListAllUserResponse, error)
+	GetUserByID(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
+	BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error)
+	UnBlockUser(ctx context.Context, in *UnBlockUserRequest, opts ...grpc.CallOption) (*UnBlockUserResponse, error)
 	// Movies
 	RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error)
 	UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error)
@@ -1573,6 +1582,46 @@ func (c *superAdminServiceClient) GetAdminByID(ctx context.Context, in *GetAdmin
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAdminByIdResponse)
 	err := c.cc.Invoke(ctx, SuperAdminService_GetAdminByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) ListAllUser(ctx context.Context, in *ListAllUserRequest, opts ...grpc.CallOption) (*ListAllUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAllUserResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_ListAllUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) GetUserByID(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserByIdResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_GetUserByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BlockUserResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_BlockUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *superAdminServiceClient) UnBlockUser(ctx context.Context, in *UnBlockUserRequest, opts ...grpc.CallOption) (*UnBlockUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockUserResponse)
+	err := c.cc.Invoke(ctx, SuperAdminService_UnBlockUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1871,6 +1920,11 @@ type SuperAdminServiceServer interface {
 	AdminApproval(context.Context, *AdminApprovalRequest) (*AdminApprovalResponse, error)
 	ListAllAdmin(context.Context, *ListAllAdminRequest) (*ListAllAdminResponse, error)
 	GetAdminByID(context.Context, *GetAdminByIdRequest) (*GetAdminByIdResponse, error)
+	// Users
+	ListAllUser(context.Context, *ListAllUserRequest) (*ListAllUserResponse, error)
+	GetUserByID(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
+	BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error)
+	UnBlockUser(context.Context, *UnBlockUserRequest) (*UnBlockUserResponse, error)
 	// Movies
 	RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error)
 	UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error)
@@ -1925,6 +1979,18 @@ func (UnimplementedSuperAdminServiceServer) ListAllAdmin(context.Context, *ListA
 }
 func (UnimplementedSuperAdminServiceServer) GetAdminByID(context.Context, *GetAdminByIdRequest) (*GetAdminByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAdminByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) ListAllUser(context.Context, *ListAllUserRequest) (*ListAllUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllUser not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) GetUserByID(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserByID not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockUser not implemented")
+}
+func (UnimplementedSuperAdminServiceServer) UnBlockUser(context.Context, *UnBlockUserRequest) (*UnBlockUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockUser not implemented")
 }
 func (UnimplementedSuperAdminServiceServer) RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterMovie not implemented")
@@ -2109,6 +2175,78 @@ func _SuperAdminService_GetAdminByID_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SuperAdminServiceServer).GetAdminByID(ctx, req.(*GetAdminByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_ListAllUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAllUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).ListAllUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_ListAllUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).ListAllUser(ctx, req.(*ListAllUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_GetUserByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).GetUserByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_GetUserByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).GetUserByID(ctx, req.(*GetUserByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_BlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).BlockUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_BlockUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).BlockUser(ctx, req.(*BlockUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SuperAdminService_UnBlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SuperAdminServiceServer).UnBlockUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SuperAdminService_UnBlockUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SuperAdminServiceServer).UnBlockUser(ctx, req.(*UnBlockUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2643,6 +2781,22 @@ var SuperAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAdminByID",
 			Handler:    _SuperAdminService_GetAdminByID_Handler,
+		},
+		{
+			MethodName: "ListAllUser",
+			Handler:    _SuperAdminService_ListAllUser_Handler,
+		},
+		{
+			MethodName: "GetUserByID",
+			Handler:    _SuperAdminService_GetUserByID_Handler,
+		},
+		{
+			MethodName: "BlockUser",
+			Handler:    _SuperAdminService_BlockUser_Handler,
+		},
+		{
+			MethodName: "UnBlockUser",
+			Handler:    _SuperAdminService_UnBlockUser_Handler,
 		},
 		{
 			MethodName: "RegisterMovie",

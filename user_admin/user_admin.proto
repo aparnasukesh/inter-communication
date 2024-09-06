@@ -66,6 +66,12 @@ service SuperAdminService{
     rpc ListAllAdmin(ListAllAdminRequest)returns(ListAllAdminResponse);
     rpc GetAdminByID(GetAdminByIdRequest)returns (GetAdminByIdResponse);
 
+    // Users
+    rpc ListAllUser(ListAllUserRequest)returns(ListAllUserResponse);
+    rpc GetUserByID(GetUserByIdRequest)returns(GetUserByIdResponse);
+    rpc BlockUser(BlockUserRequest)returns(BlockUserResponse);
+    rpc UnBlockUser(UnBlockUserRequest)returns(UnBlockUserResponse);
+
     // Movies
     rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
     rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
@@ -113,6 +119,17 @@ message RegisterUserRequest {
     string first_name = 5;
     string last_name = 6;
     string gender = 7;
+}
+
+message User{
+    int32 id = 1;
+    string username = 2;
+    string phone = 3;
+    string email = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string gender = 7;
+    bool is_verified = 8;
 }
 
 message RegisterUserResponse {
@@ -739,4 +756,36 @@ message GetTheatersByAdminIdRequest{
 
 message GetTheatersByAdminIdResponse{
     repeated Theater theater = 1;
+}
+
+// super-admin, user related messages
+message ListAllUserRequest{
+}
+
+message ListAllUserResponse{
+    repeated User user = 1;
+}
+
+message GetUserByIdRequest{
+    int32 user_id = 1;
+}
+
+message GetUserByIdResponse{
+    User user = 1;
+}
+
+message BlockUserRequest{
+    int32 user_id = 1;
+}
+
+message BlockUserResponse{
+    string message = 1;
+}
+
+message UnBlockUserRequest{
+    int32 user_id = 1;
+}
+
+message UnBlockUserResponse{
+    string message = 1;
 }
