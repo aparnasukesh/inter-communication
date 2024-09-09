@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	UserService_RegisterUser_FullMethodName      = "/useradmin.UserService/RegisterUser"
-	UserService_ValidateUser_FullMethodName      = "/useradmin.UserService/ValidateUser"
-	UserService_LoginUser_FullMethodName         = "/useradmin.UserService/LoginUser"
-	UserService_GetUserProfile_FullMethodName    = "/useradmin.UserService/GetUserProfile"
-	UserService_UpdateUserProfile_FullMethodName = "/useradmin.UserService/UpdateUserProfile"
+	UserService_RegisterUser_FullMethodName       = "/useradmin.UserService/RegisterUser"
+	UserService_ValidateUser_FullMethodName       = "/useradmin.UserService/ValidateUser"
+	UserService_LoginUser_FullMethodName          = "/useradmin.UserService/LoginUser"
+	UserService_GetUserProfile_FullMethodName     = "/useradmin.UserService/GetUserProfile"
+	UserService_UpdateUserProfile_FullMethodName  = "/useradmin.UserService/UpdateUserProfile"
+	UserService_ForgotUserPassword_FullMethodName = "/useradmin.UserService/ForgotUserPassword"
+	UserService_ResetUserPassword_FullMethodName  = "/useradmin.UserService/ResetUserPassword"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -37,6 +39,8 @@ type UserServiceClient interface {
 	LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error)
 	GetUserProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	UpdateUserProfile(ctx context.Context, in *UpdateUserProfileRequest, opts ...grpc.CallOption) (*UpdateUserProfileResponse, error)
+	ForgotUserPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
+	ResetUserPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 }
 
 type userServiceClient struct {
@@ -97,6 +101,26 @@ func (c *userServiceClient) UpdateUserProfile(ctx context.Context, in *UpdateUse
 	return out, nil
 }
 
+func (c *userServiceClient) ForgotUserPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForgotPasswordResponse)
+	err := c.cc.Invoke(ctx, UserService_ForgotUserPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) ResetUserPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetPasswordResponse)
+	err := c.cc.Invoke(ctx, UserService_ResetUserPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -108,6 +132,8 @@ type UserServiceServer interface {
 	LoginUser(context.Context, *LoginUserRequest) (*LoginUserResponse, error)
 	GetUserProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	UpdateUserProfile(context.Context, *UpdateUserProfileRequest) (*UpdateUserProfileResponse, error)
+	ForgotUserPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
+	ResetUserPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -129,6 +155,12 @@ func (UnimplementedUserServiceServer) GetUserProfile(context.Context, *GetProfil
 }
 func (UnimplementedUserServiceServer) UpdateUserProfile(context.Context, *UpdateUserProfileRequest) (*UpdateUserProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserProfile not implemented")
+}
+func (UnimplementedUserServiceServer) ForgotUserPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotUserPassword not implemented")
+}
+func (UnimplementedUserServiceServer) ResetUserPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetUserPassword not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -233,6 +265,42 @@ func _UserService_UpdateUserProfile_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_ForgotUserPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForgotPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ForgotUserPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_ForgotUserPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ForgotUserPassword(ctx, req.(*ForgotPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_ResetUserPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).ResetUserPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_ResetUserPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).ResetUserPassword(ctx, req.(*ResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -260,6 +328,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "UpdateUserProfile",
 			Handler:    _UserService_UpdateUserProfile_Handler,
 		},
+		{
+			MethodName: "ForgotUserPassword",
+			Handler:    _UserService_ForgotUserPassword_Handler,
+		},
+		{
+			MethodName: "ResetUserPassword",
+			Handler:    _UserService_ResetUserPassword_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "user_admin/user_admin.proto",
@@ -270,6 +346,8 @@ const (
 	AdminService_LoginAdmin_FullMethodName                  = "/useradmin.AdminService/LoginAdmin"
 	AdminService_GetAdminProfile_FullMethodName             = "/useradmin.AdminService/GetAdminProfile"
 	AdminService_UpdateAdminProfile_FullMethodName          = "/useradmin.AdminService/UpdateAdminProfile"
+	AdminService_ForgotAdminPassword_FullMethodName         = "/useradmin.AdminService/ForgotAdminPassword"
+	AdminService_ResetAdminPassword_FullMethodName          = "/useradmin.AdminService/ResetAdminPassword"
 	AdminService_AddTheater_FullMethodName                  = "/useradmin.AdminService/AddTheater"
 	AdminService_DeleteTheaterByID_FullMethodName           = "/useradmin.AdminService/DeleteTheaterByID"
 	AdminService_DeleteTheaterByName_FullMethodName         = "/useradmin.AdminService/DeleteTheaterByName"
@@ -307,6 +385,8 @@ type AdminServiceClient interface {
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
 	GetAdminProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	UpdateAdminProfile(ctx context.Context, in *UpdateAdminProfileRequest, opts ...grpc.CallOption) (*UpdateAdminProfileResponse, error)
+	ForgotAdminPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error)
+	ResetAdminPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
 	// Theater
 	AddTheater(ctx context.Context, in *AddTheaterRequest, opts ...grpc.CallOption) (*AddTheaterResponse, error)
 	DeleteTheaterByID(ctx context.Context, in *DeleteTheaterRequest, opts ...grpc.CallOption) (*DeleteTheaterResponse, error)
@@ -383,6 +463,26 @@ func (c *adminServiceClient) UpdateAdminProfile(ctx context.Context, in *UpdateA
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateAdminProfileResponse)
 	err := c.cc.Invoke(ctx, AdminService_UpdateAdminProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ForgotAdminPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForgotPasswordResponse)
+	err := c.cc.Invoke(ctx, AdminService_ForgotAdminPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ResetAdminPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetPasswordResponse)
+	err := c.cc.Invoke(ctx, AdminService_ResetAdminPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -649,6 +749,8 @@ type AdminServiceServer interface {
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
 	GetAdminProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error)
+	ForgotAdminPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error)
+	ResetAdminPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
 	// Theater
 	AddTheater(context.Context, *AddTheaterRequest) (*AddTheaterResponse, error)
 	DeleteTheaterByID(context.Context, *DeleteTheaterRequest) (*DeleteTheaterResponse, error)
@@ -699,6 +801,12 @@ func (UnimplementedAdminServiceServer) GetAdminProfile(context.Context, *GetProf
 }
 func (UnimplementedAdminServiceServer) UpdateAdminProfile(context.Context, *UpdateAdminProfileRequest) (*UpdateAdminProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminProfile not implemented")
+}
+func (UnimplementedAdminServiceServer) ForgotAdminPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotAdminPassword not implemented")
+}
+func (UnimplementedAdminServiceServer) ResetAdminPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetAdminPassword not implemented")
 }
 func (UnimplementedAdminServiceServer) AddTheater(context.Context, *AddTheaterRequest) (*AddTheaterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTheater not implemented")
@@ -856,6 +964,42 @@ func _AdminService_UpdateAdminProfile_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdminServiceServer).UpdateAdminProfile(ctx, req.(*UpdateAdminProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ForgotAdminPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForgotPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ForgotAdminPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ForgotAdminPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ForgotAdminPassword(ctx, req.(*ForgotPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ResetAdminPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ResetAdminPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ResetAdminPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ResetAdminPassword(ctx, req.(*ResetPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1332,6 +1476,14 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAdminProfile",
 			Handler:    _AdminService_UpdateAdminProfile_Handler,
+		},
+		{
+			MethodName: "ForgotAdminPassword",
+			Handler:    _AdminService_ForgotAdminPassword_Handler,
+		},
+		{
+			MethodName: "ResetAdminPassword",
+			Handler:    _AdminService_ResetAdminPassword_Handler,
 		},
 		{
 			MethodName: "AddTheater",

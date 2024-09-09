@@ -13,6 +13,8 @@ service UserService {
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
     rpc GetUserProfile(GetProfileRequest) returns (GetProfileResponse);
     rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
+    rpc ForgotUserPassword(ForgotPasswordRequest)returns (ForgotPasswordResponse);
+    rpc ResetUserPassword(ResetPasswordRequest)returns(ResetPasswordResponse);
 }
 
 // Admin Service definition
@@ -21,6 +23,8 @@ service AdminService {
     rpc LoginAdmin(LoginAdminRequest) returns (LoginAdminResponse);
     rpc GetAdminProfile(GetProfileRequest)returns (GetProfileResponse);
     rpc UpdateAdminProfile (UpdateAdminProfileRequest) returns (UpdateAdminProfileResponse);
+    rpc ForgotAdminPassword(ForgotPasswordRequest)returns (ForgotPasswordResponse);
+    rpc ResetAdminPassword(ResetPasswordRequest)returns(ResetPasswordResponse);
     // Theater
     rpc AddTheater(AddTheaterRequest) returns (AddTheaterResponse);
     rpc DeleteTheaterByID(DeleteTheaterRequest) returns (DeleteTheaterResponse);
@@ -183,6 +187,24 @@ message GetProfileResponse{
     string status = 1;
     int32 status_code = 2;
     Admin profile_details = 3;
+}
+
+message ForgotPasswordRequest{
+    string email = 1;
+}
+
+message ForgotPasswordResponse{
+    string status = 1;
+}
+
+message ResetPasswordRequest{
+    string email = 1;
+    string otp = 2;
+    string new_password = 3;
+}
+
+message ResetPasswordResponse{
+    string status = 1;
 }
 
 // Admin related messages
