@@ -6,6 +6,7 @@ option go_package = "./notification";
 
 service EmailService{
     rpc SendEmail(EmailRequest) returns (EmailResponse);
+    rpc SendResetPassWordEmail(EmailRequest)returns (EmailResponse);
 }
 
 message EmailRequest{
