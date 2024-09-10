@@ -316,7 +316,7 @@ const (
 	TheatreService_GetMovieScheduleByTheaterID_FullMethodName                           = "/moviebooking.TheatreService/GetMovieScheduleByTheaterID"
 	TheatreService_GetMovieScheduleByMovieIdAndTheaterId_FullMethodName                 = "/moviebooking.TheatreService/GetMovieScheduleByMovieIdAndTheaterId"
 	TheatreService_GetMovieScheduleByMovieIdAndShowTimeId_FullMethodName                = "/moviebooking.TheatreService/GetMovieScheduleByMovieIdAndShowTimeId"
-	TheatreService_GetGetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName           = "/moviebooking.TheatreService/GetGetMovieScheduleByTheaterIdAndShowTimeId"
+	TheatreService_GetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName              = "/moviebooking.TheatreService/GetMovieScheduleByTheaterIdAndShowTimeId"
 	TheatreService_GetMovieScheduleByID_FullMethodName                                  = "/moviebooking.TheatreService/GetMovieScheduleByID"
 	TheatreService_DeleteMovieScheduleById_FullMethodName                               = "/moviebooking.TheatreService/DeleteMovieScheduleById"
 	TheatreService_DeleteMovieScheduleByMovieIdAndTheaterId_FullMethodName              = "/moviebooking.TheatreService/DeleteMovieScheduleByMovieIdAndTheaterId"
@@ -386,7 +386,7 @@ type TheatreServiceClient interface {
 	GetMovieScheduleByTheaterID(ctx context.Context, in *GetMovieScheduleByTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndTheaterId(ctx context.Context, in *GetMovieScheduleByMovieIdAndTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndShowTimeId(ctx context.Context, in *GetMovieScheduleByMovieIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByMovieIdAndShowTimeIdResponse, error)
-	GetGetMovieScheduleByTheaterIdAndShowTimeId(ctx context.Context, in *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
+	GetMovieScheduleByTheaterIdAndShowTimeId(ctx context.Context, in *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
 	GetMovieScheduleByID(ctx context.Context, in *GetMovieScheduleByIDRequest, opts ...grpc.CallOption) (*GetMovieScheduleByIDResponse, error)
 	DeleteMovieScheduleById(ctx context.Context, in *DeleteMovieScheduleByIdRequest, opts ...grpc.CallOption) (*DeleteMovieScheduleByIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterId(ctx context.Context, in *DeleteMovieScheduleByMovieIdAndTheaterIdRequest, opts ...grpc.CallOption) (*DeleteMovieScheduleByMovieIdAndTheaterIdResponse, error)
@@ -901,10 +901,10 @@ func (c *theatreServiceClient) GetMovieScheduleByMovieIdAndShowTimeId(ctx contex
 	return out, nil
 }
 
-func (c *theatreServiceClient) GetGetMovieScheduleByTheaterIdAndShowTimeId(ctx context.Context, in *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error) {
+func (c *theatreServiceClient) GetMovieScheduleByTheaterIdAndShowTimeId(ctx context.Context, in *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse)
-	err := c.cc.Invoke(ctx, TheatreService_GetGetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TheatreService_GetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1014,7 +1014,7 @@ type TheatreServiceServer interface {
 	GetMovieScheduleByTheaterID(context.Context, *GetMovieScheduleByTheaterIdRequest) (*GetMovieScheduleByTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndTheaterId(context.Context, *GetMovieScheduleByMovieIdAndTheaterIdRequest) (*GetMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndShowTimeId(context.Context, *GetMovieScheduleByMovieIdAndShowTimeIdRequest) (*GetMovieScheduleByMovieIdAndShowTimeIdResponse, error)
-	GetGetMovieScheduleByTheaterIdAndShowTimeId(context.Context, *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
+	GetMovieScheduleByTheaterIdAndShowTimeId(context.Context, *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
 	GetMovieScheduleByID(context.Context, *GetMovieScheduleByIDRequest) (*GetMovieScheduleByIDResponse, error)
 	DeleteMovieScheduleById(context.Context, *DeleteMovieScheduleByIdRequest) (*DeleteMovieScheduleByIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterId(context.Context, *DeleteMovieScheduleByMovieIdAndTheaterIdRequest) (*DeleteMovieScheduleByMovieIdAndTheaterIdResponse, error)
@@ -1176,8 +1176,8 @@ func (UnimplementedTheatreServiceServer) GetMovieScheduleByMovieIdAndTheaterId(c
 func (UnimplementedTheatreServiceServer) GetMovieScheduleByMovieIdAndShowTimeId(context.Context, *GetMovieScheduleByMovieIdAndShowTimeIdRequest) (*GetMovieScheduleByMovieIdAndShowTimeIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovieScheduleByMovieIdAndShowTimeId not implemented")
 }
-func (UnimplementedTheatreServiceServer) GetGetMovieScheduleByTheaterIdAndShowTimeId(context.Context, *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGetMovieScheduleByTheaterIdAndShowTimeId not implemented")
+func (UnimplementedTheatreServiceServer) GetMovieScheduleByTheaterIdAndShowTimeId(context.Context, *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovieScheduleByTheaterIdAndShowTimeId not implemented")
 }
 func (UnimplementedTheatreServiceServer) GetMovieScheduleByID(context.Context, *GetMovieScheduleByIDRequest) (*GetMovieScheduleByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovieScheduleByID not implemented")
@@ -2104,20 +2104,20 @@ func _TheatreService_GetMovieScheduleByMovieIdAndShowTimeId_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TheatreService_GetGetMovieScheduleByTheaterIdAndShowTimeId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TheatreService_GetMovieScheduleByTheaterIdAndShowTimeId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TheatreServiceServer).GetGetMovieScheduleByTheaterIdAndShowTimeId(ctx, in)
+		return srv.(TheatreServiceServer).GetMovieScheduleByTheaterIdAndShowTimeId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TheatreService_GetGetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName,
+		FullMethod: TheatreService_GetMovieScheduleByTheaterIdAndShowTimeId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TheatreServiceServer).GetGetMovieScheduleByTheaterIdAndShowTimeId(ctx, req.(*GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest))
+		return srv.(TheatreServiceServer).GetMovieScheduleByTheaterIdAndShowTimeId(ctx, req.(*GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2402,8 +2402,8 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TheatreService_GetMovieScheduleByMovieIdAndShowTimeId_Handler,
 		},
 		{
-			MethodName: "GetGetMovieScheduleByTheaterIdAndShowTimeId",
-			Handler:    _TheatreService_GetGetMovieScheduleByTheaterIdAndShowTimeId_Handler,
+			MethodName: "GetMovieScheduleByTheaterIdAndShowTimeId",
+			Handler:    _TheatreService_GetMovieScheduleByTheaterIdAndShowTimeId_Handler,
 		},
 		{
 			MethodName: "GetMovieScheduleByID",
