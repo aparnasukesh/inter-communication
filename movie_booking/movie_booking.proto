@@ -71,6 +71,134 @@ service TheatreService {
     rpc GetShowtimeByDetails(GetShowtimeByDetailsRequest) returns (GetShowtimeByDetailsResponse);
     rpc UpdateShowtime(UpdateShowtimeRequest) returns (UpdateShowtimeResponse);
     rpc ListShowtimes(ListShowtimesRequest) returns (ListShowtimesResponse);
+
+    // Movie Schedule
+    rpc AddMovieSchedule(AddMovieScheduleRequest)returns(AddMovieScheduleResponse);
+    rpc UpdateMovieSchedule(UpdateMovieScheduleRequest)returns (UpdateMovieScheduleResponse);
+    rpc GetAllMovieSchedules(GetAllMovieScheduleRequest)returns(GetAllMovieScheduleResponse);
+    rpc GetMovieScheduleByMovieID(GetMovieScheduleByMovieIdRequest)returns(GetMovieScheduleByMovieIdResponse);
+    rpc GetMovieScheduleByTheaterID(GetMovieScheduleByTheaterIdRequest)returns(GetMovieScheduleByTheatetrResponse);
+    rpc GetMovieScheduleByMovieIdAndTheaterId(GetMovieScheduleByMovieIdAndTheaterIdRequest)returns (GetMovieScheduleByMovieIdAndTheaterIdResponse);
+    rpc GetMovieScheduleByMovieIdAndShowTimeId(GetMovieScheduleByMovieIdAndShowTimeIdRequest)returns(GetMovieScheduleByMovieIdAndShowTimeIdResponse);
+    rpc GetGetMovieScheduleByTheaterIdAndShowTimeId(GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest)returns(GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse);
+    rpc GetMovieScheduleByID(GetMovieScheduleByIDRequest)returns(GetMovieScheduleByIDResponse);
+    rpc DeleteMovieScheduleById(DeleteMovieScheduleByIdRequest)returns(DeleteMovieScheduleByIdResponse);
+    rpc DeleteMovieScheduleByMovieIdAndTheaterId(DeleteMovieScheduleByMovieIdAndTheaterIdRequest)returns(DeleteMovieScheduleByMovieIdAndTheaterIdResponse);
+    rpc DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId(DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest)returns(DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse);
+}
+
+// Movie Schedule related messages
+message MovieSchedule{
+    int32 id = 1;
+	int32 movie_id = 2;     
+	int32 theater_id  = 3;   
+	int32 showtime_id = 4;
+}
+
+message AddMovieScheduleRequest{
+    MovieSchedule movie_schedule = 1;
+}
+
+message AddMovieScheduleResponse {
+    int32 id = 1;  
+    string message = 2;  
+}
+
+message UpdateMovieScheduleRequest {
+    MovieSchedule movie_schedule = 1; 
+}
+
+message UpdateMovieScheduleResponse {
+    int32 id = 1; 
+    string message = 2;  
+}
+
+message GetAllMovieScheduleRequest {
+    int32 theater_id = 1;
+}
+
+message GetAllMovieScheduleResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2;  
+}
+
+message GetMovieScheduleByMovieIdRequest {
+    int32 movie_id = 1; 
+}
+
+message GetMovieScheduleByMovieIdResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2; 
+}
+
+message GetMovieScheduleByTheaterIdRequest {
+    int32 theater_id = 1;  
+}
+
+message GetMovieScheduleByTheatetrResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2; 
+}
+
+message GetMovieScheduleByMovieIdAndTheaterIdRequest {
+    int32 movie_id = 1;  
+    int32 theater_id = 2;  
+}
+
+message GetMovieScheduleByMovieIdAndTheaterIdResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2;  
+}
+message GetMovieScheduleByMovieIdAndShowTimeIdRequest {
+    int32 movie_id = 1;  
+    int32 showtime_id = 2;  
+}
+
+message GetMovieScheduleByMovieIdAndShowTimeIdResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2;  
+}
+message GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest {
+    int32 theater_id = 1;  
+    int32 showtime_id = 2;  
+}
+
+message GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse {
+    repeated MovieSchedule movie_schedules = 1;  
+    string message = 2;  
+}
+
+message GetMovieScheduleByIDRequest {
+    int32 id = 1;  
+}
+
+message GetMovieScheduleByIDResponse {
+    MovieSchedule movie_schedule = 1;  
+    string message = 2; 
+}
+message DeleteMovieScheduleByIdRequest {
+    int32 id = 1;  
+}
+
+message DeleteMovieScheduleByIdResponse {
+    string message = 1;  
+}
+message DeleteMovieScheduleByMovieIdAndTheaterIdRequest {
+    int32 movie_id = 1;  
+    int32 theater_id = 2;  
+}
+
+message DeleteMovieScheduleByMovieIdAndTheaterIdResponse {
+    string message = 1;  
+}
+message DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest {
+    int32 movie_id = 1;  
+    int32 theater_id = 2; 
+    int32 showtime_id = 3;  
+}
+
+message DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse {
+    string message = 1;  
 }
 
 // Movie related messages
@@ -428,6 +556,7 @@ message DeleteTheaterScreenRequest {
 
 message DeleteTheaterScreenResponse {
 }
+
 message DeleteTheaterScreenByNumberRequest {
     int32 TheaterID = 1;
     int32 ScreenNumber = 2;
@@ -451,12 +580,14 @@ message GetTheaterScreenByNumberRequest {
 message GetTheaterScreenByNumberResponse {
     TheaterScreen TheaterScreen = 1;
 }
+
 message UpdateTheaterScreenRequest {
     TheaterScreen TheaterScreen = 1;
 }
 
 message UpdateTheaterScreenResponse {
 }
+
 message ListTheaterScreensRequest {
     int32 TheaterID = 1;
 }
@@ -466,7 +597,6 @@ message ListTheaterScreensResponse {
 }
 
 //Show time related messages
-
 message Showtime {
     uint32 id = 1;
     int32 movie_id = 2;
