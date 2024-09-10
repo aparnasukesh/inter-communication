@@ -62,7 +62,7 @@ service AdminService {
     rpc UpdateMovieSchedule(UpdateMovieScheduleRequest)returns (UpdateMovieScheduleResponse);
     rpc GetAllMovieSchedules(GetAllMovieScheduleRequest)returns(GetAllMovieScheduleResponse);
     rpc GetMovieScheduleByMovieID(GetMovieScheduleByMovieIdRequest)returns(GetMovieScheduleByMovieIdResponse);
-    rpc GetMovieScheduleByTheaterID(GetMovieScheduleByTheaterIdRequest)returns(GetMovieScheduleByTheatetrResponse);
+    rpc GetMovieScheduleByTheaterID(GetMovieScheduleByTheaterIdRequest)returns(GetMovieScheduleByTheaterIdResponse);
     rpc GetMovieScheduleByMovieIdAndTheaterId(GetMovieScheduleByMovieIdAndTheaterIdRequest)returns (GetMovieScheduleByMovieIdAndTheaterIdResponse);
     rpc GetMovieScheduleByMovieIdAndShowTimeId(GetMovieScheduleByMovieIdAndShowTimeIdRequest)returns(GetMovieScheduleByMovieIdAndShowTimeIdResponse);
     rpc GetGetMovieScheduleByTheaterIdAndShowTimeId(GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest)returns(GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse);
@@ -877,7 +877,7 @@ message GetMovieScheduleByTheaterIdRequest {
     int32 theater_id = 1;  
 }
 
-message GetMovieScheduleByTheatetrResponse {
+message GetMovieScheduleByTheaterIdResponse {
     repeated MovieSchedule movie_schedules = 1;  
     string message = 2; 
 }

@@ -436,7 +436,7 @@ type AdminServiceClient interface {
 	UpdateMovieSchedule(ctx context.Context, in *UpdateMovieScheduleRequest, opts ...grpc.CallOption) (*UpdateMovieScheduleResponse, error)
 	GetAllMovieSchedules(ctx context.Context, in *GetAllMovieScheduleRequest, opts ...grpc.CallOption) (*GetAllMovieScheduleResponse, error)
 	GetMovieScheduleByMovieID(ctx context.Context, in *GetMovieScheduleByMovieIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByMovieIdResponse, error)
-	GetMovieScheduleByTheaterID(ctx context.Context, in *GetMovieScheduleByTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByTheatetrResponse, error)
+	GetMovieScheduleByTheaterID(ctx context.Context, in *GetMovieScheduleByTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndTheaterId(ctx context.Context, in *GetMovieScheduleByMovieIdAndTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndShowTimeId(ctx context.Context, in *GetMovieScheduleByMovieIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByMovieIdAndShowTimeIdResponse, error)
 	GetGetMovieScheduleByTheaterIdAndShowTimeId(ctx context.Context, in *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
@@ -804,9 +804,9 @@ func (c *adminServiceClient) GetMovieScheduleByMovieID(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *adminServiceClient) GetMovieScheduleByTheaterID(ctx context.Context, in *GetMovieScheduleByTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByTheatetrResponse, error) {
+func (c *adminServiceClient) GetMovieScheduleByTheaterID(ctx context.Context, in *GetMovieScheduleByTheaterIdRequest, opts ...grpc.CallOption) (*GetMovieScheduleByTheaterIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMovieScheduleByTheatetrResponse)
+	out := new(GetMovieScheduleByTheaterIdResponse)
 	err := c.cc.Invoke(ctx, AdminService_GetMovieScheduleByTheaterID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -933,7 +933,7 @@ type AdminServiceServer interface {
 	UpdateMovieSchedule(context.Context, *UpdateMovieScheduleRequest) (*UpdateMovieScheduleResponse, error)
 	GetAllMovieSchedules(context.Context, *GetAllMovieScheduleRequest) (*GetAllMovieScheduleResponse, error)
 	GetMovieScheduleByMovieID(context.Context, *GetMovieScheduleByMovieIdRequest) (*GetMovieScheduleByMovieIdResponse, error)
-	GetMovieScheduleByTheaterID(context.Context, *GetMovieScheduleByTheaterIdRequest) (*GetMovieScheduleByTheatetrResponse, error)
+	GetMovieScheduleByTheaterID(context.Context, *GetMovieScheduleByTheaterIdRequest) (*GetMovieScheduleByTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndTheaterId(context.Context, *GetMovieScheduleByMovieIdAndTheaterIdRequest) (*GetMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	GetMovieScheduleByMovieIdAndShowTimeId(context.Context, *GetMovieScheduleByMovieIdAndShowTimeIdRequest) (*GetMovieScheduleByMovieIdAndShowTimeIdResponse, error)
 	GetGetMovieScheduleByTheaterIdAndShowTimeId(context.Context, *GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest) (*GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse, error)
@@ -1053,7 +1053,7 @@ func (UnimplementedAdminServiceServer) GetAllMovieSchedules(context.Context, *Ge
 func (UnimplementedAdminServiceServer) GetMovieScheduleByMovieID(context.Context, *GetMovieScheduleByMovieIdRequest) (*GetMovieScheduleByMovieIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovieScheduleByMovieID not implemented")
 }
-func (UnimplementedAdminServiceServer) GetMovieScheduleByTheaterID(context.Context, *GetMovieScheduleByTheaterIdRequest) (*GetMovieScheduleByTheatetrResponse, error) {
+func (UnimplementedAdminServiceServer) GetMovieScheduleByTheaterID(context.Context, *GetMovieScheduleByTheaterIdRequest) (*GetMovieScheduleByTheaterIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovieScheduleByTheaterID not implemented")
 }
 func (UnimplementedAdminServiceServer) GetMovieScheduleByMovieIdAndTheaterId(context.Context, *GetMovieScheduleByMovieIdAndTheaterIdRequest) (*GetMovieScheduleByMovieIdAndTheaterIdResponse, error) {
