@@ -385,6 +385,12 @@ const (
 	AdminService_DeleteMovieScheduleById_FullMethodName                               = "/useradmin.AdminService/DeleteMovieScheduleById"
 	AdminService_DeleteMovieScheduleByMovieIdAndTheaterId_FullMethodName              = "/useradmin.AdminService/DeleteMovieScheduleByMovieIdAndTheaterId"
 	AdminService_DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId_FullMethodName = "/useradmin.AdminService/DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId"
+	AdminService_CreateSeats_FullMethodName                                           = "/useradmin.AdminService/CreateSeats"
+	AdminService_GetSeatsByScreenID_FullMethodName                                    = "/useradmin.AdminService/GetSeatsByScreenID"
+	AdminService_GetSeatByID_FullMethodName                                           = "/useradmin.AdminService/GetSeatByID"
+	AdminService_GetSeatBySeatNumberAndScreenID_FullMethodName                        = "/useradmin.AdminService/GetSeatBySeatNumberAndScreenID"
+	AdminService_DeleteSeatByID_FullMethodName                                        = "/useradmin.AdminService/DeleteSeatByID"
+	AdminService_DeleteSeatBySeatNumberAndScreenID_FullMethodName                     = "/useradmin.AdminService/DeleteSeatBySeatNumberAndScreenID"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -444,6 +450,14 @@ type AdminServiceClient interface {
 	DeleteMovieScheduleById(ctx context.Context, in *DeleteMovieScheduleByIdRequest, opts ...grpc.CallOption) (*DeleteMovieScheduleByIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterId(ctx context.Context, in *DeleteMovieScheduleByMovieIdAndTheaterIdRequest, opts ...grpc.CallOption) (*DeleteMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId(ctx context.Context, in *DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest, opts ...grpc.CallOption) (*DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse, error)
+	// Seats
+	CreateSeats(ctx context.Context, in *CreateSeatsRequest, opts ...grpc.CallOption) (*CreateSeatsResponse, error)
+	GetSeatsByScreenID(ctx context.Context, in *GetSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetSeatsByScreenIDResponse, error)
+	GetSeatByID(ctx context.Context, in *GetSeatByIdRequest, opts ...grpc.CallOption) (*GetSeatByIdResponse, error)
+	GetSeatBySeatNumberAndScreenID(ctx context.Context, in *GetSeatBySeatNumberAndScreenIdRequest, opts ...grpc.CallOption) (*GetSeatBySeatNumberAndScreenIdResponse, error)
+	// rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
+	DeleteSeatByID(ctx context.Context, in *DeleteSeatByIdRequest, opts ...grpc.CallOption) (*DeleteSeatByIdResponse, error)
+	DeleteSeatBySeatNumberAndScreenID(ctx context.Context, in *DeleteSeatBySeatNumberAndScreenIDRequest, opts ...grpc.CallOption) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 }
 
 type adminServiceClient struct {
@@ -884,6 +898,66 @@ func (c *adminServiceClient) DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTime
 	return out, nil
 }
 
+func (c *adminServiceClient) CreateSeats(ctx context.Context, in *CreateSeatsRequest, opts ...grpc.CallOption) (*CreateSeatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateSeatsResponse)
+	err := c.cc.Invoke(ctx, AdminService_CreateSeats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetSeatsByScreenID(ctx context.Context, in *GetSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetSeatsByScreenIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSeatsByScreenIDResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetSeatsByScreenID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetSeatByID(ctx context.Context, in *GetSeatByIdRequest, opts ...grpc.CallOption) (*GetSeatByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSeatByIdResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetSeatByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetSeatBySeatNumberAndScreenID(ctx context.Context, in *GetSeatBySeatNumberAndScreenIdRequest, opts ...grpc.CallOption) (*GetSeatBySeatNumberAndScreenIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSeatBySeatNumberAndScreenIdResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetSeatBySeatNumberAndScreenID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteSeatByID(ctx context.Context, in *DeleteSeatByIdRequest, opts ...grpc.CallOption) (*DeleteSeatByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSeatByIdResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteSeatByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteSeatBySeatNumberAndScreenID(ctx context.Context, in *DeleteSeatBySeatNumberAndScreenIDRequest, opts ...grpc.CallOption) (*DeleteSeatBySeatNumberAndScreenIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSeatBySeatNumberAndScreenIDResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteSeatBySeatNumberAndScreenID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations must embed UnimplementedAdminServiceServer
 // for forward compatibility
@@ -941,6 +1015,14 @@ type AdminServiceServer interface {
 	DeleteMovieScheduleById(context.Context, *DeleteMovieScheduleByIdRequest) (*DeleteMovieScheduleByIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterId(context.Context, *DeleteMovieScheduleByMovieIdAndTheaterIdRequest) (*DeleteMovieScheduleByMovieIdAndTheaterIdResponse, error)
 	DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId(context.Context, *DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest) (*DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse, error)
+	// Seats
+	CreateSeats(context.Context, *CreateSeatsRequest) (*CreateSeatsResponse, error)
+	GetSeatsByScreenID(context.Context, *GetSeatsByScreenIDRequest) (*GetSeatsByScreenIDResponse, error)
+	GetSeatByID(context.Context, *GetSeatByIdRequest) (*GetSeatByIdResponse, error)
+	GetSeatBySeatNumberAndScreenID(context.Context, *GetSeatBySeatNumberAndScreenIdRequest) (*GetSeatBySeatNumberAndScreenIdResponse, error)
+	// rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
+	DeleteSeatByID(context.Context, *DeleteSeatByIdRequest) (*DeleteSeatByIdResponse, error)
+	DeleteSeatBySeatNumberAndScreenID(context.Context, *DeleteSeatBySeatNumberAndScreenIDRequest) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -1076,6 +1158,24 @@ func (UnimplementedAdminServiceServer) DeleteMovieScheduleByMovieIdAndTheaterId(
 }
 func (UnimplementedAdminServiceServer) DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId(context.Context, *DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest) (*DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId not implemented")
+}
+func (UnimplementedAdminServiceServer) CreateSeats(context.Context, *CreateSeatsRequest) (*CreateSeatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSeats not implemented")
+}
+func (UnimplementedAdminServiceServer) GetSeatsByScreenID(context.Context, *GetSeatsByScreenIDRequest) (*GetSeatsByScreenIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeatsByScreenID not implemented")
+}
+func (UnimplementedAdminServiceServer) GetSeatByID(context.Context, *GetSeatByIdRequest) (*GetSeatByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeatByID not implemented")
+}
+func (UnimplementedAdminServiceServer) GetSeatBySeatNumberAndScreenID(context.Context, *GetSeatBySeatNumberAndScreenIdRequest) (*GetSeatBySeatNumberAndScreenIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeatBySeatNumberAndScreenID not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteSeatByID(context.Context, *DeleteSeatByIdRequest) (*DeleteSeatByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSeatByID not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteSeatBySeatNumberAndScreenID(context.Context, *DeleteSeatBySeatNumberAndScreenIDRequest) (*DeleteSeatBySeatNumberAndScreenIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSeatBySeatNumberAndScreenID not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
 
@@ -1864,6 +1964,114 @@ func _AdminService_DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId_Handler
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_CreateSeats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSeatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).CreateSeats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_CreateSeats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).CreateSeats(ctx, req.(*CreateSeatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetSeatsByScreenID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSeatsByScreenIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetSeatsByScreenID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetSeatsByScreenID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetSeatsByScreenID(ctx, req.(*GetSeatsByScreenIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetSeatByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSeatByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetSeatByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetSeatByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetSeatByID(ctx, req.(*GetSeatByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetSeatBySeatNumberAndScreenID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSeatBySeatNumberAndScreenIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetSeatBySeatNumberAndScreenID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetSeatBySeatNumberAndScreenID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetSeatBySeatNumberAndScreenID(ctx, req.(*GetSeatBySeatNumberAndScreenIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteSeatByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSeatByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteSeatByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteSeatByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteSeatByID(ctx, req.(*DeleteSeatByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteSeatBySeatNumberAndScreenID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSeatBySeatNumberAndScreenIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteSeatBySeatNumberAndScreenID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteSeatBySeatNumberAndScreenID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteSeatBySeatNumberAndScreenID(ctx, req.(*DeleteSeatBySeatNumberAndScreenIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2042,6 +2250,30 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId",
 			Handler:    _AdminService_DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId_Handler,
+		},
+		{
+			MethodName: "CreateSeats",
+			Handler:    _AdminService_CreateSeats_Handler,
+		},
+		{
+			MethodName: "GetSeatsByScreenID",
+			Handler:    _AdminService_GetSeatsByScreenID_Handler,
+		},
+		{
+			MethodName: "GetSeatByID",
+			Handler:    _AdminService_GetSeatByID_Handler,
+		},
+		{
+			MethodName: "GetSeatBySeatNumberAndScreenID",
+			Handler:    _AdminService_GetSeatBySeatNumberAndScreenID_Handler,
+		},
+		{
+			MethodName: "DeleteSeatByID",
+			Handler:    _AdminService_DeleteSeatByID_Handler,
+		},
+		{
+			MethodName: "DeleteSeatBySeatNumberAndScreenID",
+			Handler:    _AdminService_DeleteSeatBySeatNumberAndScreenID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

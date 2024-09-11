@@ -85,6 +85,84 @@ service TheatreService {
     rpc DeleteMovieScheduleById(DeleteMovieScheduleByIdRequest)returns(DeleteMovieScheduleByIdResponse);
     rpc DeleteMovieScheduleByMovieIdAndTheaterId(DeleteMovieScheduleByMovieIdAndTheaterIdRequest)returns(DeleteMovieScheduleByMovieIdAndTheaterIdResponse);
     rpc DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId(DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest)returns(DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse);
+
+    // Seats
+    rpc CreateSeats (CreateSeatsRequest) returns (CreateSeatsResponse);
+    rpc GetSeatsByScreenID (GetSeatsByScreenIDRequest) returns (GetSeatsByScreenIDResponse);
+    rpc GetSeatByID(GetSeatByIdRequest)returns (GetSeatByIdResponse);
+    rpc GetSeatBySeatNumberAndScreenID(GetSeatBySeatNumberAndScreenIdRequest)returns(GetSeatBySeatNumberAndScreenIdResponse);
+    // rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
+    rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
+    rpc DeleteSeatBySeatNumberAndScreenID(DeleteSeatBySeatNumberAndScreenIDRequest)returns (DeleteSeatBySeatNumberAndScreenIDResponse);
+}
+
+// Seats
+message Seat {
+    int32 id = 1;
+    int32 screen_id = 2;
+    string row = 3;
+    int32 column = 4;
+    string seat_number = 5;
+    int32 seat_category_id = 6;
+    double seat_category_price = 7;
+}
+
+message CreateSeatsRequest {
+    int32 screen_id = 1;
+    int32 total_rows = 2;
+    int32 total_columns = 3;
+    repeated RowAndSeatCategoryPrice  rowseat_categories = 4;
+}
+
+message RowAndSeatCategoryPrice {
+    string row_start = 1;
+    string row_end = 2;
+    int32 seat_category_id = 3;
+    double seat_category_price = 4;
+}
+
+message GetSeatBySeatNumberAndScreenIdRequest{
+    string seat_number = 1 ;
+    int32 screen_id = 2;
+}
+
+message GetSeatBySeatNumberAndScreenIdResponse{
+    Seat seat = 1;
+}
+
+message GetSeatByIdRequest{
+    int32 id = 1;
+}
+
+message GetSeatByIdResponse{
+    Seat seat = 1;
+}
+
+message CreateSeatsResponse{
+    string status = 1;
+}
+
+message GetSeatsByScreenIDRequest{
+    int32 screen_id =1 ;
+}
+
+message GetSeatsByScreenIDResponse{
+    repeated Seat seats = 1;
+}
+
+message DeleteSeatByIdRequest{
+    int32 id = 1;
+}
+
+message DeleteSeatByIdResponse{
+}
+
+message DeleteSeatBySeatNumberAndScreenIDRequest{
+    string seat_number = 1;
+    int32 screen_id = 2 ;
+}
+
+message DeleteSeatBySeatNumberAndScreenIDResponse{
 }
 
 // Movie Schedule related messages
