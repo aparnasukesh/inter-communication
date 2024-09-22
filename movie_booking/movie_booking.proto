@@ -91,7 +91,6 @@ service TheatreService {
     rpc GetSeatsByScreenID (GetSeatsByScreenIDRequest) returns (GetSeatsByScreenIDResponse);
     rpc GetSeatByID(GetSeatByIdRequest)returns (GetSeatByIdResponse);
     rpc GetSeatBySeatNumberAndScreenID(GetSeatBySeatNumberAndScreenIdRequest)returns(GetSeatBySeatNumberAndScreenIdResponse);
-    // rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
     rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
     rpc DeleteSeatBySeatNumberAndScreenID(DeleteSeatBySeatNumberAndScreenIDRequest)returns (DeleteSeatBySeatNumberAndScreenIDResponse);
 }
@@ -112,6 +111,7 @@ message CreateSeatsRequest {
     int32 total_rows = 2;
     int32 total_columns = 3;
     repeated RowAndSeatCategoryPrice  rowseat_categories = 4;
+    int32 owner_id = 5;
 }
 
 message RowAndSeatCategoryPrice {
@@ -175,6 +175,7 @@ message MovieSchedule{
 
 message AddMovieScheduleRequest{
     MovieSchedule movie_schedule = 1;
+    int32 owner_id = 2;
 }
 
 message AddMovieScheduleResponse {
@@ -184,6 +185,7 @@ message AddMovieScheduleResponse {
 
 message UpdateMovieScheduleRequest {
     MovieSchedule movie_schedule = 1; 
+    int32 owner_id = 2;
 }
 
 message UpdateMovieScheduleResponse {
@@ -622,7 +624,8 @@ message TheaterScreen {
     int32 ScreenTypeID = 5;
 }
 message AddTheaterScreenRequest {
-    TheaterScreen TheaterScreen = 1;
+    int32 owner_id = 1;
+    TheaterScreen TheaterScreen = 2;
 }
 
 message AddTheaterScreenResponse {
@@ -660,7 +663,8 @@ message GetTheaterScreenByNumberResponse {
 }
 
 message UpdateTheaterScreenRequest {
-    TheaterScreen TheaterScreen = 1;
+    int32 owner_id = 1;
+    TheaterScreen TheaterScreen = 2;
 }
 
 message UpdateTheaterScreenResponse {
@@ -684,7 +688,8 @@ message Showtime {
 }
 
 message AddShowtimeRequest {
-    Showtime showtime = 1;
+    int32 owner_id =1 ;
+    Showtime showtime = 2;
 }
 
 message AddShowtimeResponse {
@@ -728,6 +733,7 @@ message GetShowtimeByDetailsResponse {
 
 message UpdateShowtimeRequest {
     Showtime showtime = 1;
+    int32 owner_id = 2;
 }
 
 message UpdateShowtimeResponse {

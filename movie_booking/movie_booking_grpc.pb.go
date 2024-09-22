@@ -402,7 +402,6 @@ type TheatreServiceClient interface {
 	GetSeatsByScreenID(ctx context.Context, in *GetSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetSeatsByScreenIDResponse, error)
 	GetSeatByID(ctx context.Context, in *GetSeatByIdRequest, opts ...grpc.CallOption) (*GetSeatByIdResponse, error)
 	GetSeatBySeatNumberAndScreenID(ctx context.Context, in *GetSeatBySeatNumberAndScreenIdRequest, opts ...grpc.CallOption) (*GetSeatBySeatNumberAndScreenIdResponse, error)
-	// rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
 	DeleteSeatByID(ctx context.Context, in *DeleteSeatByIdRequest, opts ...grpc.CallOption) (*DeleteSeatByIdResponse, error)
 	DeleteSeatBySeatNumberAndScreenID(ctx context.Context, in *DeleteSeatBySeatNumberAndScreenIDRequest, opts ...grpc.CallOption) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 }
@@ -1098,7 +1097,6 @@ type TheatreServiceServer interface {
 	GetSeatsByScreenID(context.Context, *GetSeatsByScreenIDRequest) (*GetSeatsByScreenIDResponse, error)
 	GetSeatByID(context.Context, *GetSeatByIdRequest) (*GetSeatByIdResponse, error)
 	GetSeatBySeatNumberAndScreenID(context.Context, *GetSeatBySeatNumberAndScreenIdRequest) (*GetSeatBySeatNumberAndScreenIdResponse, error)
-	// rpc UpdateSeat (UpdateSeatRequest) returns (UpdateSeatResponse);
 	DeleteSeatByID(context.Context, *DeleteSeatByIdRequest) (*DeleteSeatByIdResponse, error)
 	DeleteSeatBySeatNumberAndScreenID(context.Context, *DeleteSeatBySeatNumberAndScreenIDRequest) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 	mustEmbedUnimplementedTheatreServiceServer()
