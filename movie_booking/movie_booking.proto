@@ -93,8 +93,97 @@ service TheatreService {
     rpc GetSeatBySeatNumberAndScreenID(GetSeatBySeatNumberAndScreenIdRequest)returns(GetSeatBySeatNumberAndScreenIdResponse);
     rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
     rpc DeleteSeatBySeatNumberAndScreenID(DeleteSeatBySeatNumberAndScreenIDRequest)returns (DeleteSeatBySeatNumberAndScreenIDResponse);
+
+    // User 
+     //Movies
+     rpc ListAllMovies(ListMoviesRequest)returns (ListMoviesResponse);
+     rpc GetMovieDetailsByID(GetMovieDetailsRequest)returns(GetMovieDetailsResponse);
+     rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
+     rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
+     rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
+     //Theaters
+     rpc GetTheatersByCity(GetTheatersByCityRequest) returns (GetTheatersByCityResponse);
+     rpc GetTheatersByName(GetTheaterByNameRequest)returns(GetTheaterByNameResponse);
+     rpc GetTheatersByMovieName(GetTheatersByMovieIdRequest)returns(GetTheatersByMovieIdResponse);
+     rpc GetScreensAndMovieScedulesByTheaterID(GetScreensAndMovieScedulesByTheaterIdRequest)returns(GetScreensAndMovieScedulesByTheaterIdResponse);
+     rpc ListShowTimeByTheaterID(ListShowTimeByTheaterIdRequest)returns(ListShowTimeByTheaterIdResponse);
+     rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
 }
 
+
+message GetMovieByNameRequest{
+    string movie_name = 1 ;
+}
+
+message GetMovieByNameResponse{
+     Movie movie = 1 ;
+}
+
+message GetMoviesByGenreRequest{
+    string genre = 1;
+}
+
+message GetMoviesByGenreResponse{
+    repeated Movie movie = 1;
+}
+
+message GetMoviesByLanguageRequest{
+    string language = 1;
+}
+
+message GetMoviesByLanguageResponse{
+    repeated Movie movie = 1;
+}
+
+message GetTheatersByCityRequest{
+    string city = 1;
+}
+
+message GetTheatersByCityResponse{
+    repeated Theater theater = 1;
+}
+
+message GetTheatersByMovieIdRequest{
+    int32 movie_id = 1;
+}
+
+message GetTheatersByMovieIdResponse{
+    repeated Theater theater = 1;
+}
+
+message GetScreensAndMovieScedulesByTheaterIdRequest{
+    int32 theater_id = 1;
+}
+
+message GetScreensAndMovieScedulesByTheaterIdResponse{
+    Theater theater = 1;
+    repeated MovieSchedule movie_schedule = 2;
+    repeated Showtime show_time = 3;
+    repeated TheaterScreen theater_screen = 4;
+    repeated Movie movie = 5;
+}
+
+message ListShowTimeByTheaterIdRequest{
+    int32 theater_id = 1;
+}
+
+message ListShowTimeByTheaterIdResponse{
+    Theater theater = 1;
+    repeated Showtime show_time = 2;
+    repeated MovieSchedule movie_schedule = 3;
+    repeated Movie movie = 4;
+}
+
+message ListShowTimeByTheaterIdandMovieIdRequest{
+    int32 theater_id = 1;
+    int32 movie_id = 2;
+}
+
+message ListShowTimeByTheaterIdandMovieIdResponse{
+    Theater theater = 1;
+    Movie movie = 2;
+    repeated Showtime show_time = 3;
+}
 // Seats
 message Seat {
     int32 id = 1;
