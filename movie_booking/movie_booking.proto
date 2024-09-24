@@ -13,6 +13,10 @@ service MovieService {
     rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
     rpc GetMovieDetails(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
     rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
+    rpc GetMovieDetailsByID(GetMovieDetailsRequest)returns(GetMovieDetailsResponse);
+    rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
+    rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
+    rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
 }
 
 // Theatre Service definition
@@ -94,13 +98,6 @@ service TheatreService {
     rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
     rpc DeleteSeatBySeatNumberAndScreenID(DeleteSeatBySeatNumberAndScreenIDRequest)returns (DeleteSeatBySeatNumberAndScreenIDResponse);
 
-    // User 
-     //Movies
-     rpc ListAllMovies(ListMoviesRequest)returns (ListMoviesResponse);
-     rpc GetMovieDetailsByID(GetMovieDetailsRequest)returns(GetMovieDetailsResponse);
-     rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
-     rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
-     rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
      //Theaters
      rpc GetTheatersByCity(GetTheatersByCityRequest) returns (GetTheatersByCityResponse);
      rpc GetTheatersByName(GetTheaterByNameRequest)returns(GetTheaterByNameResponse);
