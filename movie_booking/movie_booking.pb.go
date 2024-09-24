@@ -9096,7 +9096,7 @@ var file_movie_booking_movie_booking_proto_rawDesc = []byte{
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x09, 0x73, 0x68, 0x6f, 0x77, 0x74, 0x69,
 	0x6d, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6d, 0x6f, 0x76, 0x69,
 	0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x68, 0x6f, 0x77, 0x74, 0x69, 0x6d,
-	0x65, 0x52, 0x09, 0x73, 0x68, 0x6f, 0x77, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x32, 0xd1, 0x06, 0x0a,
+	0x65, 0x52, 0x09, 0x73, 0x68, 0x6f, 0x77, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x32, 0xf1, 0x05, 0x0a,
 	0x0c, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x58, 0x0a,
 	0x0d, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x12, 0x22,
 	0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x52, 0x65,
@@ -9113,24 +9113,18 @@ var file_movie_booking_movie_booking_proto_rawDesc = []byte{
 	0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x76,
 	0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x6d, 0x6f, 0x76,
 	0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f,
-	0x76, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5e, 0x0a, 0x0f,
-	0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x12,
-	0x24, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47,
-	0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f,
-	0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74,
-	0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x0b,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x12, 0x20, 0x2e, 0x6d, 0x6f,
-	0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e,
-	0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x62, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61,
-	0x69, 0x6c, 0x73, 0x42, 0x79, 0x49, 0x44, 0x12, 0x24, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62,
-	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44,
-	0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e,
-	0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74,
-	0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x76, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x13,
+	0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x42,
+	0x79, 0x49, 0x44, 0x12, 0x24, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69,
+	0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x6d, 0x6f, 0x76, 0x69,
+	0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69,
+	0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x52, 0x0a, 0x0b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x12,
+	0x20, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x21, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67,
+	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5b, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65,
 	0x42, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x2e, 0x6d, 0x6f, 0x76, 0x69, 0x65, 0x62, 0x6f,
 	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x6f, 0x76, 0x69, 0x65, 0x42, 0x79,
@@ -9869,157 +9863,155 @@ var file_movie_booking_movie_booking_proto_depIdxs = []int32{
 	55,  // 63: moviebooking.MovieService.RegisterMovie:input_type -> moviebooking.RegisterMovieRequest
 	57,  // 64: moviebooking.MovieService.UpdateMovie:input_type -> moviebooking.UpdateMovieRequest
 	59,  // 65: moviebooking.MovieService.ListMovies:input_type -> moviebooking.ListMoviesRequest
-	62,  // 66: moviebooking.MovieService.GetMovieDetails:input_type -> moviebooking.GetMovieDetailsRequest
+	62,  // 66: moviebooking.MovieService.GetMovieDetailsByID:input_type -> moviebooking.GetMovieDetailsRequest
 	64,  // 67: moviebooking.MovieService.DeleteMovie:input_type -> moviebooking.DeleteMovieRequest
-	62,  // 68: moviebooking.MovieService.GetMovieDetailsByID:input_type -> moviebooking.GetMovieDetailsRequest
-	0,   // 69: moviebooking.MovieService.GetMovieByName:input_type -> moviebooking.GetMovieByNameRequest
-	2,   // 70: moviebooking.MovieService.GetMoviesByGenre:input_type -> moviebooking.GetMoviesByGenreRequest
-	4,   // 71: moviebooking.MovieService.GetMoviesByLanguage:input_type -> moviebooking.GetMoviesByLanguageRequest
-	83,  // 72: moviebooking.TheatreService.AddTheaterType:input_type -> moviebooking.AddTheaterTypeRequest
-	85,  // 73: moviebooking.TheatreService.DeleteTheaterTypeByID:input_type -> moviebooking.DeleteTheaterTypeRequest
-	87,  // 74: moviebooking.TheatreService.DeleteTheaterTypeByName:input_type -> moviebooking.DeleteTheaterTypeByNameRequest
-	89,  // 75: moviebooking.TheatreService.GetTheaterTypeByID:input_type -> moviebooking.GetTheaterTypeByIDRequest
-	92,  // 76: moviebooking.TheatreService.GetTheaterTypeByName:input_type -> moviebooking.GetTheaterTypeByNameRequest
-	94,  // 77: moviebooking.TheatreService.UpdateTheaterType:input_type -> moviebooking.UpdateTheaterTypeRequest
-	96,  // 78: moviebooking.TheatreService.ListTheaterTypes:input_type -> moviebooking.ListTheaterTypesRequest
-	98,  // 79: moviebooking.TheatreService.AddScreenType:input_type -> moviebooking.AddScreenTypeRequest
-	100, // 80: moviebooking.TheatreService.DeleteScreenTypeByID:input_type -> moviebooking.DeleteScreenTypeRequest
-	102, // 81: moviebooking.TheatreService.DeleteScreenTypeByName:input_type -> moviebooking.DeleteScreenTypeByNameRequest
-	104, // 82: moviebooking.TheatreService.GetScreenTypeByID:input_type -> moviebooking.GetScreenTypeByIDRequest
-	107, // 83: moviebooking.TheatreService.GetScreenTypeByName:input_type -> moviebooking.GetScreenTypeByNameRequest
-	109, // 84: moviebooking.TheatreService.UpdateScreenType:input_type -> moviebooking.UpdateScreenTypeRequest
-	111, // 85: moviebooking.TheatreService.ListScreenTypes:input_type -> moviebooking.ListScreenTypesRequest
-	114, // 86: moviebooking.TheatreService.AddSeatCategory:input_type -> moviebooking.AddSeatCategoryRequest
-	116, // 87: moviebooking.TheatreService.DeleteSeatCategoryByID:input_type -> moviebooking.DeleteSeatCategoryRequest
-	118, // 88: moviebooking.TheatreService.DeleteSeatCategoryByName:input_type -> moviebooking.DeleteSeatCategoryByNameRequest
-	120, // 89: moviebooking.TheatreService.GetSeatCategoryByID:input_type -> moviebooking.GetSeatCategoryByIDRequest
-	122, // 90: moviebooking.TheatreService.GetSeatCategoryByName:input_type -> moviebooking.GetSeatCategoryByNameRequest
-	124, // 91: moviebooking.TheatreService.UpdateSeatCategory:input_type -> moviebooking.UpdateSeatCategoryRequest
-	126, // 92: moviebooking.TheatreService.ListSeatCategories:input_type -> moviebooking.ListSeatCategoriesRequest
-	67,  // 93: moviebooking.TheatreService.AddTheater:input_type -> moviebooking.AddTheaterRequest
-	69,  // 94: moviebooking.TheatreService.DeleteTheaterByID:input_type -> moviebooking.DeleteTheaterRequest
-	71,  // 95: moviebooking.TheatreService.DeleteTheaterByName:input_type -> moviebooking.DeleteTheaterByNameRequest
-	73,  // 96: moviebooking.TheatreService.GetTheaterByID:input_type -> moviebooking.GetTheaterByIDRequest
-	75,  // 97: moviebooking.TheatreService.GetTheaterByName:input_type -> moviebooking.GetTheaterByNameRequest
-	77,  // 98: moviebooking.TheatreService.UpdateTheater:input_type -> moviebooking.UpdateTheaterRequest
-	79,  // 99: moviebooking.TheatreService.ListTheaters:input_type -> moviebooking.ListTheatersRequest
-	81,  // 100: moviebooking.TheatreService.GetTheatersByAdminID:input_type -> moviebooking.GetTheatersByAdminIdRequest
-	129, // 101: moviebooking.TheatreService.AddTheaterScreen:input_type -> moviebooking.AddTheaterScreenRequest
-	131, // 102: moviebooking.TheatreService.DeleteTheaterScreenByID:input_type -> moviebooking.DeleteTheaterScreenRequest
-	133, // 103: moviebooking.TheatreService.DeleteTheaterScreenByNumber:input_type -> moviebooking.DeleteTheaterScreenByNumberRequest
-	135, // 104: moviebooking.TheatreService.GetTheaterScreenByID:input_type -> moviebooking.GetTheaterScreenByIDRequest
-	137, // 105: moviebooking.TheatreService.GetTheaterScreenByNumber:input_type -> moviebooking.GetTheaterScreenByNumberRequest
-	139, // 106: moviebooking.TheatreService.UpdateTheaterScreen:input_type -> moviebooking.UpdateTheaterScreenRequest
-	141, // 107: moviebooking.TheatreService.ListTheaterScreens:input_type -> moviebooking.ListTheaterScreensRequest
-	144, // 108: moviebooking.TheatreService.AddShowtime:input_type -> moviebooking.AddShowtimeRequest
-	146, // 109: moviebooking.TheatreService.DeleteShowtimeByID:input_type -> moviebooking.DeleteShowtimeRequest
-	148, // 110: moviebooking.TheatreService.DeleteShowtimeByDetails:input_type -> moviebooking.DeleteShowtimeByDetailsRequest
-	150, // 111: moviebooking.TheatreService.GetShowtimeByID:input_type -> moviebooking.GetShowtimeByIDRequest
-	152, // 112: moviebooking.TheatreService.GetShowtimeByDetails:input_type -> moviebooking.GetShowtimeByDetailsRequest
-	154, // 113: moviebooking.TheatreService.UpdateShowtime:input_type -> moviebooking.UpdateShowtimeRequest
-	156, // 114: moviebooking.TheatreService.ListShowtimes:input_type -> moviebooking.ListShowtimesRequest
-	31,  // 115: moviebooking.TheatreService.AddMovieSchedule:input_type -> moviebooking.AddMovieScheduleRequest
-	33,  // 116: moviebooking.TheatreService.UpdateMovieSchedule:input_type -> moviebooking.UpdateMovieScheduleRequest
-	35,  // 117: moviebooking.TheatreService.GetAllMovieSchedules:input_type -> moviebooking.GetAllMovieScheduleRequest
-	37,  // 118: moviebooking.TheatreService.GetMovieScheduleByMovieID:input_type -> moviebooking.GetMovieScheduleByMovieIdRequest
-	39,  // 119: moviebooking.TheatreService.GetMovieScheduleByTheaterID:input_type -> moviebooking.GetMovieScheduleByTheaterIdRequest
-	41,  // 120: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndTheaterId:input_type -> moviebooking.GetMovieScheduleByMovieIdAndTheaterIdRequest
-	43,  // 121: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndShowTimeId:input_type -> moviebooking.GetMovieScheduleByMovieIdAndShowTimeIdRequest
-	45,  // 122: moviebooking.TheatreService.GetMovieScheduleByTheaterIdAndShowTimeId:input_type -> moviebooking.GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest
-	47,  // 123: moviebooking.TheatreService.GetMovieScheduleByID:input_type -> moviebooking.GetMovieScheduleByIDRequest
-	49,  // 124: moviebooking.TheatreService.DeleteMovieScheduleById:input_type -> moviebooking.DeleteMovieScheduleByIdRequest
-	51,  // 125: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterId:input_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdRequest
-	53,  // 126: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId:input_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest
-	17,  // 127: moviebooking.TheatreService.CreateSeats:input_type -> moviebooking.CreateSeatsRequest
-	24,  // 128: moviebooking.TheatreService.GetSeatsByScreenID:input_type -> moviebooking.GetSeatsByScreenIDRequest
-	21,  // 129: moviebooking.TheatreService.GetSeatByID:input_type -> moviebooking.GetSeatByIdRequest
-	19,  // 130: moviebooking.TheatreService.GetSeatBySeatNumberAndScreenID:input_type -> moviebooking.GetSeatBySeatNumberAndScreenIdRequest
-	26,  // 131: moviebooking.TheatreService.DeleteSeatByID:input_type -> moviebooking.DeleteSeatByIdRequest
-	28,  // 132: moviebooking.TheatreService.DeleteSeatBySeatNumberAndScreenID:input_type -> moviebooking.DeleteSeatBySeatNumberAndScreenIDRequest
-	6,   // 133: moviebooking.TheatreService.GetTheatersByCity:input_type -> moviebooking.GetTheatersByCityRequest
-	75,  // 134: moviebooking.TheatreService.GetTheatersByName:input_type -> moviebooking.GetTheaterByNameRequest
-	8,   // 135: moviebooking.TheatreService.GetTheatersByMovieName:input_type -> moviebooking.GetTheatersByMovieIdRequest
-	10,  // 136: moviebooking.TheatreService.GetScreensAndMovieScedulesByTheaterID:input_type -> moviebooking.GetScreensAndMovieScedulesByTheaterIdRequest
-	12,  // 137: moviebooking.TheatreService.ListShowTimeByTheaterID:input_type -> moviebooking.ListShowTimeByTheaterIdRequest
-	14,  // 138: moviebooking.TheatreService.ListShowTimeByTheaterIDandMovieID:input_type -> moviebooking.ListShowTimeByTheaterIdandMovieIdRequest
-	56,  // 139: moviebooking.MovieService.RegisterMovie:output_type -> moviebooking.RegisterMovieResponse
-	58,  // 140: moviebooking.MovieService.UpdateMovie:output_type -> moviebooking.UpdateMovieResponse
-	61,  // 141: moviebooking.MovieService.ListMovies:output_type -> moviebooking.ListMoviesResponse
-	63,  // 142: moviebooking.MovieService.GetMovieDetails:output_type -> moviebooking.GetMovieDetailsResponse
-	65,  // 143: moviebooking.MovieService.DeleteMovie:output_type -> moviebooking.DeleteMovieResponse
-	63,  // 144: moviebooking.MovieService.GetMovieDetailsByID:output_type -> moviebooking.GetMovieDetailsResponse
-	1,   // 145: moviebooking.MovieService.GetMovieByName:output_type -> moviebooking.GetMovieByNameResponse
-	3,   // 146: moviebooking.MovieService.GetMoviesByGenre:output_type -> moviebooking.GetMoviesByGenreResponse
-	5,   // 147: moviebooking.MovieService.GetMoviesByLanguage:output_type -> moviebooking.GetMoviesByLanguageResponse
-	84,  // 148: moviebooking.TheatreService.AddTheaterType:output_type -> moviebooking.AddTheaterTypeResponse
-	86,  // 149: moviebooking.TheatreService.DeleteTheaterTypeByID:output_type -> moviebooking.DeleteTheaterTypeResponse
-	88,  // 150: moviebooking.TheatreService.DeleteTheaterTypeByName:output_type -> moviebooking.DeleteTheaterTypeByNameResponse
-	90,  // 151: moviebooking.TheatreService.GetTheaterTypeByID:output_type -> moviebooking.GetTheaterTypeByIDResponse
-	93,  // 152: moviebooking.TheatreService.GetTheaterTypeByName:output_type -> moviebooking.GetTheaterTypeBynameResponse
-	95,  // 153: moviebooking.TheatreService.UpdateTheaterType:output_type -> moviebooking.UpdateTheaterTypeResponse
-	97,  // 154: moviebooking.TheatreService.ListTheaterTypes:output_type -> moviebooking.ListTheaterTypeResponse
-	99,  // 155: moviebooking.TheatreService.AddScreenType:output_type -> moviebooking.AddScreenTypeResponse
-	101, // 156: moviebooking.TheatreService.DeleteScreenTypeByID:output_type -> moviebooking.DeleteScreenTypeResponse
-	103, // 157: moviebooking.TheatreService.DeleteScreenTypeByName:output_type -> moviebooking.DeleteScreenTypeByNameResponse
-	105, // 158: moviebooking.TheatreService.GetScreenTypeByID:output_type -> moviebooking.GetScreenTypeByIDResponse
-	108, // 159: moviebooking.TheatreService.GetScreenTypeByName:output_type -> moviebooking.GetScreenTypeByNameResponse
-	110, // 160: moviebooking.TheatreService.UpdateScreenType:output_type -> moviebooking.UpdateScreenTypeResponse
-	112, // 161: moviebooking.TheatreService.ListScreenTypes:output_type -> moviebooking.ListScreenTypesResponse
-	115, // 162: moviebooking.TheatreService.AddSeatCategory:output_type -> moviebooking.AddSeatCategoryResponse
-	117, // 163: moviebooking.TheatreService.DeleteSeatCategoryByID:output_type -> moviebooking.DeleteSeatCategoryResponse
-	119, // 164: moviebooking.TheatreService.DeleteSeatCategoryByName:output_type -> moviebooking.DeleteSeatCategoryByNameResponse
-	121, // 165: moviebooking.TheatreService.GetSeatCategoryByID:output_type -> moviebooking.GetSeatCategoryByIDResponse
-	123, // 166: moviebooking.TheatreService.GetSeatCategoryByName:output_type -> moviebooking.GetSeatCategoryByNameResponse
-	125, // 167: moviebooking.TheatreService.UpdateSeatCategory:output_type -> moviebooking.UpdateSeatCategoryResponse
-	127, // 168: moviebooking.TheatreService.ListSeatCategories:output_type -> moviebooking.ListSeatCategoriesResponse
-	68,  // 169: moviebooking.TheatreService.AddTheater:output_type -> moviebooking.AddTheaterResponse
-	70,  // 170: moviebooking.TheatreService.DeleteTheaterByID:output_type -> moviebooking.DeleteTheaterResponse
-	72,  // 171: moviebooking.TheatreService.DeleteTheaterByName:output_type -> moviebooking.DeleteTheaterByNameResponse
-	74,  // 172: moviebooking.TheatreService.GetTheaterByID:output_type -> moviebooking.GetTheaterByIDResponse
-	76,  // 173: moviebooking.TheatreService.GetTheaterByName:output_type -> moviebooking.GetTheaterByNameResponse
-	78,  // 174: moviebooking.TheatreService.UpdateTheater:output_type -> moviebooking.UpdateTheaterResponse
-	80,  // 175: moviebooking.TheatreService.ListTheaters:output_type -> moviebooking.ListTheatersResponse
-	82,  // 176: moviebooking.TheatreService.GetTheatersByAdminID:output_type -> moviebooking.GetTheatersByAdminIdResponse
-	130, // 177: moviebooking.TheatreService.AddTheaterScreen:output_type -> moviebooking.AddTheaterScreenResponse
-	132, // 178: moviebooking.TheatreService.DeleteTheaterScreenByID:output_type -> moviebooking.DeleteTheaterScreenResponse
-	134, // 179: moviebooking.TheatreService.DeleteTheaterScreenByNumber:output_type -> moviebooking.DeleteTheaterScreenByNumberResponse
-	136, // 180: moviebooking.TheatreService.GetTheaterScreenByID:output_type -> moviebooking.GetTheaterScreenByIDResponse
-	138, // 181: moviebooking.TheatreService.GetTheaterScreenByNumber:output_type -> moviebooking.GetTheaterScreenByNumberResponse
-	140, // 182: moviebooking.TheatreService.UpdateTheaterScreen:output_type -> moviebooking.UpdateTheaterScreenResponse
-	142, // 183: moviebooking.TheatreService.ListTheaterScreens:output_type -> moviebooking.ListTheaterScreensResponse
-	145, // 184: moviebooking.TheatreService.AddShowtime:output_type -> moviebooking.AddShowtimeResponse
-	147, // 185: moviebooking.TheatreService.DeleteShowtimeByID:output_type -> moviebooking.DeleteShowtimeResponse
-	149, // 186: moviebooking.TheatreService.DeleteShowtimeByDetails:output_type -> moviebooking.DeleteShowtimeByDetailsResponse
-	151, // 187: moviebooking.TheatreService.GetShowtimeByID:output_type -> moviebooking.GetShowtimeByIDResponse
-	153, // 188: moviebooking.TheatreService.GetShowtimeByDetails:output_type -> moviebooking.GetShowtimeByDetailsResponse
-	155, // 189: moviebooking.TheatreService.UpdateShowtime:output_type -> moviebooking.UpdateShowtimeResponse
-	157, // 190: moviebooking.TheatreService.ListShowtimes:output_type -> moviebooking.ListShowtimesResponse
-	32,  // 191: moviebooking.TheatreService.AddMovieSchedule:output_type -> moviebooking.AddMovieScheduleResponse
-	34,  // 192: moviebooking.TheatreService.UpdateMovieSchedule:output_type -> moviebooking.UpdateMovieScheduleResponse
-	36,  // 193: moviebooking.TheatreService.GetAllMovieSchedules:output_type -> moviebooking.GetAllMovieScheduleResponse
-	38,  // 194: moviebooking.TheatreService.GetMovieScheduleByMovieID:output_type -> moviebooking.GetMovieScheduleByMovieIdResponse
-	40,  // 195: moviebooking.TheatreService.GetMovieScheduleByTheaterID:output_type -> moviebooking.GetMovieScheduleByTheaterIdResponse
-	42,  // 196: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndTheaterId:output_type -> moviebooking.GetMovieScheduleByMovieIdAndTheaterIdResponse
-	44,  // 197: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndShowTimeId:output_type -> moviebooking.GetMovieScheduleByMovieIdAndShowTimeIdResponse
-	46,  // 198: moviebooking.TheatreService.GetMovieScheduleByTheaterIdAndShowTimeId:output_type -> moviebooking.GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse
-	48,  // 199: moviebooking.TheatreService.GetMovieScheduleByID:output_type -> moviebooking.GetMovieScheduleByIDResponse
-	50,  // 200: moviebooking.TheatreService.DeleteMovieScheduleById:output_type -> moviebooking.DeleteMovieScheduleByIdResponse
-	52,  // 201: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterId:output_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdResponse
-	54,  // 202: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId:output_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse
-	23,  // 203: moviebooking.TheatreService.CreateSeats:output_type -> moviebooking.CreateSeatsResponse
-	25,  // 204: moviebooking.TheatreService.GetSeatsByScreenID:output_type -> moviebooking.GetSeatsByScreenIDResponse
-	22,  // 205: moviebooking.TheatreService.GetSeatByID:output_type -> moviebooking.GetSeatByIdResponse
-	20,  // 206: moviebooking.TheatreService.GetSeatBySeatNumberAndScreenID:output_type -> moviebooking.GetSeatBySeatNumberAndScreenIdResponse
-	27,  // 207: moviebooking.TheatreService.DeleteSeatByID:output_type -> moviebooking.DeleteSeatByIdResponse
-	29,  // 208: moviebooking.TheatreService.DeleteSeatBySeatNumberAndScreenID:output_type -> moviebooking.DeleteSeatBySeatNumberAndScreenIDResponse
-	7,   // 209: moviebooking.TheatreService.GetTheatersByCity:output_type -> moviebooking.GetTheatersByCityResponse
-	76,  // 210: moviebooking.TheatreService.GetTheatersByName:output_type -> moviebooking.GetTheaterByNameResponse
-	9,   // 211: moviebooking.TheatreService.GetTheatersByMovieName:output_type -> moviebooking.GetTheatersByMovieIdResponse
-	11,  // 212: moviebooking.TheatreService.GetScreensAndMovieScedulesByTheaterID:output_type -> moviebooking.GetScreensAndMovieScedulesByTheaterIdResponse
-	13,  // 213: moviebooking.TheatreService.ListShowTimeByTheaterID:output_type -> moviebooking.ListShowTimeByTheaterIdResponse
-	15,  // 214: moviebooking.TheatreService.ListShowTimeByTheaterIDandMovieID:output_type -> moviebooking.ListShowTimeByTheaterIdandMovieIdResponse
-	139, // [139:215] is the sub-list for method output_type
-	63,  // [63:139] is the sub-list for method input_type
+	0,   // 68: moviebooking.MovieService.GetMovieByName:input_type -> moviebooking.GetMovieByNameRequest
+	2,   // 69: moviebooking.MovieService.GetMoviesByGenre:input_type -> moviebooking.GetMoviesByGenreRequest
+	4,   // 70: moviebooking.MovieService.GetMoviesByLanguage:input_type -> moviebooking.GetMoviesByLanguageRequest
+	83,  // 71: moviebooking.TheatreService.AddTheaterType:input_type -> moviebooking.AddTheaterTypeRequest
+	85,  // 72: moviebooking.TheatreService.DeleteTheaterTypeByID:input_type -> moviebooking.DeleteTheaterTypeRequest
+	87,  // 73: moviebooking.TheatreService.DeleteTheaterTypeByName:input_type -> moviebooking.DeleteTheaterTypeByNameRequest
+	89,  // 74: moviebooking.TheatreService.GetTheaterTypeByID:input_type -> moviebooking.GetTheaterTypeByIDRequest
+	92,  // 75: moviebooking.TheatreService.GetTheaterTypeByName:input_type -> moviebooking.GetTheaterTypeByNameRequest
+	94,  // 76: moviebooking.TheatreService.UpdateTheaterType:input_type -> moviebooking.UpdateTheaterTypeRequest
+	96,  // 77: moviebooking.TheatreService.ListTheaterTypes:input_type -> moviebooking.ListTheaterTypesRequest
+	98,  // 78: moviebooking.TheatreService.AddScreenType:input_type -> moviebooking.AddScreenTypeRequest
+	100, // 79: moviebooking.TheatreService.DeleteScreenTypeByID:input_type -> moviebooking.DeleteScreenTypeRequest
+	102, // 80: moviebooking.TheatreService.DeleteScreenTypeByName:input_type -> moviebooking.DeleteScreenTypeByNameRequest
+	104, // 81: moviebooking.TheatreService.GetScreenTypeByID:input_type -> moviebooking.GetScreenTypeByIDRequest
+	107, // 82: moviebooking.TheatreService.GetScreenTypeByName:input_type -> moviebooking.GetScreenTypeByNameRequest
+	109, // 83: moviebooking.TheatreService.UpdateScreenType:input_type -> moviebooking.UpdateScreenTypeRequest
+	111, // 84: moviebooking.TheatreService.ListScreenTypes:input_type -> moviebooking.ListScreenTypesRequest
+	114, // 85: moviebooking.TheatreService.AddSeatCategory:input_type -> moviebooking.AddSeatCategoryRequest
+	116, // 86: moviebooking.TheatreService.DeleteSeatCategoryByID:input_type -> moviebooking.DeleteSeatCategoryRequest
+	118, // 87: moviebooking.TheatreService.DeleteSeatCategoryByName:input_type -> moviebooking.DeleteSeatCategoryByNameRequest
+	120, // 88: moviebooking.TheatreService.GetSeatCategoryByID:input_type -> moviebooking.GetSeatCategoryByIDRequest
+	122, // 89: moviebooking.TheatreService.GetSeatCategoryByName:input_type -> moviebooking.GetSeatCategoryByNameRequest
+	124, // 90: moviebooking.TheatreService.UpdateSeatCategory:input_type -> moviebooking.UpdateSeatCategoryRequest
+	126, // 91: moviebooking.TheatreService.ListSeatCategories:input_type -> moviebooking.ListSeatCategoriesRequest
+	67,  // 92: moviebooking.TheatreService.AddTheater:input_type -> moviebooking.AddTheaterRequest
+	69,  // 93: moviebooking.TheatreService.DeleteTheaterByID:input_type -> moviebooking.DeleteTheaterRequest
+	71,  // 94: moviebooking.TheatreService.DeleteTheaterByName:input_type -> moviebooking.DeleteTheaterByNameRequest
+	73,  // 95: moviebooking.TheatreService.GetTheaterByID:input_type -> moviebooking.GetTheaterByIDRequest
+	75,  // 96: moviebooking.TheatreService.GetTheaterByName:input_type -> moviebooking.GetTheaterByNameRequest
+	77,  // 97: moviebooking.TheatreService.UpdateTheater:input_type -> moviebooking.UpdateTheaterRequest
+	79,  // 98: moviebooking.TheatreService.ListTheaters:input_type -> moviebooking.ListTheatersRequest
+	81,  // 99: moviebooking.TheatreService.GetTheatersByAdminID:input_type -> moviebooking.GetTheatersByAdminIdRequest
+	129, // 100: moviebooking.TheatreService.AddTheaterScreen:input_type -> moviebooking.AddTheaterScreenRequest
+	131, // 101: moviebooking.TheatreService.DeleteTheaterScreenByID:input_type -> moviebooking.DeleteTheaterScreenRequest
+	133, // 102: moviebooking.TheatreService.DeleteTheaterScreenByNumber:input_type -> moviebooking.DeleteTheaterScreenByNumberRequest
+	135, // 103: moviebooking.TheatreService.GetTheaterScreenByID:input_type -> moviebooking.GetTheaterScreenByIDRequest
+	137, // 104: moviebooking.TheatreService.GetTheaterScreenByNumber:input_type -> moviebooking.GetTheaterScreenByNumberRequest
+	139, // 105: moviebooking.TheatreService.UpdateTheaterScreen:input_type -> moviebooking.UpdateTheaterScreenRequest
+	141, // 106: moviebooking.TheatreService.ListTheaterScreens:input_type -> moviebooking.ListTheaterScreensRequest
+	144, // 107: moviebooking.TheatreService.AddShowtime:input_type -> moviebooking.AddShowtimeRequest
+	146, // 108: moviebooking.TheatreService.DeleteShowtimeByID:input_type -> moviebooking.DeleteShowtimeRequest
+	148, // 109: moviebooking.TheatreService.DeleteShowtimeByDetails:input_type -> moviebooking.DeleteShowtimeByDetailsRequest
+	150, // 110: moviebooking.TheatreService.GetShowtimeByID:input_type -> moviebooking.GetShowtimeByIDRequest
+	152, // 111: moviebooking.TheatreService.GetShowtimeByDetails:input_type -> moviebooking.GetShowtimeByDetailsRequest
+	154, // 112: moviebooking.TheatreService.UpdateShowtime:input_type -> moviebooking.UpdateShowtimeRequest
+	156, // 113: moviebooking.TheatreService.ListShowtimes:input_type -> moviebooking.ListShowtimesRequest
+	31,  // 114: moviebooking.TheatreService.AddMovieSchedule:input_type -> moviebooking.AddMovieScheduleRequest
+	33,  // 115: moviebooking.TheatreService.UpdateMovieSchedule:input_type -> moviebooking.UpdateMovieScheduleRequest
+	35,  // 116: moviebooking.TheatreService.GetAllMovieSchedules:input_type -> moviebooking.GetAllMovieScheduleRequest
+	37,  // 117: moviebooking.TheatreService.GetMovieScheduleByMovieID:input_type -> moviebooking.GetMovieScheduleByMovieIdRequest
+	39,  // 118: moviebooking.TheatreService.GetMovieScheduleByTheaterID:input_type -> moviebooking.GetMovieScheduleByTheaterIdRequest
+	41,  // 119: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndTheaterId:input_type -> moviebooking.GetMovieScheduleByMovieIdAndTheaterIdRequest
+	43,  // 120: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndShowTimeId:input_type -> moviebooking.GetMovieScheduleByMovieIdAndShowTimeIdRequest
+	45,  // 121: moviebooking.TheatreService.GetMovieScheduleByTheaterIdAndShowTimeId:input_type -> moviebooking.GetGetMovieScheduleByTheaterIdAndShowTimeIdRequest
+	47,  // 122: moviebooking.TheatreService.GetMovieScheduleByID:input_type -> moviebooking.GetMovieScheduleByIDRequest
+	49,  // 123: moviebooking.TheatreService.DeleteMovieScheduleById:input_type -> moviebooking.DeleteMovieScheduleByIdRequest
+	51,  // 124: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterId:input_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdRequest
+	53,  // 125: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId:input_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdRequest
+	17,  // 126: moviebooking.TheatreService.CreateSeats:input_type -> moviebooking.CreateSeatsRequest
+	24,  // 127: moviebooking.TheatreService.GetSeatsByScreenID:input_type -> moviebooking.GetSeatsByScreenIDRequest
+	21,  // 128: moviebooking.TheatreService.GetSeatByID:input_type -> moviebooking.GetSeatByIdRequest
+	19,  // 129: moviebooking.TheatreService.GetSeatBySeatNumberAndScreenID:input_type -> moviebooking.GetSeatBySeatNumberAndScreenIdRequest
+	26,  // 130: moviebooking.TheatreService.DeleteSeatByID:input_type -> moviebooking.DeleteSeatByIdRequest
+	28,  // 131: moviebooking.TheatreService.DeleteSeatBySeatNumberAndScreenID:input_type -> moviebooking.DeleteSeatBySeatNumberAndScreenIDRequest
+	6,   // 132: moviebooking.TheatreService.GetTheatersByCity:input_type -> moviebooking.GetTheatersByCityRequest
+	75,  // 133: moviebooking.TheatreService.GetTheatersByName:input_type -> moviebooking.GetTheaterByNameRequest
+	8,   // 134: moviebooking.TheatreService.GetTheatersByMovieName:input_type -> moviebooking.GetTheatersByMovieIdRequest
+	10,  // 135: moviebooking.TheatreService.GetScreensAndMovieScedulesByTheaterID:input_type -> moviebooking.GetScreensAndMovieScedulesByTheaterIdRequest
+	12,  // 136: moviebooking.TheatreService.ListShowTimeByTheaterID:input_type -> moviebooking.ListShowTimeByTheaterIdRequest
+	14,  // 137: moviebooking.TheatreService.ListShowTimeByTheaterIDandMovieID:input_type -> moviebooking.ListShowTimeByTheaterIdandMovieIdRequest
+	56,  // 138: moviebooking.MovieService.RegisterMovie:output_type -> moviebooking.RegisterMovieResponse
+	58,  // 139: moviebooking.MovieService.UpdateMovie:output_type -> moviebooking.UpdateMovieResponse
+	61,  // 140: moviebooking.MovieService.ListMovies:output_type -> moviebooking.ListMoviesResponse
+	63,  // 141: moviebooking.MovieService.GetMovieDetailsByID:output_type -> moviebooking.GetMovieDetailsResponse
+	65,  // 142: moviebooking.MovieService.DeleteMovie:output_type -> moviebooking.DeleteMovieResponse
+	1,   // 143: moviebooking.MovieService.GetMovieByName:output_type -> moviebooking.GetMovieByNameResponse
+	3,   // 144: moviebooking.MovieService.GetMoviesByGenre:output_type -> moviebooking.GetMoviesByGenreResponse
+	5,   // 145: moviebooking.MovieService.GetMoviesByLanguage:output_type -> moviebooking.GetMoviesByLanguageResponse
+	84,  // 146: moviebooking.TheatreService.AddTheaterType:output_type -> moviebooking.AddTheaterTypeResponse
+	86,  // 147: moviebooking.TheatreService.DeleteTheaterTypeByID:output_type -> moviebooking.DeleteTheaterTypeResponse
+	88,  // 148: moviebooking.TheatreService.DeleteTheaterTypeByName:output_type -> moviebooking.DeleteTheaterTypeByNameResponse
+	90,  // 149: moviebooking.TheatreService.GetTheaterTypeByID:output_type -> moviebooking.GetTheaterTypeByIDResponse
+	93,  // 150: moviebooking.TheatreService.GetTheaterTypeByName:output_type -> moviebooking.GetTheaterTypeBynameResponse
+	95,  // 151: moviebooking.TheatreService.UpdateTheaterType:output_type -> moviebooking.UpdateTheaterTypeResponse
+	97,  // 152: moviebooking.TheatreService.ListTheaterTypes:output_type -> moviebooking.ListTheaterTypeResponse
+	99,  // 153: moviebooking.TheatreService.AddScreenType:output_type -> moviebooking.AddScreenTypeResponse
+	101, // 154: moviebooking.TheatreService.DeleteScreenTypeByID:output_type -> moviebooking.DeleteScreenTypeResponse
+	103, // 155: moviebooking.TheatreService.DeleteScreenTypeByName:output_type -> moviebooking.DeleteScreenTypeByNameResponse
+	105, // 156: moviebooking.TheatreService.GetScreenTypeByID:output_type -> moviebooking.GetScreenTypeByIDResponse
+	108, // 157: moviebooking.TheatreService.GetScreenTypeByName:output_type -> moviebooking.GetScreenTypeByNameResponse
+	110, // 158: moviebooking.TheatreService.UpdateScreenType:output_type -> moviebooking.UpdateScreenTypeResponse
+	112, // 159: moviebooking.TheatreService.ListScreenTypes:output_type -> moviebooking.ListScreenTypesResponse
+	115, // 160: moviebooking.TheatreService.AddSeatCategory:output_type -> moviebooking.AddSeatCategoryResponse
+	117, // 161: moviebooking.TheatreService.DeleteSeatCategoryByID:output_type -> moviebooking.DeleteSeatCategoryResponse
+	119, // 162: moviebooking.TheatreService.DeleteSeatCategoryByName:output_type -> moviebooking.DeleteSeatCategoryByNameResponse
+	121, // 163: moviebooking.TheatreService.GetSeatCategoryByID:output_type -> moviebooking.GetSeatCategoryByIDResponse
+	123, // 164: moviebooking.TheatreService.GetSeatCategoryByName:output_type -> moviebooking.GetSeatCategoryByNameResponse
+	125, // 165: moviebooking.TheatreService.UpdateSeatCategory:output_type -> moviebooking.UpdateSeatCategoryResponse
+	127, // 166: moviebooking.TheatreService.ListSeatCategories:output_type -> moviebooking.ListSeatCategoriesResponse
+	68,  // 167: moviebooking.TheatreService.AddTheater:output_type -> moviebooking.AddTheaterResponse
+	70,  // 168: moviebooking.TheatreService.DeleteTheaterByID:output_type -> moviebooking.DeleteTheaterResponse
+	72,  // 169: moviebooking.TheatreService.DeleteTheaterByName:output_type -> moviebooking.DeleteTheaterByNameResponse
+	74,  // 170: moviebooking.TheatreService.GetTheaterByID:output_type -> moviebooking.GetTheaterByIDResponse
+	76,  // 171: moviebooking.TheatreService.GetTheaterByName:output_type -> moviebooking.GetTheaterByNameResponse
+	78,  // 172: moviebooking.TheatreService.UpdateTheater:output_type -> moviebooking.UpdateTheaterResponse
+	80,  // 173: moviebooking.TheatreService.ListTheaters:output_type -> moviebooking.ListTheatersResponse
+	82,  // 174: moviebooking.TheatreService.GetTheatersByAdminID:output_type -> moviebooking.GetTheatersByAdminIdResponse
+	130, // 175: moviebooking.TheatreService.AddTheaterScreen:output_type -> moviebooking.AddTheaterScreenResponse
+	132, // 176: moviebooking.TheatreService.DeleteTheaterScreenByID:output_type -> moviebooking.DeleteTheaterScreenResponse
+	134, // 177: moviebooking.TheatreService.DeleteTheaterScreenByNumber:output_type -> moviebooking.DeleteTheaterScreenByNumberResponse
+	136, // 178: moviebooking.TheatreService.GetTheaterScreenByID:output_type -> moviebooking.GetTheaterScreenByIDResponse
+	138, // 179: moviebooking.TheatreService.GetTheaterScreenByNumber:output_type -> moviebooking.GetTheaterScreenByNumberResponse
+	140, // 180: moviebooking.TheatreService.UpdateTheaterScreen:output_type -> moviebooking.UpdateTheaterScreenResponse
+	142, // 181: moviebooking.TheatreService.ListTheaterScreens:output_type -> moviebooking.ListTheaterScreensResponse
+	145, // 182: moviebooking.TheatreService.AddShowtime:output_type -> moviebooking.AddShowtimeResponse
+	147, // 183: moviebooking.TheatreService.DeleteShowtimeByID:output_type -> moviebooking.DeleteShowtimeResponse
+	149, // 184: moviebooking.TheatreService.DeleteShowtimeByDetails:output_type -> moviebooking.DeleteShowtimeByDetailsResponse
+	151, // 185: moviebooking.TheatreService.GetShowtimeByID:output_type -> moviebooking.GetShowtimeByIDResponse
+	153, // 186: moviebooking.TheatreService.GetShowtimeByDetails:output_type -> moviebooking.GetShowtimeByDetailsResponse
+	155, // 187: moviebooking.TheatreService.UpdateShowtime:output_type -> moviebooking.UpdateShowtimeResponse
+	157, // 188: moviebooking.TheatreService.ListShowtimes:output_type -> moviebooking.ListShowtimesResponse
+	32,  // 189: moviebooking.TheatreService.AddMovieSchedule:output_type -> moviebooking.AddMovieScheduleResponse
+	34,  // 190: moviebooking.TheatreService.UpdateMovieSchedule:output_type -> moviebooking.UpdateMovieScheduleResponse
+	36,  // 191: moviebooking.TheatreService.GetAllMovieSchedules:output_type -> moviebooking.GetAllMovieScheduleResponse
+	38,  // 192: moviebooking.TheatreService.GetMovieScheduleByMovieID:output_type -> moviebooking.GetMovieScheduleByMovieIdResponse
+	40,  // 193: moviebooking.TheatreService.GetMovieScheduleByTheaterID:output_type -> moviebooking.GetMovieScheduleByTheaterIdResponse
+	42,  // 194: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndTheaterId:output_type -> moviebooking.GetMovieScheduleByMovieIdAndTheaterIdResponse
+	44,  // 195: moviebooking.TheatreService.GetMovieScheduleByMovieIdAndShowTimeId:output_type -> moviebooking.GetMovieScheduleByMovieIdAndShowTimeIdResponse
+	46,  // 196: moviebooking.TheatreService.GetMovieScheduleByTheaterIdAndShowTimeId:output_type -> moviebooking.GetGetMovieScheduleByTheaterIdAndShowTimeIdResponse
+	48,  // 197: moviebooking.TheatreService.GetMovieScheduleByID:output_type -> moviebooking.GetMovieScheduleByIDResponse
+	50,  // 198: moviebooking.TheatreService.DeleteMovieScheduleById:output_type -> moviebooking.DeleteMovieScheduleByIdResponse
+	52,  // 199: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterId:output_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdResponse
+	54,  // 200: moviebooking.TheatreService.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId:output_type -> moviebooking.DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeIdResponse
+	23,  // 201: moviebooking.TheatreService.CreateSeats:output_type -> moviebooking.CreateSeatsResponse
+	25,  // 202: moviebooking.TheatreService.GetSeatsByScreenID:output_type -> moviebooking.GetSeatsByScreenIDResponse
+	22,  // 203: moviebooking.TheatreService.GetSeatByID:output_type -> moviebooking.GetSeatByIdResponse
+	20,  // 204: moviebooking.TheatreService.GetSeatBySeatNumberAndScreenID:output_type -> moviebooking.GetSeatBySeatNumberAndScreenIdResponse
+	27,  // 205: moviebooking.TheatreService.DeleteSeatByID:output_type -> moviebooking.DeleteSeatByIdResponse
+	29,  // 206: moviebooking.TheatreService.DeleteSeatBySeatNumberAndScreenID:output_type -> moviebooking.DeleteSeatBySeatNumberAndScreenIDResponse
+	7,   // 207: moviebooking.TheatreService.GetTheatersByCity:output_type -> moviebooking.GetTheatersByCityResponse
+	76,  // 208: moviebooking.TheatreService.GetTheatersByName:output_type -> moviebooking.GetTheaterByNameResponse
+	9,   // 209: moviebooking.TheatreService.GetTheatersByMovieName:output_type -> moviebooking.GetTheatersByMovieIdResponse
+	11,  // 210: moviebooking.TheatreService.GetScreensAndMovieScedulesByTheaterID:output_type -> moviebooking.GetScreensAndMovieScedulesByTheaterIdResponse
+	13,  // 211: moviebooking.TheatreService.ListShowTimeByTheaterID:output_type -> moviebooking.ListShowTimeByTheaterIdResponse
+	15,  // 212: moviebooking.TheatreService.ListShowTimeByTheaterIDandMovieID:output_type -> moviebooking.ListShowTimeByTheaterIdandMovieIdResponse
+	138, // [138:213] is the sub-list for method output_type
+	63,  // [63:138] is the sub-list for method input_type
 	63,  // [63:63] is the sub-list for extension type_name
 	63,  // [63:63] is the sub-list for extension extendee
 	0,   // [0:63] is the sub-list for field type_name

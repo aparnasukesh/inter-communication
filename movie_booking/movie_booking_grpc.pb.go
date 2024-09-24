@@ -22,9 +22,8 @@ const (
 	MovieService_RegisterMovie_FullMethodName       = "/moviebooking.MovieService/RegisterMovie"
 	MovieService_UpdateMovie_FullMethodName         = "/moviebooking.MovieService/UpdateMovie"
 	MovieService_ListMovies_FullMethodName          = "/moviebooking.MovieService/ListMovies"
-	MovieService_GetMovieDetails_FullMethodName     = "/moviebooking.MovieService/GetMovieDetails"
-	MovieService_DeleteMovie_FullMethodName         = "/moviebooking.MovieService/DeleteMovie"
 	MovieService_GetMovieDetailsByID_FullMethodName = "/moviebooking.MovieService/GetMovieDetailsByID"
+	MovieService_DeleteMovie_FullMethodName         = "/moviebooking.MovieService/DeleteMovie"
 	MovieService_GetMovieByName_FullMethodName      = "/moviebooking.MovieService/GetMovieByName"
 	MovieService_GetMoviesByGenre_FullMethodName    = "/moviebooking.MovieService/GetMoviesByGenre"
 	MovieService_GetMoviesByLanguage_FullMethodName = "/moviebooking.MovieService/GetMoviesByLanguage"
@@ -39,9 +38,8 @@ type MovieServiceClient interface {
 	RegisterMovie(ctx context.Context, in *RegisterMovieRequest, opts ...grpc.CallOption) (*RegisterMovieResponse, error)
 	UpdateMovie(ctx context.Context, in *UpdateMovieRequest, opts ...grpc.CallOption) (*UpdateMovieResponse, error)
 	ListMovies(ctx context.Context, in *ListMoviesRequest, opts ...grpc.CallOption) (*ListMoviesResponse, error)
-	GetMovieDetails(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error)
-	DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error)
 	GetMovieDetailsByID(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error)
+	DeleteMovie(ctx context.Context, in *DeleteMovieRequest, opts ...grpc.CallOption) (*DeleteMovieResponse, error)
 	GetMovieByName(ctx context.Context, in *GetMovieByNameRequest, opts ...grpc.CallOption) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(ctx context.Context, in *GetMoviesByGenreRequest, opts ...grpc.CallOption) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(ctx context.Context, in *GetMoviesByLanguageRequest, opts ...grpc.CallOption) (*GetMoviesByLanguageResponse, error)
@@ -85,10 +83,10 @@ func (c *movieServiceClient) ListMovies(ctx context.Context, in *ListMoviesReque
 	return out, nil
 }
 
-func (c *movieServiceClient) GetMovieDetails(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error) {
+func (c *movieServiceClient) GetMovieDetailsByID(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMovieDetailsResponse)
-	err := c.cc.Invoke(ctx, MovieService_GetMovieDetails_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, MovieService_GetMovieDetailsByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,16 +97,6 @@ func (c *movieServiceClient) DeleteMovie(ctx context.Context, in *DeleteMovieReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteMovieResponse)
 	err := c.cc.Invoke(ctx, MovieService_DeleteMovie_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *movieServiceClient) GetMovieDetailsByID(ctx context.Context, in *GetMovieDetailsRequest, opts ...grpc.CallOption) (*GetMovieDetailsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMovieDetailsResponse)
-	err := c.cc.Invoke(ctx, MovieService_GetMovieDetailsByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -154,9 +142,8 @@ type MovieServiceServer interface {
 	RegisterMovie(context.Context, *RegisterMovieRequest) (*RegisterMovieResponse, error)
 	UpdateMovie(context.Context, *UpdateMovieRequest) (*UpdateMovieResponse, error)
 	ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error)
-	GetMovieDetails(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error)
-	DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error)
 	GetMovieDetailsByID(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error)
+	DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error)
 	GetMovieByName(context.Context, *GetMovieByNameRequest) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(context.Context, *GetMoviesByGenreRequest) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(context.Context, *GetMoviesByLanguageRequest) (*GetMoviesByLanguageResponse, error)
@@ -176,14 +163,11 @@ func (UnimplementedMovieServiceServer) UpdateMovie(context.Context, *UpdateMovie
 func (UnimplementedMovieServiceServer) ListMovies(context.Context, *ListMoviesRequest) (*ListMoviesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMovies not implemented")
 }
-func (UnimplementedMovieServiceServer) GetMovieDetails(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMovieDetails not implemented")
+func (UnimplementedMovieServiceServer) GetMovieDetailsByID(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovieDetailsByID not implemented")
 }
 func (UnimplementedMovieServiceServer) DeleteMovie(context.Context, *DeleteMovieRequest) (*DeleteMovieResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMovie not implemented")
-}
-func (UnimplementedMovieServiceServer) GetMovieDetailsByID(context.Context, *GetMovieDetailsRequest) (*GetMovieDetailsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMovieDetailsByID not implemented")
 }
 func (UnimplementedMovieServiceServer) GetMovieByName(context.Context, *GetMovieByNameRequest) (*GetMovieByNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMovieByName not implemented")
@@ -261,20 +245,20 @@ func _MovieService_ListMovies_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MovieService_GetMovieDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MovieService_GetMovieDetailsByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMovieDetailsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MovieServiceServer).GetMovieDetails(ctx, in)
+		return srv.(MovieServiceServer).GetMovieDetailsByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MovieService_GetMovieDetails_FullMethodName,
+		FullMethod: MovieService_GetMovieDetailsByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MovieServiceServer).GetMovieDetails(ctx, req.(*GetMovieDetailsRequest))
+		return srv.(MovieServiceServer).GetMovieDetailsByID(ctx, req.(*GetMovieDetailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -293,24 +277,6 @@ func _MovieService_DeleteMovie_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MovieServiceServer).DeleteMovie(ctx, req.(*DeleteMovieRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MovieService_GetMovieDetailsByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMovieDetailsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MovieServiceServer).GetMovieDetailsByID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MovieService_GetMovieDetailsByID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MovieServiceServer).GetMovieDetailsByID(ctx, req.(*GetMovieDetailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -389,16 +355,12 @@ var MovieService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MovieService_ListMovies_Handler,
 		},
 		{
-			MethodName: "GetMovieDetails",
-			Handler:    _MovieService_GetMovieDetails_Handler,
+			MethodName: "GetMovieDetailsByID",
+			Handler:    _MovieService_GetMovieDetailsByID_Handler,
 		},
 		{
 			MethodName: "DeleteMovie",
 			Handler:    _MovieService_DeleteMovie_Handler,
-		},
-		{
-			MethodName: "GetMovieDetailsByID",
-			Handler:    _MovieService_GetMovieDetailsByID_Handler,
 		},
 		{
 			MethodName: "GetMovieByName",

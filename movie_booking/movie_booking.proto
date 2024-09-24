@@ -11,9 +11,8 @@ service MovieService {
     rpc RegisterMovie (RegisterMovieRequest) returns (RegisterMovieResponse);
     rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse);
     rpc ListMovies (ListMoviesRequest) returns (ListMoviesResponse);
-    rpc GetMovieDetails(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
+    rpc GetMovieDetailsByID(GetMovieDetailsRequest) returns (GetMovieDetailsResponse);
     rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
-    rpc GetMovieDetailsByID(GetMovieDetailsRequest)returns(GetMovieDetailsResponse);
     rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
     rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
     rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
