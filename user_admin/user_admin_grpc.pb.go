@@ -31,6 +31,7 @@ const (
 	UserService_GetMovieByName_FullMethodName                        = "/useradmin.UserService/GetMovieByName"
 	UserService_GetMoviesByGenre_FullMethodName                      = "/useradmin.UserService/GetMoviesByGenre"
 	UserService_GetMoviesByLanguage_FullMethodName                   = "/useradmin.UserService/GetMoviesByLanguage"
+	UserService_GetMovieByNameAndLanguage_FullMethodName             = "/useradmin.UserService/GetMovieByNameAndLanguage"
 	UserService_ListAllTheaters_FullMethodName                       = "/useradmin.UserService/ListAllTheaters"
 	UserService_GetTheaterByID_FullMethodName                        = "/useradmin.UserService/GetTheaterByID"
 	UserService_GetTheatersByCity_FullMethodName                     = "/useradmin.UserService/GetTheatersByCity"
@@ -60,6 +61,7 @@ type UserServiceClient interface {
 	GetMovieByName(ctx context.Context, in *GetMovieByNameRequest, opts ...grpc.CallOption) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(ctx context.Context, in *GetMoviesByGenreRequest, opts ...grpc.CallOption) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(ctx context.Context, in *GetMoviesByLanguageRequest, opts ...grpc.CallOption) (*GetMoviesByLanguageResponse, error)
+	GetMovieByNameAndLanguage(ctx context.Context, in *GetMovieByNameAndLanguageRequest, opts ...grpc.CallOption) (*GetMovieByNameAndLanguageResponse, error)
 	// Theaters
 	ListAllTheaters(ctx context.Context, in *ListAllTheatersRequest, opts ...grpc.CallOption) (*ListAllTheatersResponse, error)
 	GetTheaterByID(ctx context.Context, in *GetTheaterByIDRequest, opts ...grpc.CallOption) (*GetTheaterByIDResponse, error)
@@ -199,6 +201,16 @@ func (c *userServiceClient) GetMoviesByLanguage(ctx context.Context, in *GetMovi
 	return out, nil
 }
 
+func (c *userServiceClient) GetMovieByNameAndLanguage(ctx context.Context, in *GetMovieByNameAndLanguageRequest, opts ...grpc.CallOption) (*GetMovieByNameAndLanguageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMovieByNameAndLanguageResponse)
+	err := c.cc.Invoke(ctx, UserService_GetMovieByNameAndLanguage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) ListAllTheaters(ctx context.Context, in *ListAllTheatersRequest, opts ...grpc.CallOption) (*ListAllTheatersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListAllTheatersResponse)
@@ -298,6 +310,7 @@ type UserServiceServer interface {
 	GetMovieByName(context.Context, *GetMovieByNameRequest) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(context.Context, *GetMoviesByGenreRequest) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(context.Context, *GetMoviesByLanguageRequest) (*GetMoviesByLanguageResponse, error)
+	GetMovieByNameAndLanguage(context.Context, *GetMovieByNameAndLanguageRequest) (*GetMovieByNameAndLanguageResponse, error)
 	// Theaters
 	ListAllTheaters(context.Context, *ListAllTheatersRequest) (*ListAllTheatersResponse, error)
 	GetTheaterByID(context.Context, *GetTheaterByIDRequest) (*GetTheaterByIDResponse, error)
@@ -349,6 +362,9 @@ func (UnimplementedUserServiceServer) GetMoviesByGenre(context.Context, *GetMovi
 }
 func (UnimplementedUserServiceServer) GetMoviesByLanguage(context.Context, *GetMoviesByLanguageRequest) (*GetMoviesByLanguageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMoviesByLanguage not implemented")
+}
+func (UnimplementedUserServiceServer) GetMovieByNameAndLanguage(context.Context, *GetMovieByNameAndLanguageRequest) (*GetMovieByNameAndLanguageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovieByNameAndLanguage not implemented")
 }
 func (UnimplementedUserServiceServer) ListAllTheaters(context.Context, *ListAllTheatersRequest) (*ListAllTheatersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllTheaters not implemented")
@@ -603,6 +619,24 @@ func _UserService_GetMoviesByLanguage_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetMovieByNameAndLanguage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMovieByNameAndLanguageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetMovieByNameAndLanguage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetMovieByNameAndLanguage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetMovieByNameAndLanguage(ctx, req.(*GetMovieByNameAndLanguageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_ListAllTheaters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListAllTheatersRequest)
 	if err := dec(in); err != nil {
@@ -801,6 +835,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMoviesByLanguage",
 			Handler:    _UserService_GetMoviesByLanguage_Handler,
+		},
+		{
+			MethodName: "GetMovieByNameAndLanguage",
+			Handler:    _UserService_GetMovieByNameAndLanguage_Handler,
 		},
 		{
 			MethodName: "ListAllTheaters",

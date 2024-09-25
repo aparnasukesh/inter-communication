@@ -16,6 +16,7 @@ service MovieService {
     rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
     rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
     rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
+    rpc GetMovieByNameAndLanguage(GetMovieByNameAndLanguageRequest)returns(GetMovieByNameAndLanguageResponse);
 }
 
 // Theatre Service definition
@@ -106,6 +107,14 @@ service TheatreService {
      rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
 }
 
+message GetMovieByNameAndLanguageRequest{
+    string name = 1;
+    string language = 2;
+}
+
+message GetMovieByNameAndLanguageResponse{
+    Movie Movie = 1;
+}
 
 message GetMovieByNameRequest{
     string movie_name = 1 ;

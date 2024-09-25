@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	MovieService_RegisterMovie_FullMethodName       = "/moviebooking.MovieService/RegisterMovie"
-	MovieService_UpdateMovie_FullMethodName         = "/moviebooking.MovieService/UpdateMovie"
-	MovieService_ListMovies_FullMethodName          = "/moviebooking.MovieService/ListMovies"
-	MovieService_GetMovieDetailsByID_FullMethodName = "/moviebooking.MovieService/GetMovieDetailsByID"
-	MovieService_DeleteMovie_FullMethodName         = "/moviebooking.MovieService/DeleteMovie"
-	MovieService_GetMovieByName_FullMethodName      = "/moviebooking.MovieService/GetMovieByName"
-	MovieService_GetMoviesByGenre_FullMethodName    = "/moviebooking.MovieService/GetMoviesByGenre"
-	MovieService_GetMoviesByLanguage_FullMethodName = "/moviebooking.MovieService/GetMoviesByLanguage"
+	MovieService_RegisterMovie_FullMethodName             = "/moviebooking.MovieService/RegisterMovie"
+	MovieService_UpdateMovie_FullMethodName               = "/moviebooking.MovieService/UpdateMovie"
+	MovieService_ListMovies_FullMethodName                = "/moviebooking.MovieService/ListMovies"
+	MovieService_GetMovieDetailsByID_FullMethodName       = "/moviebooking.MovieService/GetMovieDetailsByID"
+	MovieService_DeleteMovie_FullMethodName               = "/moviebooking.MovieService/DeleteMovie"
+	MovieService_GetMovieByName_FullMethodName            = "/moviebooking.MovieService/GetMovieByName"
+	MovieService_GetMoviesByGenre_FullMethodName          = "/moviebooking.MovieService/GetMoviesByGenre"
+	MovieService_GetMoviesByLanguage_FullMethodName       = "/moviebooking.MovieService/GetMoviesByLanguage"
+	MovieService_GetMovieByNameAndLanguage_FullMethodName = "/moviebooking.MovieService/GetMovieByNameAndLanguage"
 )
 
 // MovieServiceClient is the client API for MovieService service.
@@ -43,6 +44,7 @@ type MovieServiceClient interface {
 	GetMovieByName(ctx context.Context, in *GetMovieByNameRequest, opts ...grpc.CallOption) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(ctx context.Context, in *GetMoviesByGenreRequest, opts ...grpc.CallOption) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(ctx context.Context, in *GetMoviesByLanguageRequest, opts ...grpc.CallOption) (*GetMoviesByLanguageResponse, error)
+	GetMovieByNameAndLanguage(ctx context.Context, in *GetMovieByNameAndLanguageRequest, opts ...grpc.CallOption) (*GetMovieByNameAndLanguageResponse, error)
 }
 
 type movieServiceClient struct {
@@ -133,6 +135,16 @@ func (c *movieServiceClient) GetMoviesByLanguage(ctx context.Context, in *GetMov
 	return out, nil
 }
 
+func (c *movieServiceClient) GetMovieByNameAndLanguage(ctx context.Context, in *GetMovieByNameAndLanguageRequest, opts ...grpc.CallOption) (*GetMovieByNameAndLanguageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMovieByNameAndLanguageResponse)
+	err := c.cc.Invoke(ctx, MovieService_GetMovieByNameAndLanguage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MovieServiceServer is the server API for MovieService service.
 // All implementations must embed UnimplementedMovieServiceServer
 // for forward compatibility
@@ -147,6 +159,7 @@ type MovieServiceServer interface {
 	GetMovieByName(context.Context, *GetMovieByNameRequest) (*GetMovieByNameResponse, error)
 	GetMoviesByGenre(context.Context, *GetMoviesByGenreRequest) (*GetMoviesByGenreResponse, error)
 	GetMoviesByLanguage(context.Context, *GetMoviesByLanguageRequest) (*GetMoviesByLanguageResponse, error)
+	GetMovieByNameAndLanguage(context.Context, *GetMovieByNameAndLanguageRequest) (*GetMovieByNameAndLanguageResponse, error)
 	mustEmbedUnimplementedMovieServiceServer()
 }
 
@@ -177,6 +190,9 @@ func (UnimplementedMovieServiceServer) GetMoviesByGenre(context.Context, *GetMov
 }
 func (UnimplementedMovieServiceServer) GetMoviesByLanguage(context.Context, *GetMoviesByLanguageRequest) (*GetMoviesByLanguageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMoviesByLanguage not implemented")
+}
+func (UnimplementedMovieServiceServer) GetMovieByNameAndLanguage(context.Context, *GetMovieByNameAndLanguageRequest) (*GetMovieByNameAndLanguageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMovieByNameAndLanguage not implemented")
 }
 func (UnimplementedMovieServiceServer) mustEmbedUnimplementedMovieServiceServer() {}
 
@@ -335,6 +351,24 @@ func _MovieService_GetMoviesByLanguage_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MovieService_GetMovieByNameAndLanguage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMovieByNameAndLanguageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovieServiceServer).GetMovieByNameAndLanguage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MovieService_GetMovieByNameAndLanguage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovieServiceServer).GetMovieByNameAndLanguage(ctx, req.(*GetMovieByNameAndLanguageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MovieService_ServiceDesc is the grpc.ServiceDesc for MovieService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -373,6 +407,10 @@ var MovieService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMoviesByLanguage",
 			Handler:    _MovieService_GetMoviesByLanguage_Handler,
+		},
+		{
+			MethodName: "GetMovieByNameAndLanguage",
+			Handler:    _MovieService_GetMovieByNameAndLanguage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

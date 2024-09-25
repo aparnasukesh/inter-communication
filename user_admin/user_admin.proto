@@ -21,6 +21,7 @@ service UserService {
     rpc GetMovieByName(GetMovieByNameRequest)returns(GetMovieByNameResponse);
     rpc GetMoviesByGenre(GetMoviesByGenreRequest)returns(GetMoviesByGenreResponse);
     rpc GetMoviesByLanguage(GetMoviesByLanguageRequest)returns(GetMoviesByLanguageResponse);
+    rpc GetMovieByNameAndLanguage(GetMovieByNameAndLanguageRequest)returns(GetMovieByNameAndLanguageResponse);
     //Theaters
     rpc ListAllTheaters(ListAllTheatersRequest)returns(ListAllTheatersResponse);
     rpc GetTheaterByID(GetTheaterByIDRequest)returns(GetTheaterByIDResponse);
@@ -239,6 +240,15 @@ message ResetPasswordRequest{
 
 message ResetPasswordResponse{
     string status = 1;
+}
+
+message GetMovieByNameAndLanguageRequest{
+    string name = 1;
+    string language = 2;
+}
+
+message GetMovieByNameAndLanguageResponse{
+    Movie Movie = 1;
 }
 
 message GetMovieByNameRequest{
