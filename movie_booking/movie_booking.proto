@@ -457,7 +457,9 @@ message Theater{
     uint32 owner_id = 7;
     int32 number_of_screens = 8;
     int32 theater_type_id = 9;
+    TheaterType theater_type = 10;
 }
+
 message AddTheaterRequest {
     string name = 1;
     string place = 2;
@@ -521,7 +523,6 @@ message ListTheatersRequest {}
 
 message ListTheatersResponse {
     repeated Theater theaters = 1;
-    repeated TheaterType theater_type = 2;
 }
 
 message GetTheatersByAdminIdRequest{
