@@ -100,10 +100,18 @@ service TheatreService {
 
     //Theaters
     rpc GetTheatersByCity(GetTheatersByCityRequest) returns (GetTheatersByCityResponse);
-    rpc GetTheatersByMovieName(GetTheatersByMovieIdRequest)returns(GetTheatersByMovieIdResponse);
+    rpc GetTheatersAndMovieScheduleByMovieName(GetTheatersAndMovieScheduleByMovieNameRequest)returns(GetTheatersAndMovieScheduleByMovieNameResponse);
     rpc GetScreensAndMovieScedulesByTheaterID(GetScreensAndMovieScedulesByTheaterIdRequest)returns(GetScreensAndMovieScedulesByTheaterIdResponse);
     rpc ListShowTimeByTheaterID(ListShowTimeByTheaterIdRequest)returns(ListShowTimeByTheaterIdResponse);
     rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
+}
+
+message GetTheatersAndMovieScheduleByMovieNameRequest{
+    string name = 1;
+}
+
+message GetTheatersAndMovieScheduleByMovieNameResponse{
+    repeated MovieSchedule movie_scedule = 1;
 }
 
 message GetMovieByNameAndLanguageRequest{

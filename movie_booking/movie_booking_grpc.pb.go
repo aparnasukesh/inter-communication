@@ -480,7 +480,7 @@ const (
 	TheatreService_DeleteSeatByID_FullMethodName                                        = "/moviebooking.TheatreService/DeleteSeatByID"
 	TheatreService_DeleteSeatBySeatNumberAndScreenID_FullMethodName                     = "/moviebooking.TheatreService/DeleteSeatBySeatNumberAndScreenID"
 	TheatreService_GetTheatersByCity_FullMethodName                                     = "/moviebooking.TheatreService/GetTheatersByCity"
-	TheatreService_GetTheatersByMovieName_FullMethodName                                = "/moviebooking.TheatreService/GetTheatersByMovieName"
+	TheatreService_GetTheatersAndMovieScheduleByMovieName_FullMethodName                = "/moviebooking.TheatreService/GetTheatersAndMovieScheduleByMovieName"
 	TheatreService_GetScreensAndMovieScedulesByTheaterID_FullMethodName                 = "/moviebooking.TheatreService/GetScreensAndMovieScedulesByTheaterID"
 	TheatreService_ListShowTimeByTheaterID_FullMethodName                               = "/moviebooking.TheatreService/ListShowTimeByTheaterID"
 	TheatreService_ListShowTimeByTheaterIDandMovieID_FullMethodName                     = "/moviebooking.TheatreService/ListShowTimeByTheaterIDandMovieID"
@@ -563,7 +563,7 @@ type TheatreServiceClient interface {
 	DeleteSeatBySeatNumberAndScreenID(ctx context.Context, in *DeleteSeatBySeatNumberAndScreenIDRequest, opts ...grpc.CallOption) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 	// Theaters
 	GetTheatersByCity(ctx context.Context, in *GetTheatersByCityRequest, opts ...grpc.CallOption) (*GetTheatersByCityResponse, error)
-	GetTheatersByMovieName(ctx context.Context, in *GetTheatersByMovieIdRequest, opts ...grpc.CallOption) (*GetTheatersByMovieIdResponse, error)
+	GetTheatersAndMovieScheduleByMovieName(ctx context.Context, in *GetTheatersAndMovieScheduleByMovieNameRequest, opts ...grpc.CallOption) (*GetTheatersAndMovieScheduleByMovieNameResponse, error)
 	GetScreensAndMovieScedulesByTheaterID(ctx context.Context, in *GetScreensAndMovieScedulesByTheaterIdRequest, opts ...grpc.CallOption) (*GetScreensAndMovieScedulesByTheaterIdResponse, error)
 	ListShowTimeByTheaterID(ctx context.Context, in *ListShowTimeByTheaterIdRequest, opts ...grpc.CallOption) (*ListShowTimeByTheaterIdResponse, error)
 	ListShowTimeByTheaterIDandMovieID(ctx context.Context, in *ListShowTimeByTheaterIdandMovieIdRequest, opts ...grpc.CallOption) (*ListShowTimeByTheaterIdandMovieIdResponse, error)
@@ -1197,10 +1197,10 @@ func (c *theatreServiceClient) GetTheatersByCity(ctx context.Context, in *GetThe
 	return out, nil
 }
 
-func (c *theatreServiceClient) GetTheatersByMovieName(ctx context.Context, in *GetTheatersByMovieIdRequest, opts ...grpc.CallOption) (*GetTheatersByMovieIdResponse, error) {
+func (c *theatreServiceClient) GetTheatersAndMovieScheduleByMovieName(ctx context.Context, in *GetTheatersAndMovieScheduleByMovieNameRequest, opts ...grpc.CallOption) (*GetTheatersAndMovieScheduleByMovieNameResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTheatersByMovieIdResponse)
-	err := c.cc.Invoke(ctx, TheatreService_GetTheatersByMovieName_FullMethodName, in, out, cOpts...)
+	out := new(GetTheatersAndMovieScheduleByMovieNameResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetTheatersAndMovieScheduleByMovieName_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1314,7 +1314,7 @@ type TheatreServiceServer interface {
 	DeleteSeatBySeatNumberAndScreenID(context.Context, *DeleteSeatBySeatNumberAndScreenIDRequest) (*DeleteSeatBySeatNumberAndScreenIDResponse, error)
 	// Theaters
 	GetTheatersByCity(context.Context, *GetTheatersByCityRequest) (*GetTheatersByCityResponse, error)
-	GetTheatersByMovieName(context.Context, *GetTheatersByMovieIdRequest) (*GetTheatersByMovieIdResponse, error)
+	GetTheatersAndMovieScheduleByMovieName(context.Context, *GetTheatersAndMovieScheduleByMovieNameRequest) (*GetTheatersAndMovieScheduleByMovieNameResponse, error)
 	GetScreensAndMovieScedulesByTheaterID(context.Context, *GetScreensAndMovieScedulesByTheaterIdRequest) (*GetScreensAndMovieScedulesByTheaterIdResponse, error)
 	ListShowTimeByTheaterID(context.Context, *ListShowTimeByTheaterIdRequest) (*ListShowTimeByTheaterIdResponse, error)
 	ListShowTimeByTheaterIDandMovieID(context.Context, *ListShowTimeByTheaterIdandMovieIdRequest) (*ListShowTimeByTheaterIdandMovieIdResponse, error)
@@ -1511,8 +1511,8 @@ func (UnimplementedTheatreServiceServer) DeleteSeatBySeatNumberAndScreenID(conte
 func (UnimplementedTheatreServiceServer) GetTheatersByCity(context.Context, *GetTheatersByCityRequest) (*GetTheatersByCityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTheatersByCity not implemented")
 }
-func (UnimplementedTheatreServiceServer) GetTheatersByMovieName(context.Context, *GetTheatersByMovieIdRequest) (*GetTheatersByMovieIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTheatersByMovieName not implemented")
+func (UnimplementedTheatreServiceServer) GetTheatersAndMovieScheduleByMovieName(context.Context, *GetTheatersAndMovieScheduleByMovieNameRequest) (*GetTheatersAndMovieScheduleByMovieNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTheatersAndMovieScheduleByMovieName not implemented")
 }
 func (UnimplementedTheatreServiceServer) GetScreensAndMovieScedulesByTheaterID(context.Context, *GetScreensAndMovieScedulesByTheaterIdRequest) (*GetScreensAndMovieScedulesByTheaterIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetScreensAndMovieScedulesByTheaterID not implemented")
@@ -2652,20 +2652,20 @@ func _TheatreService_GetTheatersByCity_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TheatreService_GetTheatersByMovieName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTheatersByMovieIdRequest)
+func _TheatreService_GetTheatersAndMovieScheduleByMovieName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTheatersAndMovieScheduleByMovieNameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TheatreServiceServer).GetTheatersByMovieName(ctx, in)
+		return srv.(TheatreServiceServer).GetTheatersAndMovieScheduleByMovieName(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TheatreService_GetTheatersByMovieName_FullMethodName,
+		FullMethod: TheatreService_GetTheatersAndMovieScheduleByMovieName_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TheatreServiceServer).GetTheatersByMovieName(ctx, req.(*GetTheatersByMovieIdRequest))
+		return srv.(TheatreServiceServer).GetTheatersAndMovieScheduleByMovieName(ctx, req.(*GetTheatersAndMovieScheduleByMovieNameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2980,8 +2980,8 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TheatreService_GetTheatersByCity_Handler,
 		},
 		{
-			MethodName: "GetTheatersByMovieName",
-			Handler:    _TheatreService_GetTheatersByMovieName_Handler,
+			MethodName: "GetTheatersAndMovieScheduleByMovieName",
+			Handler:    _TheatreService_GetTheatersAndMovieScheduleByMovieName_Handler,
 		},
 		{
 			MethodName: "GetScreensAndMovieScedulesByTheaterID",
