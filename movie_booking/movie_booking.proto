@@ -98,13 +98,12 @@ service TheatreService {
     rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
     rpc DeleteSeatBySeatNumberAndScreenID(DeleteSeatBySeatNumberAndScreenIDRequest)returns (DeleteSeatBySeatNumberAndScreenIDResponse);
 
-     //Theaters
-     rpc GetTheatersByCity(GetTheatersByCityRequest) returns (GetTheatersByCityResponse);
-     rpc GetTheatersByName(GetTheaterByNameRequest)returns(GetTheaterByNameResponse);
-     rpc GetTheatersByMovieName(GetTheatersByMovieIdRequest)returns(GetTheatersByMovieIdResponse);
-     rpc GetScreensAndMovieScedulesByTheaterID(GetScreensAndMovieScedulesByTheaterIdRequest)returns(GetScreensAndMovieScedulesByTheaterIdResponse);
-     rpc ListShowTimeByTheaterID(ListShowTimeByTheaterIdRequest)returns(ListShowTimeByTheaterIdResponse);
-     rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
+    //Theaters
+    rpc GetTheatersByCity(GetTheatersByCityRequest) returns (GetTheatersByCityResponse);
+    rpc GetTheatersByMovieName(GetTheatersByMovieIdRequest)returns(GetTheatersByMovieIdResponse);
+    rpc GetScreensAndMovieScedulesByTheaterID(GetScreensAndMovieScedulesByTheaterIdRequest)returns(GetScreensAndMovieScedulesByTheaterIdResponse);
+    rpc ListShowTimeByTheaterID(ListShowTimeByTheaterIdRequest)returns(ListShowTimeByTheaterIdResponse);
+    rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
 }
 
 message GetMovieByNameAndLanguageRequest{
@@ -146,7 +145,6 @@ message GetTheatersByCityRequest{
 
 message GetTheatersByCityResponse{
     repeated Theater theater = 1;
-    repeated TheaterType theater_type = 2;
 }
 
 message GetTheatersByMovieIdRequest{
@@ -155,7 +153,6 @@ message GetTheatersByMovieIdRequest{
 
 message GetTheatersByMovieIdResponse{
     repeated Theater theater = 1;
-    repeated TheaterType theater_type = 2;
 }
 
 message GetScreensAndMovieScedulesByTheaterIdRequest{
@@ -166,9 +163,7 @@ message GetScreensAndMovieScedulesByTheaterIdResponse{
     Theater theater = 1;
     TheaterType theater_type = 2;
     repeated MovieSchedule movie_schedule = 3;
-    repeated Showtime show_time = 4;
     repeated TheaterScreen theater_screen = 5;
-    repeated Movie movie = 6;
 }
 
 message ListShowTimeByTheaterIdRequest{
@@ -177,10 +172,7 @@ message ListShowTimeByTheaterIdRequest{
 
 message ListShowTimeByTheaterIdResponse{
     Theater theater = 1;
-    TheaterType theater_type = 2;
     repeated Showtime show_time = 3;
-    repeated MovieSchedule movie_schedule = 4;
-    repeated Movie movie = 5;
 }
 
 message ListShowTimeByTheaterIdandMovieIdRequest{
@@ -202,6 +194,7 @@ message Seat {
     string seat_number = 5;
     int32 seat_category_id = 6;
     double seat_category_price = 7;
+    TheaterScreen theater_screen = 8;
 }
 
 message CreateSeatsRequest {
@@ -269,6 +262,9 @@ message MovieSchedule{
 	int32 movie_id = 2;     
 	int32 theater_id  = 3;   
 	int32 showtime_id = 4;
+    Movie movie = 5;
+    Theater theater = 6;
+    Showtime show_time = 7;
 }
 
 message AddMovieScheduleRequest{
@@ -492,7 +488,6 @@ message GetTheaterByIDRequest {
 
 message GetTheaterByIDResponse {
     Theater theater = 1;
-    TheaterType theater_type = 2;
 }
 
 message GetTheaterByNameRequest {
@@ -501,7 +496,6 @@ message GetTheaterByNameRequest {
 
 message GetTheaterByNameResponse {
    repeated Theater theater = 1;
-   repeated TheaterType theater_type = 2;
 }
 
 message UpdateTheaterRequest {
@@ -724,6 +718,8 @@ message TheaterScreen {
     int32 ScreenNumber = 3;
     int32 SeatCapacity = 4;
     int32 ScreenTypeID = 5;
+    Theater theater = 6;
+    ScreenType screen_type = 7;
 }
 message AddTheaterScreenRequest {
     int32 owner_id = 1;
@@ -787,6 +783,8 @@ message Showtime {
     int32 screen_id = 3;
     google.protobuf.Timestamp show_date = 4;
     google.protobuf.Timestamp show_time = 5;
+    Movie movie = 6;
+    TheaterScreen theater_screen = 7;
 }
 
 message AddShowtimeRequest {
