@@ -900,6 +900,7 @@ message ListAllTheatersRequest{
 
 message ListAllTheatersResponse{
     repeated Theater theater = 1;
+    repeated TheaterType theater_type = 2;
 }
 
 message GetTheatersByAdminIdRequest{

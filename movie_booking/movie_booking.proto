@@ -146,6 +146,7 @@ message GetTheatersByCityRequest{
 
 message GetTheatersByCityResponse{
     repeated Theater theater = 1;
+    repeated TheaterType theater_type = 2;
 }
 
 message GetTheatersByMovieIdRequest{
@@ -154,6 +155,7 @@ message GetTheatersByMovieIdRequest{
 
 message GetTheatersByMovieIdResponse{
     repeated Theater theater = 1;
+    repeated TheaterType theater_type = 2;
 }
 
 message GetScreensAndMovieScedulesByTheaterIdRequest{
@@ -162,10 +164,11 @@ message GetScreensAndMovieScedulesByTheaterIdRequest{
 
 message GetScreensAndMovieScedulesByTheaterIdResponse{
     Theater theater = 1;
-    repeated MovieSchedule movie_schedule = 2;
-    repeated Showtime show_time = 3;
-    repeated TheaterScreen theater_screen = 4;
-    repeated Movie movie = 5;
+    TheaterType theater_type = 2;
+    repeated MovieSchedule movie_schedule = 3;
+    repeated Showtime show_time = 4;
+    repeated TheaterScreen theater_screen = 5;
+    repeated Movie movie = 6;
 }
 
 message ListShowTimeByTheaterIdRequest{
@@ -174,9 +177,10 @@ message ListShowTimeByTheaterIdRequest{
 
 message ListShowTimeByTheaterIdResponse{
     Theater theater = 1;
-    repeated Showtime show_time = 2;
-    repeated MovieSchedule movie_schedule = 3;
-    repeated Movie movie = 4;
+    TheaterType theater_type = 2;
+    repeated Showtime show_time = 3;
+    repeated MovieSchedule movie_schedule = 4;
+    repeated Movie movie = 5;
 }
 
 message ListShowTimeByTheaterIdandMovieIdRequest{
@@ -486,6 +490,7 @@ message GetTheaterByIDRequest {
 
 message GetTheaterByIDResponse {
     Theater theater = 1;
+    TheaterType theater_type = 2;
 }
 
 message GetTheaterByNameRequest {
@@ -494,6 +499,7 @@ message GetTheaterByNameRequest {
 
 message GetTheaterByNameResponse {
    repeated Theater theater = 1;
+   repeated TheaterType theater_type = 2;
 }
 
 message UpdateTheaterRequest {
@@ -515,6 +521,7 @@ message ListTheatersRequest {}
 
 message ListTheatersResponse {
     repeated Theater theaters = 1;
+    repeated TheaterType theater_type = 2;
 }
 
 message GetTheatersByAdminIdRequest{
