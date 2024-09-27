@@ -169,7 +169,6 @@ message GetScreensAndMovieScedulesByTheaterIdRequest{
 
 message GetScreensAndMovieScedulesByTheaterIdResponse{
     Theater theater = 1;
-    TheaterType theater_type = 2;
     repeated MovieSchedule movie_schedule = 3;
     repeated TheaterScreen theater_screen = 5;
 }
