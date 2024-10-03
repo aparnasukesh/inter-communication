@@ -461,6 +461,7 @@ const (
 	TheatreService_GetShowtimeByDetails_FullMethodName                                  = "/moviebooking.TheatreService/GetShowtimeByDetails"
 	TheatreService_UpdateShowtime_FullMethodName                                        = "/moviebooking.TheatreService/UpdateShowtime"
 	TheatreService_ListShowtimes_FullMethodName                                         = "/moviebooking.TheatreService/ListShowtimes"
+	TheatreService_ListShowtimesByShowDateAndMovieID_FullMethodName                     = "/moviebooking.TheatreService/ListShowtimesByShowDateAndMovieID"
 	TheatreService_AddMovieSchedule_FullMethodName                                      = "/moviebooking.TheatreService/AddMovieSchedule"
 	TheatreService_UpdateMovieSchedule_FullMethodName                                   = "/moviebooking.TheatreService/UpdateMovieSchedule"
 	TheatreService_GetAllMovieSchedules_FullMethodName                                  = "/moviebooking.TheatreService/GetAllMovieSchedules"
@@ -541,6 +542,7 @@ type TheatreServiceClient interface {
 	GetShowtimeByDetails(ctx context.Context, in *GetShowtimeByDetailsRequest, opts ...grpc.CallOption) (*GetShowtimeByDetailsResponse, error)
 	UpdateShowtime(ctx context.Context, in *UpdateShowtimeRequest, opts ...grpc.CallOption) (*UpdateShowtimeResponse, error)
 	ListShowtimes(ctx context.Context, in *ListShowtimesRequest, opts ...grpc.CallOption) (*ListShowtimesResponse, error)
+	ListShowtimesByShowDateAndMovieID(ctx context.Context, in *ListShowtimesByShowDateAndMovieIdRequest, opts ...grpc.CallOption) (*ListShowtimesByShowDateAndMovieIdResponse, error)
 	// Movie Schedule
 	AddMovieSchedule(ctx context.Context, in *AddMovieScheduleRequest, opts ...grpc.CallOption) (*AddMovieScheduleResponse, error)
 	UpdateMovieSchedule(ctx context.Context, in *UpdateMovieScheduleRequest, opts ...grpc.CallOption) (*UpdateMovieScheduleResponse, error)
@@ -1007,6 +1009,16 @@ func (c *theatreServiceClient) ListShowtimes(ctx context.Context, in *ListShowti
 	return out, nil
 }
 
+func (c *theatreServiceClient) ListShowtimesByShowDateAndMovieID(ctx context.Context, in *ListShowtimesByShowDateAndMovieIdRequest, opts ...grpc.CallOption) (*ListShowtimesByShowDateAndMovieIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListShowtimesByShowDateAndMovieIdResponse)
+	err := c.cc.Invoke(ctx, TheatreService_ListShowtimesByShowDateAndMovieID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *theatreServiceClient) AddMovieSchedule(ctx context.Context, in *AddMovieScheduleRequest, opts ...grpc.CallOption) (*AddMovieScheduleResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddMovieScheduleResponse)
@@ -1292,6 +1304,7 @@ type TheatreServiceServer interface {
 	GetShowtimeByDetails(context.Context, *GetShowtimeByDetailsRequest) (*GetShowtimeByDetailsResponse, error)
 	UpdateShowtime(context.Context, *UpdateShowtimeRequest) (*UpdateShowtimeResponse, error)
 	ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error)
+	ListShowtimesByShowDateAndMovieID(context.Context, *ListShowtimesByShowDateAndMovieIdRequest) (*ListShowtimesByShowDateAndMovieIdResponse, error)
 	// Movie Schedule
 	AddMovieSchedule(context.Context, *AddMovieScheduleRequest) (*AddMovieScheduleResponse, error)
 	UpdateMovieSchedule(context.Context, *UpdateMovieScheduleRequest) (*UpdateMovieScheduleResponse, error)
@@ -1453,6 +1466,9 @@ func (UnimplementedTheatreServiceServer) UpdateShowtime(context.Context, *Update
 }
 func (UnimplementedTheatreServiceServer) ListShowtimes(context.Context, *ListShowtimesRequest) (*ListShowtimesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListShowtimes not implemented")
+}
+func (UnimplementedTheatreServiceServer) ListShowtimesByShowDateAndMovieID(context.Context, *ListShowtimesByShowDateAndMovieIdRequest) (*ListShowtimesByShowDateAndMovieIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListShowtimesByShowDateAndMovieID not implemented")
 }
 func (UnimplementedTheatreServiceServer) AddMovieSchedule(context.Context, *AddMovieScheduleRequest) (*AddMovieScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddMovieSchedule not implemented")
@@ -2310,6 +2326,24 @@ func _TheatreService_ListShowtimes_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_ListShowtimesByShowDateAndMovieID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListShowtimesByShowDateAndMovieIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).ListShowtimesByShowDateAndMovieID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_ListShowtimesByShowDateAndMovieID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).ListShowtimesByShowDateAndMovieID(ctx, req.(*ListShowtimesByShowDateAndMovieIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TheatreService_AddMovieSchedule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddMovieScheduleRequest)
 	if err := dec(in); err != nil {
@@ -2902,6 +2936,10 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListShowtimes",
 			Handler:    _TheatreService_ListShowtimes_Handler,
+		},
+		{
+			MethodName: "ListShowtimesByShowDateAndMovieID",
+			Handler:    _TheatreService_ListShowtimesByShowDateAndMovieID_Handler,
 		},
 		{
 			MethodName: "AddMovieSchedule",

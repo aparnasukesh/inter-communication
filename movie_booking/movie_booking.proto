@@ -75,6 +75,7 @@ service TheatreService {
     rpc GetShowtimeByDetails(GetShowtimeByDetailsRequest) returns (GetShowtimeByDetailsResponse);
     rpc UpdateShowtime(UpdateShowtimeRequest) returns (UpdateShowtimeResponse);
     rpc ListShowtimes(ListShowtimesRequest) returns (ListShowtimesResponse);
+    rpc ListShowtimesByShowDateAndMovieID(ListShowtimesByShowDateAndMovieIdRequest)returns(ListShowtimesByShowDateAndMovieIdResponse);
 
     // Movie Schedule
     rpc AddMovieSchedule(AddMovieScheduleRequest)returns(AddMovieScheduleResponse);
@@ -853,4 +854,13 @@ message ListShowtimesRequest {
 
 message ListShowtimesResponse {
     repeated Showtime showtimes = 1;
+}
+
+message ListShowtimesByShowDateAndMovieIdRequest{
+    google.protobuf.Timestamp show_date = 1;
+    int32 movie_id = 2;
+}
+
+message ListShowtimesByShowDateAndMovieIdResponse{
+    repeated Showtime  showtimes= 1;
 }
