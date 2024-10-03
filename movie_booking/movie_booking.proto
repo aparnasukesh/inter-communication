@@ -202,6 +202,7 @@ message Seat {
     int32 seat_category_id = 6;
     double seat_category_price = 7;
     TheaterScreen theater_screen = 8;
+    SeatCategory seat_category = 9;
 }
 
 message CreateSeatsRequest {
