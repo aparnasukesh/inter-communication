@@ -107,6 +107,58 @@ service TheatreService {
     rpc ListShowTimeByTheaterIDandMovieID(ListShowTimeByTheaterIdandMovieIdRequest)returns (ListShowTimeByTheaterIdandMovieIdResponse);
 }
 
+// Booking Service
+service BookingService {
+    rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
+    rpc GetBookingByID(GetBookingByIDRequest) returns (GetBookingByIDResponse);
+    rpc ListBookingsByUser(ListBookingsByUserRequest) returns (ListBookingsByUserResponse);
+}
+// Booking related messages
+message Booking {
+    uint32 booking_id = 1;
+    uint32 user_id = 2;
+    uint32 showtime_id = 3;
+    google.protobuf.Timestamp booking_date = 4;
+    double total_amount = 5;
+    string payment_status = 6;
+    repeated BookingSeat booking_seats = 7;
+}
+   
+message BookingSeat {
+    uint32 booking_id = 1;
+    uint32 seat_id = 2;
+}
+  
+message CreateBookingRequest {
+    uint32 user_id = 1;
+    uint32 showtime_id = 2;
+    double total_amount = 3;
+    string payment_status = 4;
+    repeated uint32 seat_ids = 5; 
+}
+  
+message CreateBookingResponse {
+    Booking booking = 1;
+    string message = 2;
+}
+
+message GetBookingByIDRequest {
+    uint32 booking_id = 1;
+}
+  
+message GetBookingByIDResponse {
+    Booking booking = 1;
+}
+  
+message ListBookingsByUserRequest {
+    uint32 user_id = 1;
+}
+  
+message ListBookingsByUserResponse {
+    repeated Booking bookings = 1;
+}
+
+// Theaters
 message GetTheatersAndMovieScheduleByMovieNameRequest{
     string name = 1;
 }

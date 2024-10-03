@@ -3037,3 +3037,174 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "movie_booking/movie_booking.proto",
 }
+
+const (
+	BookingService_CreateBooking_FullMethodName      = "/moviebooking.BookingService/CreateBooking"
+	BookingService_GetBookingByID_FullMethodName     = "/moviebooking.BookingService/GetBookingByID"
+	BookingService_ListBookingsByUser_FullMethodName = "/moviebooking.BookingService/ListBookingsByUser"
+)
+
+// BookingServiceClient is the client API for BookingService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Booking Service
+type BookingServiceClient interface {
+	CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*CreateBookingResponse, error)
+	GetBookingByID(ctx context.Context, in *GetBookingByIDRequest, opts ...grpc.CallOption) (*GetBookingByIDResponse, error)
+	ListBookingsByUser(ctx context.Context, in *ListBookingsByUserRequest, opts ...grpc.CallOption) (*ListBookingsByUserResponse, error)
+}
+
+type bookingServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewBookingServiceClient(cc grpc.ClientConnInterface) BookingServiceClient {
+	return &bookingServiceClient{cc}
+}
+
+func (c *bookingServiceClient) CreateBooking(ctx context.Context, in *CreateBookingRequest, opts ...grpc.CallOption) (*CreateBookingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateBookingResponse)
+	err := c.cc.Invoke(ctx, BookingService_CreateBooking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bookingServiceClient) GetBookingByID(ctx context.Context, in *GetBookingByIDRequest, opts ...grpc.CallOption) (*GetBookingByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBookingByIDResponse)
+	err := c.cc.Invoke(ctx, BookingService_GetBookingByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bookingServiceClient) ListBookingsByUser(ctx context.Context, in *ListBookingsByUserRequest, opts ...grpc.CallOption) (*ListBookingsByUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListBookingsByUserResponse)
+	err := c.cc.Invoke(ctx, BookingService_ListBookingsByUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BookingServiceServer is the server API for BookingService service.
+// All implementations must embed UnimplementedBookingServiceServer
+// for forward compatibility
+//
+// Booking Service
+type BookingServiceServer interface {
+	CreateBooking(context.Context, *CreateBookingRequest) (*CreateBookingResponse, error)
+	GetBookingByID(context.Context, *GetBookingByIDRequest) (*GetBookingByIDResponse, error)
+	ListBookingsByUser(context.Context, *ListBookingsByUserRequest) (*ListBookingsByUserResponse, error)
+	mustEmbedUnimplementedBookingServiceServer()
+}
+
+// UnimplementedBookingServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedBookingServiceServer struct {
+}
+
+func (UnimplementedBookingServiceServer) CreateBooking(context.Context, *CreateBookingRequest) (*CreateBookingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBooking not implemented")
+}
+func (UnimplementedBookingServiceServer) GetBookingByID(context.Context, *GetBookingByIDRequest) (*GetBookingByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBookingByID not implemented")
+}
+func (UnimplementedBookingServiceServer) ListBookingsByUser(context.Context, *ListBookingsByUserRequest) (*ListBookingsByUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBookingsByUser not implemented")
+}
+func (UnimplementedBookingServiceServer) mustEmbedUnimplementedBookingServiceServer() {}
+
+// UnsafeBookingServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BookingServiceServer will
+// result in compilation errors.
+type UnsafeBookingServiceServer interface {
+	mustEmbedUnimplementedBookingServiceServer()
+}
+
+func RegisterBookingServiceServer(s grpc.ServiceRegistrar, srv BookingServiceServer) {
+	s.RegisterService(&BookingService_ServiceDesc, srv)
+}
+
+func _BookingService_CreateBooking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBookingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookingServiceServer).CreateBooking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BookingService_CreateBooking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookingServiceServer).CreateBooking(ctx, req.(*CreateBookingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BookingService_GetBookingByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBookingByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookingServiceServer).GetBookingByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BookingService_GetBookingByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookingServiceServer).GetBookingByID(ctx, req.(*GetBookingByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BookingService_ListBookingsByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBookingsByUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookingServiceServer).ListBookingsByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BookingService_ListBookingsByUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookingServiceServer).ListBookingsByUser(ctx, req.(*ListBookingsByUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// BookingService_ServiceDesc is the grpc.ServiceDesc for BookingService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var BookingService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "moviebooking.BookingService",
+	HandlerType: (*BookingServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateBooking",
+			Handler:    _BookingService_CreateBooking_Handler,
+		},
+		{
+			MethodName: "GetBookingByID",
+			Handler:    _BookingService_GetBookingByID_Handler,
+		},
+		{
+			MethodName: "ListBookingsByUser",
+			Handler:    _BookingService_ListBookingsByUser_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "movie_booking/movie_booking.proto",
+}
