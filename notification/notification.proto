@@ -9,6 +9,14 @@ service EmailService{
     rpc SendResetPassWordEmail(EmailRequest)returns (EmailResponse);
 }
 
+service ChatService{
+  rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
+  rpc AddMessage(AddMessageRequest) returns (AddMessageResponse);
+  rpc EndChat(EndChatRequest) returns (EndChatResponse);
+  rpc StreamMessages(StreamMessagesRequest) returns (stream StreamMessagesResponse);
+}
+
+// Email
 message EmailRequest{
     string email = 1;
     string otp = 2;
@@ -18,4 +26,47 @@ message EmailRequest{
 message EmailResponse {     
     string message = 1;
     string error = 2;     
+}
+
+// Chat 
+message CreateChatRequest {
+    string user_id = 1; 
+    string admin_id = 2; 
+    string super_admin_id = 3; 
+}
+
+message CreateChatResponse {
+    string chat_id = 1; 
+    string started_at = 2; 
+}
+
+message AddMessageRequest {
+    string chat_id = 1;
+    string sender_id = 2; 
+    string message = 3; 
+}
+
+message AddMessageResponse {
+    string message_id = 1; 
+    string sent_at = 2; 
+}
+
+message EndChatRequest {
+    string chat_id = 1; 
+}
+
+message EndChatResponse {
+    string chat_id = 1; 
+    string ended_at = 2; 
+}
+
+message StreamMessagesRequest {
+    string chat_id = 1; 
+}
+
+message StreamMessagesResponse {
+    string message_id = 1; 
+    string sender_id = 2; 
+    string message = 3; 
+    string sent_at = 4;
 }
