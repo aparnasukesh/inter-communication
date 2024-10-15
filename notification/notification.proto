@@ -30,43 +30,43 @@ message EmailResponse {
 
 // Chat 
 message CreateChatRequest {
-    string user_id = 1; 
-    string admin_id = 2; 
-    string super_admin_id = 3; 
+    int32 user_id = 1; 
+    int32 admin_id = 2; 
+    int32 super_admin_id = 3; 
 }
 
 message CreateChatResponse {
-    string chat_id = 1; 
+    int32 chat_id = 1; 
     string started_at = 2; 
 }
 
 message AddMessageRequest {
-    string chat_id = 1;
-    string sender_id = 2; 
+    int32 chat_id = 1;
+    int32 sender_id = 2; 
     string message = 3; 
 }
 
 message AddMessageResponse {
-    string message_id = 1; 
+    int32 message_id = 1; 
     string sent_at = 2; 
 }
 
 message EndChatRequest {
-    string chat_id = 1; 
+    int32 chat_id = 1; 
 }
 
 message EndChatResponse {
-    string chat_id = 1; 
+    int32 chat_id = 1; 
     string ended_at = 2; 
 }
 
 message StreamMessagesRequest {
-    string chat_id = 1; 
+    int32 chat_id = 1; 
 }
 
 message StreamMessagesResponse {
-    string message_id = 1; 
-    string sender_id = 2; 
+    int32 message_id = 1; 
+    int32 sender_id = 2; 
     string message = 3; 
     string sent_at = 4;
 }
