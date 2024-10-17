@@ -36,12 +36,12 @@ message CreateChatRequest {
 }
 
 message CreateChatResponse {
-    int32 chat_id = 1; 
+    string chat_id = 1; 
     string started_at = 2; 
 }
 
 message AddMessageRequest {
-    int32 chat_id = 1;
+    string chat_id = 1;
     int32 sender_id = 2; 
     string message = 3; 
 }
@@ -52,7 +52,7 @@ message AddMessageResponse {
 }
 
 message EndChatRequest {
-    int32 chat_id = 1; 
+    string chat_id = 1; 
 }
 
 message EndChatResponse {
