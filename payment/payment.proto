@@ -55,7 +55,7 @@ message RazorpayPayload {
 }
 
 message PaymentEntity {
-    string id = 1; // Payment ID
+    int32  id = 1; // Payment ID
     double amount = 2; // Amount
     string currency = 3; // Currency (e.g., "INR")
     string status = 4; // Payment status
