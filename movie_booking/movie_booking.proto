@@ -112,6 +112,8 @@ service BookingService {
     rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
     rpc GetBookingByID(GetBookingByIDRequest) returns (GetBookingByIDResponse);
     rpc ListBookingsByUser(ListBookingsByUserRequest) returns (ListBookingsByUserResponse);
+    rpc DeleteBookingByBookingID(DeleteBookingByIDRequest) returns(DeleteBookingByIDResponse);
+    rpc UpdateBookingStatusByBookingID(UpdateBookingStatusByBookingIDRequest)returns(UpdateBookingStatusByBookingIDResponse);
 }
 // Booking related messages
 message Booking {
@@ -158,6 +160,21 @@ message ListBookingsByUserResponse {
     repeated Booking bookings = 1;
 }
 
+message DeleteBookingByIDRequest {
+    int32 booking_id = 1;
+}
+
+message DeleteBookingByIDResponse{
+    string message = 1;
+}
+
+message UpdateBookingStatusByBookingIDRequest{
+    int32 booking_id = 1;
+}
+
+message UpdateBookingStatusByBookingIDResponse{
+    string message = 1; 
+}
 // Theaters
 message GetTheatersAndMovieScheduleByMovieNameRequest{
     string name = 1;
