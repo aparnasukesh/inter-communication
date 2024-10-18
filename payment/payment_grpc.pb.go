@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PaymentService_ProcessPayment_FullMethodName       = "/payment.PaymentService/ProcessPayment"
-	PaymentService_GetTransactionStatus_FullMethodName = "/payment.PaymentService/GetTransactionStatus"
+	PaymentService_ProcessPayment_FullMethodName        = "/payment.PaymentService/ProcessPayment"
+	PaymentService_GetTransactionStatus_FullMethodName  = "/payment.PaymentService/GetTransactionStatus"
+	PaymentService_HandleRazorpayWebhook_FullMethodName = "/payment.PaymentService/HandleRazorpayWebhook"
 )
 
 // PaymentServiceClient is the client API for PaymentService service.
@@ -29,6 +30,7 @@ const (
 type PaymentServiceClient interface {
 	ProcessPayment(ctx context.Context, in *ProcessPaymentRequest, opts ...grpc.CallOption) (*ProcessPaymentResponse, error)
 	GetTransactionStatus(ctx context.Context, in *GetTransactionStatusRequest, opts ...grpc.CallOption) (*GetTransactionStatusResponse, error)
+	HandleRazorpayWebhook(ctx context.Context, in *HandleRazorpayWebhookRequest, opts ...grpc.CallOption) (*HandleRazorpayWebhookResponse, error)
 }
 
 type paymentServiceClient struct {
@@ -59,12 +61,23 @@ func (c *paymentServiceClient) GetTransactionStatus(ctx context.Context, in *Get
 	return out, nil
 }
 
+func (c *paymentServiceClient) HandleRazorpayWebhook(ctx context.Context, in *HandleRazorpayWebhookRequest, opts ...grpc.CallOption) (*HandleRazorpayWebhookResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HandleRazorpayWebhookResponse)
+	err := c.cc.Invoke(ctx, PaymentService_HandleRazorpayWebhook_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentServiceServer is the server API for PaymentService service.
 // All implementations must embed UnimplementedPaymentServiceServer
 // for forward compatibility.
 type PaymentServiceServer interface {
 	ProcessPayment(context.Context, *ProcessPaymentRequest) (*ProcessPaymentResponse, error)
 	GetTransactionStatus(context.Context, *GetTransactionStatusRequest) (*GetTransactionStatusResponse, error)
+	HandleRazorpayWebhook(context.Context, *HandleRazorpayWebhookRequest) (*HandleRazorpayWebhookResponse, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedPaymentServiceServer) ProcessPayment(context.Context, *Proces
 }
 func (UnimplementedPaymentServiceServer) GetTransactionStatus(context.Context, *GetTransactionStatusRequest) (*GetTransactionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionStatus not implemented")
+}
+func (UnimplementedPaymentServiceServer) HandleRazorpayWebhook(context.Context, *HandleRazorpayWebhookRequest) (*HandleRazorpayWebhookResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleRazorpayWebhook not implemented")
 }
 func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
 func (UnimplementedPaymentServiceServer) testEmbeddedByValue()                        {}
@@ -138,6 +154,24 @@ func _PaymentService_GetTransactionStatus_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentService_HandleRazorpayWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HandleRazorpayWebhookRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).HandleRazorpayWebhook(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentService_HandleRazorpayWebhook_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).HandleRazorpayWebhook(ctx, req.(*HandleRazorpayWebhookRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PaymentService_ServiceDesc is the grpc.ServiceDesc for PaymentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var PaymentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTransactionStatus",
 			Handler:    _PaymentService_GetTransactionStatus_Handler,
+		},
+		{
+			MethodName: "HandleRazorpayWebhook",
+			Handler:    _PaymentService_HandleRazorpayWebhook_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
