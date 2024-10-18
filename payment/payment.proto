@@ -37,6 +37,6 @@ message GetTransactionStatusResponse {
     string transaction_id = 1;
     string status = 2; 
     double amount = 3; 
-    string payment_method = 4; 
+    int32 payment_method = 4; 
     string transaction_date = 5; 
 }
