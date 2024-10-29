@@ -7,18 +7,20 @@ option go_package = "./payment";
 service PaymentService {
     rpc ProcessPayment(ProcessPaymentRequest) returns (ProcessPaymentResponse);
     rpc GetTransactionStatus(GetTransactionStatusRequest) returns (GetTransactionStatusResponse);
-    rpc HandleRazorpayWebhook(HandleRazorpayWebhookRequest) returns (HandleRazorpayWebhookResponse);
+    rpc PaymentSuccess(PaymentSuccessRequest)returns (PaymentSuccessResponse);
+    rpc PaymentFailure(PaymentFailureRequest)returns(PaymentFailureResponse);
 }
 
 message Transaction {
-    int32 transaction_id = 1; // Changed to snake_case for consistency
+    int32 transaction_id = 1; 
     int32 booking_id = 2;      
     int32 user_id = 3;      
     int32 payment_method_id = 4; 
-    string transaction_date = 5; // Use time in Go for better handling
+    string transaction_date = 5; 
     double amount = 6;    
     string order_id = 7;
     string status = 8;  
+    string razorpay_payment_id = 9 ;
 }
 
 message ProcessPaymentRequest {
@@ -40,51 +42,26 @@ message GetTransactionStatusResponse {
     int32 transaction_id = 1;
     string status = 2; 
     double amount = 3; 
-    int32 payment_method_id = 4; // Updated to match the field naming convention
+    int32 payment_method_id = 4; 
     string transaction_date = 5; 
 }
 
-// Updated message for handling Razorpay webhook events
-message HandleRazorpayWebhookRequest {
-    string event = 1; // The type of event (e.g., payment.captured)
-    RazorpayWebhookPayload payload = 2; // Payload containing the transaction details
+message PaymentSuccessRequest{
+    string order_id = 1;
+    string razorpay_payment_id = 2;
+    int32 booking_id = 3;
 }
 
-// Updated payload structure for Razorpay webhook
-message RazorpayWebhookPayload {
-    Data data = 1; // New structure for the webhook data
-    string message = 2; // Message field
-
-    message Data {
-        int32 transaction_id = 1;   // Transaction ID
-        int32 booking_id = 2;       // Booking ID
-        int32 user_id = 3;          // User ID
-        int32 payment_method_id = 4; // Payment method ID
-        string transaction_date = 5; // Transaction date as string
-        double amount = 6;          // Transaction amount
-        string order_id = 7;        // Order ID
-        string status = 8;          // Payment status
-    }
+message PaymentSuccessResponse{
+    
 }
 
-// Updated message for payment entity details
-message PaymentEntity {
-    int32 id = 1; // Payment ID
-    double amount = 2; // Amount
-    string currency = 3; // Currency (e.g., "INR")
-    string status = 4; // Payment status
-    string order_id = 5; // Related order ID
-    bool international = 6; // Indicates if the payment is international
-    string method = 7; // Payment method (e.g., "card")
-    int64 created_at = 8; // Timestamp of when the payment was created
-    string customer_id = 9; // Customer ID
-    string description = 10; // Payment description
-    double fee = 11; // Transaction fee
-    double tax = 12; // Tax amount
+message PaymentFailureRequest{
+    string order_id = 1;
+    string razorpay_payment_id = 2;
+    int32 booking_id = 3;
 }
 
-// Response for handling Razorpay webhook
-message HandleRazorpayWebhookResponse {
-    string message = 1; // Response message
-    string status = 2;  // Status of the processing (e.g., success, error)
+message PaymentFailureResponse{
+    
 }

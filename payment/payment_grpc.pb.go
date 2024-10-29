@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PaymentService_ProcessPayment_FullMethodName        = "/payment.PaymentService/ProcessPayment"
-	PaymentService_GetTransactionStatus_FullMethodName  = "/payment.PaymentService/GetTransactionStatus"
-	PaymentService_HandleRazorpayWebhook_FullMethodName = "/payment.PaymentService/HandleRazorpayWebhook"
+	PaymentService_ProcessPayment_FullMethodName       = "/payment.PaymentService/ProcessPayment"
+	PaymentService_GetTransactionStatus_FullMethodName = "/payment.PaymentService/GetTransactionStatus"
+	PaymentService_PaymentSuccess_FullMethodName       = "/payment.PaymentService/PaymentSuccess"
+	PaymentService_PaymentFailure_FullMethodName       = "/payment.PaymentService/PaymentFailure"
 )
 
 // PaymentServiceClient is the client API for PaymentService service.
@@ -30,7 +31,8 @@ const (
 type PaymentServiceClient interface {
 	ProcessPayment(ctx context.Context, in *ProcessPaymentRequest, opts ...grpc.CallOption) (*ProcessPaymentResponse, error)
 	GetTransactionStatus(ctx context.Context, in *GetTransactionStatusRequest, opts ...grpc.CallOption) (*GetTransactionStatusResponse, error)
-	HandleRazorpayWebhook(ctx context.Context, in *HandleRazorpayWebhookRequest, opts ...grpc.CallOption) (*HandleRazorpayWebhookResponse, error)
+	PaymentSuccess(ctx context.Context, in *PaymentSuccessRequest, opts ...grpc.CallOption) (*PaymentSuccessResponse, error)
+	PaymentFailure(ctx context.Context, in *PaymentFailureRequest, opts ...grpc.CallOption) (*PaymentFailureResponse, error)
 }
 
 type paymentServiceClient struct {
@@ -61,10 +63,20 @@ func (c *paymentServiceClient) GetTransactionStatus(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *paymentServiceClient) HandleRazorpayWebhook(ctx context.Context, in *HandleRazorpayWebhookRequest, opts ...grpc.CallOption) (*HandleRazorpayWebhookResponse, error) {
+func (c *paymentServiceClient) PaymentSuccess(ctx context.Context, in *PaymentSuccessRequest, opts ...grpc.CallOption) (*PaymentSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HandleRazorpayWebhookResponse)
-	err := c.cc.Invoke(ctx, PaymentService_HandleRazorpayWebhook_FullMethodName, in, out, cOpts...)
+	out := new(PaymentSuccessResponse)
+	err := c.cc.Invoke(ctx, PaymentService_PaymentSuccess_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *paymentServiceClient) PaymentFailure(ctx context.Context, in *PaymentFailureRequest, opts ...grpc.CallOption) (*PaymentFailureResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PaymentFailureResponse)
+	err := c.cc.Invoke(ctx, PaymentService_PaymentFailure_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +89,8 @@ func (c *paymentServiceClient) HandleRazorpayWebhook(ctx context.Context, in *Ha
 type PaymentServiceServer interface {
 	ProcessPayment(context.Context, *ProcessPaymentRequest) (*ProcessPaymentResponse, error)
 	GetTransactionStatus(context.Context, *GetTransactionStatusRequest) (*GetTransactionStatusResponse, error)
-	HandleRazorpayWebhook(context.Context, *HandleRazorpayWebhookRequest) (*HandleRazorpayWebhookResponse, error)
+	PaymentSuccess(context.Context, *PaymentSuccessRequest) (*PaymentSuccessResponse, error)
+	PaymentFailure(context.Context, *PaymentFailureRequest) (*PaymentFailureResponse, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }
 
@@ -94,8 +107,11 @@ func (UnimplementedPaymentServiceServer) ProcessPayment(context.Context, *Proces
 func (UnimplementedPaymentServiceServer) GetTransactionStatus(context.Context, *GetTransactionStatusRequest) (*GetTransactionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionStatus not implemented")
 }
-func (UnimplementedPaymentServiceServer) HandleRazorpayWebhook(context.Context, *HandleRazorpayWebhookRequest) (*HandleRazorpayWebhookResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HandleRazorpayWebhook not implemented")
+func (UnimplementedPaymentServiceServer) PaymentSuccess(context.Context, *PaymentSuccessRequest) (*PaymentSuccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PaymentSuccess not implemented")
+}
+func (UnimplementedPaymentServiceServer) PaymentFailure(context.Context, *PaymentFailureRequest) (*PaymentFailureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PaymentFailure not implemented")
 }
 func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
 func (UnimplementedPaymentServiceServer) testEmbeddedByValue()                        {}
@@ -154,20 +170,38 @@ func _PaymentService_GetTransactionStatus_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PaymentService_HandleRazorpayWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HandleRazorpayWebhookRequest)
+func _PaymentService_PaymentSuccess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentSuccessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).HandleRazorpayWebhook(ctx, in)
+		return srv.(PaymentServiceServer).PaymentSuccess(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PaymentService_HandleRazorpayWebhook_FullMethodName,
+		FullMethod: PaymentService_PaymentSuccess_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).HandleRazorpayWebhook(ctx, req.(*HandleRazorpayWebhookRequest))
+		return srv.(PaymentServiceServer).PaymentSuccess(ctx, req.(*PaymentSuccessRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PaymentService_PaymentFailure_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentFailureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).PaymentFailure(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentService_PaymentFailure_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).PaymentFailure(ctx, req.(*PaymentFailureRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -188,8 +222,12 @@ var PaymentService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PaymentService_GetTransactionStatus_Handler,
 		},
 		{
-			MethodName: "HandleRazorpayWebhook",
-			Handler:    _PaymentService_HandleRazorpayWebhook_Handler,
+			MethodName: "PaymentSuccess",
+			Handler:    _PaymentService_PaymentSuccess_Handler,
+		},
+		{
+			MethodName: "PaymentFailure",
+			Handler:    _PaymentService_PaymentFailure_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
