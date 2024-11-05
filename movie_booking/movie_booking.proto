@@ -94,6 +94,7 @@ service TheatreService {
     // Seats
     rpc CreateSeats (CreateSeatsRequest) returns (CreateSeatsResponse);
     rpc GetSeatsByScreenID (GetSeatsByScreenIDRequest) returns (GetSeatsByScreenIDResponse);
+    rpc GetAvailableSeatsByScreenID(GetAvailableSeatsByScreenIDRequest)returns (GetAvailableSeatsByScreenIDResponse);
     rpc GetSeatByID(GetSeatByIdRequest)returns (GetSeatByIdResponse);
     rpc GetSeatBySeatNumberAndScreenID(GetSeatBySeatNumberAndScreenIdRequest)returns(GetSeatBySeatNumberAndScreenIdResponse);
     rpc DeleteSeatByID(DeleteSeatByIdRequest) returns (DeleteSeatByIdResponse);
@@ -314,6 +315,15 @@ message CreateSeatsResponse{
 
 message GetSeatsByScreenIDRequest{
     int32 screen_id =1 ;
+}
+
+message GetAvailableSeatsByScreenIDRequest{
+    int32 screen_id = 1;
+}
+
+message GetAvailableSeatsByScreenIDResponse{
+    repeated Seat seats = 1;
+ 
 }
 
 message GetSeatsByScreenIDResponse{

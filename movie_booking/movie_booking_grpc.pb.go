@@ -487,6 +487,7 @@ const (
 	TheatreService_DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId_FullMethodName = "/moviebooking.TheatreService/DeleteMovieScheduleByMovieIdAndTheaterIdAndShowTimeId"
 	TheatreService_CreateSeats_FullMethodName                                           = "/moviebooking.TheatreService/CreateSeats"
 	TheatreService_GetSeatsByScreenID_FullMethodName                                    = "/moviebooking.TheatreService/GetSeatsByScreenID"
+	TheatreService_GetAvailableSeatsByScreenID_FullMethodName                           = "/moviebooking.TheatreService/GetAvailableSeatsByScreenID"
 	TheatreService_GetSeatByID_FullMethodName                                           = "/moviebooking.TheatreService/GetSeatByID"
 	TheatreService_GetSeatBySeatNumberAndScreenID_FullMethodName                        = "/moviebooking.TheatreService/GetSeatBySeatNumberAndScreenID"
 	TheatreService_DeleteSeatByID_FullMethodName                                        = "/moviebooking.TheatreService/DeleteSeatByID"
@@ -570,6 +571,7 @@ type TheatreServiceClient interface {
 	// Seats
 	CreateSeats(ctx context.Context, in *CreateSeatsRequest, opts ...grpc.CallOption) (*CreateSeatsResponse, error)
 	GetSeatsByScreenID(ctx context.Context, in *GetSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetSeatsByScreenIDResponse, error)
+	GetAvailableSeatsByScreenID(ctx context.Context, in *GetAvailableSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetAvailableSeatsByScreenIDResponse, error)
 	GetSeatByID(ctx context.Context, in *GetSeatByIdRequest, opts ...grpc.CallOption) (*GetSeatByIdResponse, error)
 	GetSeatBySeatNumberAndScreenID(ctx context.Context, in *GetSeatBySeatNumberAndScreenIdRequest, opts ...grpc.CallOption) (*GetSeatBySeatNumberAndScreenIdResponse, error)
 	DeleteSeatByID(ctx context.Context, in *DeleteSeatByIdRequest, opts ...grpc.CallOption) (*DeleteSeatByIdResponse, error)
@@ -1170,6 +1172,16 @@ func (c *theatreServiceClient) GetSeatsByScreenID(ctx context.Context, in *GetSe
 	return out, nil
 }
 
+func (c *theatreServiceClient) GetAvailableSeatsByScreenID(ctx context.Context, in *GetAvailableSeatsByScreenIDRequest, opts ...grpc.CallOption) (*GetAvailableSeatsByScreenIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAvailableSeatsByScreenIDResponse)
+	err := c.cc.Invoke(ctx, TheatreService_GetAvailableSeatsByScreenID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *theatreServiceClient) GetSeatByID(ctx context.Context, in *GetSeatByIdRequest, opts ...grpc.CallOption) (*GetSeatByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSeatByIdResponse)
@@ -1332,6 +1344,7 @@ type TheatreServiceServer interface {
 	// Seats
 	CreateSeats(context.Context, *CreateSeatsRequest) (*CreateSeatsResponse, error)
 	GetSeatsByScreenID(context.Context, *GetSeatsByScreenIDRequest) (*GetSeatsByScreenIDResponse, error)
+	GetAvailableSeatsByScreenID(context.Context, *GetAvailableSeatsByScreenIDRequest) (*GetAvailableSeatsByScreenIDResponse, error)
 	GetSeatByID(context.Context, *GetSeatByIdRequest) (*GetSeatByIdResponse, error)
 	GetSeatBySeatNumberAndScreenID(context.Context, *GetSeatBySeatNumberAndScreenIdRequest) (*GetSeatBySeatNumberAndScreenIdResponse, error)
 	DeleteSeatByID(context.Context, *DeleteSeatByIdRequest) (*DeleteSeatByIdResponse, error)
@@ -1525,6 +1538,9 @@ func (UnimplementedTheatreServiceServer) CreateSeats(context.Context, *CreateSea
 }
 func (UnimplementedTheatreServiceServer) GetSeatsByScreenID(context.Context, *GetSeatsByScreenIDRequest) (*GetSeatsByScreenIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSeatsByScreenID not implemented")
+}
+func (UnimplementedTheatreServiceServer) GetAvailableSeatsByScreenID(context.Context, *GetAvailableSeatsByScreenIDRequest) (*GetAvailableSeatsByScreenIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAvailableSeatsByScreenID not implemented")
 }
 func (UnimplementedTheatreServiceServer) GetSeatByID(context.Context, *GetSeatByIdRequest) (*GetSeatByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSeatByID not implemented")
@@ -2618,6 +2634,24 @@ func _TheatreService_GetSeatsByScreenID_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TheatreService_GetAvailableSeatsByScreenID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAvailableSeatsByScreenIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TheatreServiceServer).GetAvailableSeatsByScreenID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TheatreService_GetAvailableSeatsByScreenID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TheatreServiceServer).GetAvailableSeatsByScreenID(ctx, req.(*GetAvailableSeatsByScreenIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TheatreService_GetSeatByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSeatByIdRequest)
 	if err := dec(in); err != nil {
@@ -3018,6 +3052,10 @@ var TheatreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSeatsByScreenID",
 			Handler:    _TheatreService_GetSeatsByScreenID_Handler,
+		},
+		{
+			MethodName: "GetAvailableSeatsByScreenID",
+			Handler:    _TheatreService_GetAvailableSeatsByScreenID_Handler,
 		},
 		{
 			MethodName: "GetSeatByID",
